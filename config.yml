@@ -14,19 +14,18 @@ menu:
         - name: Papers
           url: papers/
           weight: 1
-        - name: Courses
-          url: courses/
+        - name: Projects
+          url: projects/
           weight: 2
-        - name: Data
-          url: data/
-          weight: 3 
+        # - name: Recent
+        #   url: recent/
+        #   weight: 3 
         # - name: Newsletter
         #   url: https://pmichaillat.substack.com
         #   weight: 4
 
 params:
-    description: "I am a Professor of Subject at the University of Place. My research covers various topics.
-consequat."
+    description: "I'm a Privacy Engineering Graduate student at Carnegie Mellon University."
     author: Yash Maurya
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
@@ -51,29 +50,29 @@ consequat."
     profileMode:
           enabled: true
           title: Yash Maurya
-          subtitle: "I'm a Privacy Engineering Graduate student at Carnegie Mellon University. <br>
+          subtitle: "I'm a <b>Privacy Engineering</b> Graduate student at <b>Carnegie Mellon University</b>. <br>
 I'm dedicated to creating privacy-conscious AI solutions and ensuring the ethical use of data. My mission is to design robust privacy systems for the greater good of society. <br>
-My key interests are in Federated Learning, Differential Privacy, Explainable and Responsible AI. "
-          imageUrl: "/picture.jpeg"
+My key interests are in <b>Federated Learning</b>, <b>Differential Privacy</b>, <b>Explainable and Responsible AI</b>. "
+          imageUrl: "/yash.jpeg"
           imageWidth: 160
           imageHeight: 160
           imageTitle: Yash Maurya
           buttons:
             - name: Papers
               url: papers/
-            - name: Courses
-              url: courses/
-            - name: Data
-              url: data/
+            - name: Projects
+              url: projects/
+            # - name: Data
+            #   url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
-            - name: Tags
-              url: tags/
+            # - name: Tags
+            #   url: tags/
             - name: Archive
               url: archive/
     socialIcons:
         - name: CV
-          url: cv.pdf
+          url: /resume.pdf
         - name: Email
           url: mailto:ymaurya@cs.cmu.edu
         # - name: Location
@@ -98,7 +97,7 @@ My key interests are in Federated Learning, Differential Privacy, Explainable an
         hiddenInList: false
         hiddenInSingle: true
     label:
-      text: "Prof. Name"
+      text: "Yash Maurya"
       icon: favicon.ico
       iconHeight: 18
 
