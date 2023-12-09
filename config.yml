@@ -1,0 +1,115 @@
+baseURL: "https://yashmaurya01.github.io" 
+title: Yash Maurya
+paginate: 20
+theme: PaperMod
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+
+taxonomies:
+    tag: tags
+
+menu:
+    main:
+        - name: Papers
+          url: papers/
+          weight: 1
+        - name: Courses
+          url: courses/
+          weight: 2
+        - name: Data
+          url: data/
+          weight: 3 
+        # - name: Newsletter
+        #   url: https://pmichaillat.substack.com
+        #   weight: 4
+
+params:
+    description: "I am a Professor of Subject at the University of Place. My research covers various topics.
+consequat."
+    author: Yash Maurya
+    # googleAnalyticsID: "G-XXXXX"
+    DateFormat: "January 2006"
+    defaultTheme: light
+    hideFooter: false
+    disableThemeToggle: false
+    ShowShareButtons: false
+    ShowReadingTime: false
+    disableSpecial1stPost: true
+    disableAnchoredHeadings: true
+    ShowPostNavLinks: false
+    ShowBreadCrumbs: false
+    ShowCodeCopyButtons: true
+    ShowRssButtonInSectionTermList: false
+    ShowToc: false
+    disableScrollToTop: true
+    TocOpen: true
+    ShowWordCount: false
+    UseHugoToc: true
+    comments: false
+    math: true
+    profileMode:
+          enabled: true
+          title: Yash Maurya
+          subtitle: "I'm a Privacy Engineering Graduate student at Carnegie Mellon University. <br>
+I'm dedicated to creating privacy-conscious AI solutions and ensuring the ethical use of data. My mission is to design robust privacy systems for the greater good of society. <br>
+My key interests are in Federated Learning, Differential Privacy, Explainable and Responsible AI. "
+          imageUrl: "/picture.jpeg"
+          imageWidth: 160
+          imageHeight: 160
+          imageTitle: Yash Maurya
+          buttons:
+            - name: Papers
+              url: papers/
+            - name: Courses
+              url: courses/
+            - name: Data
+              url: data/
+            # - name: Newsletter
+            #   url: https://pmichaillat.substack.com
+            - name: Tags
+              url: tags/
+            - name: Archive
+              url: archive/
+    socialIcons:
+        - name: CV
+          url: cv.pdf
+        - name: Email
+          url: mailto:ymaurya@cs.cmu.edu
+        # - name: Location
+        #   url: location/
+        # - name: Office Hours
+        #   url: officehours/
+        - name: Google Scholar
+          url: https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en
+        # - name: YouTube
+        #   url: https://www.youtube.com/@pmichaillat
+        - name: GitHub
+          url: https://github.com/yashmaurya01
+        - name: LinkedIn
+          url: https://www.linkedin.com/in/yashmaurya/
+        - name: Twitter
+          url: https://twitter.com/yash_maurya01
+
+    assets:
+        disableHLJS: true
+        disableScrollBarStyle: true
+    cover:
+        hiddenInList: false
+        hiddenInSingle: true
+    label:
+      text: "Prof. Name"
+      icon: favicon.ico
+      iconHeight: 18
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        guessSyntax: true
+        style: autumn 
+    tableOfContents:
+        endLevel: 2
+        ordered: false
+        startLevel: 2
