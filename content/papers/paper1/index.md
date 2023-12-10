@@ -17,7 +17,7 @@ editPost:
 
 ---
 
- ##### Download
+ <!-- ##### Download
 
 + [Paper](paper1.pdf)
 + [Online appendix](appendix1.pdf)
@@ -53,7 +53,7 @@ volume = {Volume},
 year = {Year}}
 ```
 
----
+--- -->
 <!-- 
 ##### Related material
 
