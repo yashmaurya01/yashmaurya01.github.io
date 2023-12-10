@@ -1,8 +1,8 @@
 ---
 title: "Space-JEDI (Junk Elimination and Debris Interception)"
 date: 2022-03-10
-tags: ["keyword 1","keyword 2","keyword 3"]
-author: "Prof. Name"
+tags: ["Hackathon","Space Debris","NASA"]
+author: ["Yash Maurya", "Aman Priyanshu", "Suriya Ganesh"]
 description: "HackCMU'2023 Space Theme Winner" 
 summary: "Space Junk Elimination and Debris Interception (JEDI) is a revolutionary solution designed to predict the future positions of satellites and plot optimal flight plans for space garbage collectors. By continuously tracking and analyzing real-time data from NASA, JEDI is able to effectively monitor and manage objects in Earth's orbit.
 
@@ -22,7 +22,7 @@ disableAnchoredHeadings: false
 
 # Space-JEDI (Junk Elimination and Debris Interception)
 
-[![Demo](/space-jedi.gif)](https://www.youtube.com/watch?v=rhzXnvSg1ts)
+[![Demo](space-jedi.gif)](https://www.youtube.com/watch?v=rhzXnvSg1ts)
 
 **[Click Above for Full Demo!](https://www.youtube.com/watch?v=rhzXnvSg1ts)** 
 
@@ -86,3 +86,6 @@ Our vision for the future of JEDI includes:
 - **[Suriya Ganesh](https://www.linkedin.com/in/suriya-ganesh/) - sayyampe**
 - **[Aman Priyanshu](https://www.linkedin.com/in/aman-priyanshu/) - apriyans**
 - **[Yash Maurya](https://www.linkedin.com/in/yashmaurya/) - ymaurya**
+
+## Code Repo
+[Space-JEDI](https://github.com/suriya-ganesh/space-JEDI)
