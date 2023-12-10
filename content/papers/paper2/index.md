@@ -1,17 +1,17 @@
 ---
-title: "Paper Title 2" 
-date: 2015-12-01
+title: "Improved variants of Score-CAM via Smoothing and Integrating" 
+date: 2021-06-04
 tags: ["keyword 1","keyword 2","keyword 4"]
-author: ["Author Name 1", "Author Name 2"]
-description: "This paper shows other things. Published in Journal Name, 2015." 
-summary: "This paper shows other things using other techniques and different data." 
+author: ["Rakshit Naidu","Haofan Wang","Soumya Snigdha Kundu","Ankita Ghosh","Yash Maurya","Shamanth R Nayak K","Joy Michael"]
+description: "Accepted at RCV Workshop at CVPR 2021" 
+summary: "Class Activation Mappings (CAMs) highlight the features that contribute to the output of the model. In this work, we propose improved variants on Score-CAM through smoothing and an integration function respectively. We visually demonstrate that our methods significantly assist in interpreting models by providing concentrated heatmaps and concrete decision-related features." 
 cover:
-    image: "paper2.png"
-    alt: "Image caption"
+    image: "iscam-poster.png"
+    alt: "IS-CAM Poster"
     relative: false
 editPost:
-    URL: "https://doi.org/10.1073/pnas.1816454115"
-    Text: "Other Journal Name"
+    URL: "https://drive.google.com/file/d/10at_w7Wlkz0Ig4fU9BoNWe8m8FttlaDD/view"
+    Text: "RCV Workshop Poster"
 
 ---
 
@@ -33,7 +33,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ##### Figure X: Figure caption
 
-![](paper2.png)
+![](iscam-poster.png)
 
 ---
 

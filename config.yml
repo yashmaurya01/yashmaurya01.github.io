@@ -30,10 +30,10 @@ params:
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
     defaultTheme: light
-    hideFooter: true
-    disableThemeToggle: true
+    hideFooter: false
+    disableThemeToggle: false
     ShowShareButtons: false
-    ShowReadingTime: false
+    ShowReadingTime: true
     disableSpecial1stPost: true
     disableAnchoredHeadings: true
     ShowPostNavLinks: false
@@ -55,7 +55,7 @@ params:
   <strong>Carnegie Mellon University</strong>.
 </p>
 <p>
-  I'm dedicated to creating privacy-conscious AI solutions and ensuring the <strong>ethical</strong> use of data.
+  I'm dedicated to creating <strong>privacy-conscious</strong> AI solutions and ensuring the <strong>ethical</strong> use of data.
   My mission is to design <strong>robust</strong> privacy systems for the greater good of society.
 </p>
 <p>
@@ -80,8 +80,8 @@ params:
             #   url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
-            # - name: Tags
-            #   url: tags/
+            - name: Tags
+              url: tags/
             - name: Archive
               url: archive/
     socialIcons:
