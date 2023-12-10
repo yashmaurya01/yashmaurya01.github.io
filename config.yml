@@ -80,10 +80,10 @@ params:
             #   url: data/
             # - name: Newsletter
             #   url: https://pmichaillat.substack.com
-            - name: Tags
-              url: tags/
-            - name: Archive
-              url: archive/
+            # - name: Tags
+            #   url: tags/
+            # - name: Archive
+            #   url: archive/
     socialIcons:
         - name: CV
           url: /resume.pdf
