@@ -50,9 +50,23 @@ params:
     profileMode:
           enabled: true
           title: Yash Maurya
-          subtitle: "I'm a <b>Privacy Engineering</b> Graduate student at <b>Carnegie Mellon University</b>. <br>
-I'm dedicated to creating privacy-conscious AI solutions and ensuring the ethical use of data. My mission is to design robust privacy systems for the greater good of society. <br>
-My key interests are in <b>Federated Learning</b>, <b>Differential Privacy</b>, <b>Explainable and Responsible AI</b>. "
+          subtitle: "<p>
+  I'm a <strong>Privacy Engineering</strong> graduate student at
+  <strong>Carnegie Mellon University</strong>.
+</p>
+<p>
+  I'm dedicated to creating privacy-conscious AI solutions and ensuring the <strong>ethical</strong> use of data.
+  My mission is to design <strong>robust</strong> privacy systems for the greater good of society.
+</p>
+<p>
+  My key interests include
+  <strong>Privacy Preserving Machine Learning</strong>,
+  <strong>Fairness</strong>,
+  <strong>Federated Learning</strong>,
+  <strong>Differential Privacy</strong>, and
+  <strong>Explainable and Responsible AI</strong>.
+</p>
+"
           imageUrl: "/yash.jpeg"
           imageWidth: 160
           imageHeight: 160
