@@ -4,7 +4,7 @@ date: 2022-12-12
 tags: ["Federated Learning","Privacy","Medical"]
 author: ["Yash Maurya","Prahaladh Chandrahasan","Poornalatha G"]
 description: "Accepted at IEEE Global Conference for Advancement in Technology 2022" 
-summary: "Developed a Federated Learning system for Colorectal Cancer Prediction, preserving client privacy while achieving an 86.2% accuracy, on par with the centralized model for IID clients." 
+summary: "Developed a Federated Learning system for Colorectal Cancer Prediction, preserving client privacy while achieving an 86.2% accuracy, on par with the centralized model for IID clients. We anticipate our study to enable additional healthcare studies driven by vast and diverse data, and illustrate the efficacy of FL at such magnitude and task complexity as a paradigm shift for multi-site partnerships, eliminating the need for data sharing." 
 cover:
     image: "paper1.png"
     alt: "Image caption"
