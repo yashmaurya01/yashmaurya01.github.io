@@ -1,6 +1,6 @@
 ---
 title: "Space-JEDI (Junk Elimination and Debris Interception)"
-date: 2022-03-10
+date: 2023-09-16
 tags: ["Hackathon","Space Debris","NASA"]
 author: ["Yash Maurya", "Aman Priyanshu", "Suriya Ganesh"]
 description: "HackCMU'2023 Space Theme Winner" 
