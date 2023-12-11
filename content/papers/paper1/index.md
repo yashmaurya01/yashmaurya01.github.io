@@ -17,18 +17,35 @@ editPost:
 
 ---
 
- ##### Download
+ ##### Links
 
-+ [Paper](paper1.pdf)
-+ [Online appendix](appendix1.pdf)
-+ [Code and data](https://github.com/pmichaillat/job-rationing)
++ [Paper](https://ieeexplore.ieee.org/document/9972224)
+<!-- + [Online appendix](appendix1.pdf) -->
+<!-- + [Code and data](https://github.com/pmichaillat/job-rationing) -->
 
 ---
 
 ##### Abstract
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+The availability of datasets pertaining to various
+fields has increased significantly in the past decade, but there
+still exists a problem in getting datasets pertaining to the medical
+field as most of the data needs to be confidential and there exists
+laws which ensure a patient’s data privacy. Federated learning
+(FL) proves to solve this problem via a client-server architecture
+by enabling distributed training of clients, without any data
+exposure.
+In this paper, we apply the FedAvg (FederatedAveraging) [1] algorithm on the PathMNISTv2 [2] dataset for predicting colorectal
+cancer. We also present a refined convolutional neural network
+(CNN) architecture for accurate predictions on the PathMNISTv2
+dataset. We have studied the effects on IID (Independent and
+Identically Distributed) and Non-IID (Non-Identically Independently Distributed) distributions in a distributed environment. We
+have also compared these results with a centralized model and
+demonstrate that FedAvg achieves similar results in a distributed
+setting. We anticipate our study to enable additional healthcare
+studies driven by vast and diverse data, and illustrate the efficacy
+of FL at such magnitude and task complexity as a paradigm shift
+for multi-site partnerships, eliminating the need for data sharing
 ---
 
 ##### Figure X: Figure caption
@@ -39,18 +56,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ##### Citation
 
-Author. Year. "Title." *Journal* Volume (Issue): First page–Last page. https://doi.org/paper_doi.
+Y. Maurya, P. Chandrahasan and P. G, "Federated Learning for Colorectal Cancer Prediction," 2022 IEEE 3rd Global Conference for Advancement in Technology (GCAT), Bangalore, India, 2022, pp. 1-5, doi: 10.1109/GCAT55367.2022.9972224.
 
 ```BibTeX
-@article{AAYY,
-author = {Author},
-doi = {paper_doi},
-journal = {Journal},
-number = {Issue},
-pages = {XXX--YYY},
-title ={Title},
-volume = {Volume},
-year = {Year}}
+@INPROCEEDINGS{9972224,
+  author={Maurya, Yash and Chandrahasan, Prahaladh and G, Poornalatha},
+  booktitle={2022 IEEE 3rd Global Conference for Advancement in Technology (GCAT)}, 
+  title={Federated Learning for Colorectal Cancer Prediction}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-5},
+  doi={10.1109/GCAT55367.2022.9972224}}
+
 ```
 
 ---

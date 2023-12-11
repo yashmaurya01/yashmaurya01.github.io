@@ -17,21 +17,21 @@ editPost:
 
 ---
 
-##### Download
+##### View
 
-+ [Paper](paper2.pdf)
-+ [Online appendix](appendix2.pdf)
-+ [Code and data](https://github.com/pmichaillat/unemployment-gap)
++ [Poster](poster.pdf)
+<!-- + [Online appendix](appendix2.pdf) -->
+<!-- + [Code and data](https://github.com/pmichaillat/unemployment-gap) -->
 
 ---
 
 ##### Abstract
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Class Activation Mappings (CAMs) highlight the features that contribute to the output of the model. We present two new variants of Score-CAM:- 1. By a smoothing function to generate localised features. 2. Through an Integration function to furnish sharper axiomatic-based attribution maps. We visually demonstrate that our methods significantly assist in interpreting models by providing concentrated heat maps and concrete decision-related features.
 
 ---
 
-##### Figure X: Figure caption
+##### Figure X: Poster
 
 ![](iscam-poster.png)
 
@@ -39,23 +39,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ##### Citation
 
-Author 1 and Author 2. Year. "Title." *Journal* Volume (Issue): First page–Last page. https://doi.org/paper_doi.
+Naidu, Rakshit & Kundu, Soumya & R Nayak K, Shamanth & Maurya, Yash. (2021). Improved variants of Score-CAM via Smoothing and Integrating. 10.13140/RG.2.2.23611.54563. 
 
 ```BibTeX
-@article{AAYY,
-author = {Author 1 and Author 2},
-doi = {paper_doi},
-journal = {Journal},
-number = {Issue},
-pages = {XXX--YYY},
-title ={Title},
-volume = {Volume},
-year = {Year}}
+@unknown{ImprovedCAM,
+author = {Naidu, Rakshit and Kundu, Soumya and R Nayak K, Shamanth and Maurya, Yash},
+year = {2021},
+month = {06},
+pages = {},
+title = {Improved variants of Score-CAM via Smoothing and Integrating},
+doi = {10.13140/RG.2.2.23611.54563}
+}
 ```
 
 ---
 
-##### Related material
+<!-- ##### Related material
 
-+ [Presentation slides](presentation2.pdf)
++ [Presentation slides](presentation2.pdf) -->
 
