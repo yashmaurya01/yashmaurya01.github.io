@@ -17,6 +17,8 @@ menu:
         - name: Projects
           url: projects/
           weight: 2
+        - name: Archive
+          url: archive/
         # - name: Recent
         #   url: recent/
         #   weight: 3 
@@ -82,8 +84,8 @@ params:
             #   url: https://pmichaillat.substack.com
             # - name: Tags
             #   url: tags/
-            # - name: Archive
-            #   url: archive/
+            - name: Archive
+              url: archive/
     socialIcons:
         - name: CV
           url: /resume.pdf
