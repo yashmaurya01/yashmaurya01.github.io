@@ -32,7 +32,7 @@ params:
     author: Yash Maurya
     # googleAnalyticsID: "G-XXXXX"
     DateFormat: "January 2006"
-    defaultTheme: dark
+    defaultTheme: light
     hideFooter: true
     disableThemeToggle: false
     ShowShareButtons: false
