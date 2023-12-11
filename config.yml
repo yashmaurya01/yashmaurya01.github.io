@@ -19,6 +19,7 @@ menu:
           weight: 2
         - name: Archive
           url: archive/
+          weight: 3 
         # - name: Recent
         #   url: recent/
         #   weight: 3 
