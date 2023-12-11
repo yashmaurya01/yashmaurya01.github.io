@@ -35,7 +35,7 @@ laws which ensure a patient’s data privacy. Federated learning
 (FL) proves to solve this problem via a client-server architecture
 by enabling distributed training of clients, without any data
 exposure.
-In this paper, we apply the FedAvg (FederatedAveraging) [1] algorithm on the PathMNISTv2 [2] dataset for predicting colorectal
+In this paper, we apply the FedAvg (FederatedAveraging)algorithm on the PathMNISTv2 dataset for predicting colorectal
 cancer. We also present a refined convolutional neural network
 (CNN) architecture for accurate predictions on the PathMNISTv2
 dataset. We have studied the effects on IID (Independent and
@@ -46,9 +46,10 @@ setting. We anticipate our study to enable additional healthcare
 studies driven by vast and diverse data, and illustrate the efficacy
 of FL at such magnitude and task complexity as a paradigm shift
 for multi-site partnerships, eliminating the need for data sharing
+
 ---
 
-##### Figure X: Figure caption
+##### Figure X: PathMNIST Dataset
 
 ![](paper1.png)
 

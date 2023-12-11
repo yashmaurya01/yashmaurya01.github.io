@@ -1,7 +1,7 @@
 ---
 title: "Improved variants of Score-CAM via Smoothing and Integrating" 
 date: 2021-06-04
-tags: ["keyword 1","keyword 2","keyword 4"]
+tags: ["Explainable AI","CVPR 2021","Poster"]
 author: ["Rakshit Naidu","Haofan Wang","Soumya Snigdha Kundu","Ankita Ghosh","Yash Maurya","Shamanth R Nayak K","Joy Michael"]
 description: "Accepted at RCV Workshop at CVPR 2021" 
 summary: "Class Activation Mappings (CAMs) highlight the features that contribute to the output of the model. In this work, we propose improved variants on Score-CAM through smoothing and an integration function respectively. We visually demonstrate that our methods significantly assist in interpreting models by providing concentrated heatmaps and concrete decision-related features." 
@@ -33,7 +33,7 @@ Class Activation Mappings (CAMs) highlight the features that contribute to the o
 
 ##### Figure X: Poster
 
-![](iscam-poster.png)
+![](poster.png)
 
 ---
 

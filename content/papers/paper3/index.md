@@ -32,9 +32,10 @@ an attempt to make CNNs more interpretable and trustworthy, we propose IS-CAM (I
 attribution maps quantitatively. Our method is evaluated on 2000 randomly selected images from the ILSVRC 2012 Validation dataset, which
 proves the versatility of IS-CAM to account for different models and
 methods.
+
 ---
 
-##### Figure X: Figure caption
+##### Figure X: IS-CAM Results
 
 ![](iscam.png)
 
