@@ -10,8 +10,8 @@ cover:
     alt: "IS-CAM Poster"
     relative: false
 editPost:
-    URL: "https://drive.google.com/file/d/10at_w7Wlkz0Ig4fU9BoNWe8m8FttlaDD/view"
-    Text: "RCV Workshop Poster"
+    URL: "https://sites.google.com/view/rcv-cvpr2021/accepted-work"
+    Text: "RCV at CVPR 2021"
 
 ---
 
