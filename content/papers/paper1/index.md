@@ -11,7 +11,7 @@ cover:
     relative: false
 editPost:
     URL: "https://ieeexplore.ieee.org/document/9972224"
-    Text: "IEEE Xplore"
+    Text: "IEEE Global Conference for Advancement in Technology 2022"
 
 ---
 
