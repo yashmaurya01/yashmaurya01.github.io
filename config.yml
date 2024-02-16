@@ -81,10 +81,15 @@ Currently exploring <strong>AI Threat Modeling</strong> and <strong>Unlearning</
           imageHeight: 160
           imageTitle: Yash Maurya
           buttons:
+            - name: Resume
+              url: /resume.pdf
+              weight: 1
             - name: Papers
               url: papers/
+              weight: 2
             - name: Projects
               url: projects/
+              weight: 3
             # - name: Data
             #   url: data/
             # - name: Newsletter
