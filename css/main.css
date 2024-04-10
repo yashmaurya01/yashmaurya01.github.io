@@ -398,7 +398,7 @@ a,
 span,
 div,
 .toggle-icon i {
-  transition: color 0.2s, background-color 0.2s;
+  transition: color 0.2s;
 }
 
 /* Dark Mode Specific Styles */
@@ -429,20 +429,3 @@ div,
   color: #f8f8f8;
 }
 
-/* Transition effects for smooth color changes */
-body,
-.navbar,
-.nav-link,
-.navbar-brand,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-span,
-div,
-.toggle-icon i {
-  transition: color 0.2s, background-color 0.2s;
-}
