@@ -398,7 +398,7 @@ a,
 span,
 div,
 .toggle-icon i {
-  transition: color 0.2s;
+  transition: color 0.04s;
 }
 
 /* Dark Mode Specific Styles */
@@ -428,4 +428,3 @@ div,
 .dark-mode .description h6 {
   color: #f8f8f8;
 }
-
