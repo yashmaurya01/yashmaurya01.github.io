@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chat Window with WebGPU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #chat-container {
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #status-bar {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #init-loading-bar-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        #init-loading-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.5s ease;
+        }
+
+        #loading-bar {
+            height: 4px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        #chat-history {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: white;
+        }
+
+        #input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #send-button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #45a049;
+        }
+
+        #send-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #e7f5fe;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+        }
+
+        .system-message {
+            background-color: #fff3cd;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chat-container">
+        <div id="status-bar">Initializing...</div>
+        <div id="init-loading-bar-container">
+            <div id="init-loading-bar"></div>
+        </div>
+        <div id="loading-bar"></div>
+        <div id="chat-history"></div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="Type your message..." disabled>
+            <button id="send-button" disabled>Send</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+
+        const chatHistory = document.getElementById('chat-history');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const statusBar = document.getElementById('status-bar');
+        const loadingBar = document.getElementById('loading-bar');
+        const initLoadingBar = document.getElementById('init-loading-bar');
+
+        let generator;
+        let messages = [
+            { "role": "system", "content": "You are a chat assistant. The user will ask you questions and you have to answer it in a concise and simple way." }
+        ];
+        let webGPUDevice;
+
+        async function checkWebGPUSupport() {
+            if (!navigator.gpu) {
+                updateStatus("WebGPU not supported", "red");
+                return false;
+            }
+            try {
+                const adapter = await navigator.gpu.requestAdapter();
+                if (!adapter) {
+                    updateStatus("WebGPU adapter not found", "orange");
+                    return false;
+                }
+                webGPUDevice = await adapter.requestDevice();
+                updateStatus("WebGPU initialized", "#4CAF50");
+                return true;
+            } catch (error) {
+                console.error("WebGPU initialization failed:", error);
+                updateStatus("WebGPU initialization failed", "red");
+                return false;
+            }
+        }
+
+        async function initializePipeline() {
+            try {
+                updateStatus("Initializing pipeline...", "orange");
+                const webGPUSupported = await checkWebGPUSupport();
+                const pipelineOptions = {
+                    quantized: true,
+                    ...(webGPUSupported ? { device: webGPUDevice } : {})
+                };
+
+                // Set up a progress callback
+                env.progress_callback = (stage, progress, total) => {
+                    const percentage = (progress / total) * 100;
+                    initLoadingBar.style.width = `${percentage}%`;
+                    updateStatus(`Loading model: ${stage} (${percentage.toFixed(2)}%)`, "orange");
+                };
+
+                generator = await pipeline('text-generation', 'Felladrin/onnx-Llama-68M-Chat-v1', pipelineOptions);
+                updateStatus("Pipeline ready", "#4CAF50");
+                addMessage('System', 'Chat model initialized. You can start chatting now!');
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+            } catch (error) {
+                console.error('Error initializing pipeline:', error);
+                updateStatus("Pipeline initialization failed", "red");
+                addMessage('System', 'Failed to initialize the chat model. Please try again later.');
+            }
+        }
+
+        function updateStatus(message, color) {
+            statusBar.textContent = message;
+            statusBar.style.backgroundColor = color;
+        }
+
+        function addMessage(role, content) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${role}: ${content}`;
+            messageElement.classList.add('message');
+
+            if (role === 'You') {
+                messageElement.classList.add('user-message');
+            } else if (role === 'Bot') {
+                messageElement.classList.add('bot-message');
+            } else {
+                messageElement.classList.add('system-message');
+            }
+
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function constructPrompt(messages) {
+            let prompt = '';
+            messages.forEach(message => {
+                if (message.role === 'system') {
+                    prompt += `<|im_start|>system\n${message.content}<|im_end|>\n`;
+                } else if (message.role === 'user') {
+                    prompt += `<|im_start|>user\n${message.content}<|im_end|>\n`;
+                } else if (message.role === 'assistant') {
+                    prompt += `<|im_start|>assistant\n${message.content}<|im_end|>\n`;
+                }
+            });
+            prompt += '<|im_start|>assistant\n';
+            return prompt;
+        }
+
+        function parseOutput(output) {
+            const assistantResponse = output.split('<|im_start|>assistant\n').pop().split('<|im_end|>')[0].trim();
+            return assistantResponse;
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                addMessage('You', message);
+                messageInput.value = '';
+
+                messages.push({ "role": "user", "content": message });
+
+                if (!generator) {
+                    addMessage('System', 'The chat model is not initialized yet. Please wait or refresh the page.');
+                    return;
+                }
+
+                try {
+                    const prompt = constructPrompt(messages);
+                    console.log('Prompt:', prompt);
+
+                    loadingBar.style.width = '50%';
+                    sendButton.disabled = true;
+
+                    const result = await generator(prompt, {
+                        max_new_tokens: 128,
+                        temperature: 0.7,
+                        do_sample: true,
+                        top_k: 50,
+                    });
+
+                    loadingBar.style.width = '100%';
+                    setTimeout(() => { loadingBar.style.width = '0%'; }, 300);
+                    sendButton.disabled = false;
+
+                    console.log('Response:', result);
+                    const botReply = parseOutput(result[0].generated_text);
+
+                    messages.push({ "role": "assistant", "content": botReply });
+                    addMessage('Bot', botReply);
+                } catch (error) {
+                    console.error('Error generating response:', error);
+                    console.error('Error details:', error.stack);
+                    addMessage('Bot', 'Sorry, I encountered an error while processing your message. Please try again.');
+                    loadingBar.style.width = '0%';
+                    sendButton.disabled = false;
+                }
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Initialize the pipeline when the page loads
+        initializePipeline().catch(error => {
+            console.error('Failed to initialize the pipeline:', error);
+            updateStatus("Initialization failed", "red");
+            addMessage('System', 'Failed to initialize the chat model. Please check your browser compatibility and try again.');
+        });
+    </script>
+</body>
+
+</html>
