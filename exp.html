@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Engineer Portfolio</title>
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding: 20px;
+        }
+
+        .tracking-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Your Name</h1>
+        <p>Privacy Engineer | ML Researcher</p>
+    </div>
+    <button class="tracking-toggle" onclick="toggleTracking()">Disable Tracking</button>
+
+    <script>
+        // Wait for Three.js to load
+        window.addEventListener('load', () => {
+            let scene, camera, renderer, particles;
+            let trackingEnabled = true;
+            let mouseX = 0, mouseY = 0;
+
+            const themes = {
+                morning: {
+                    background: 0xffe066,
+                    particles: 0xff9933,
+                    intensity: 1.0
+                },
+                afternoon: {
+                    background: 0x66ccff,
+                    particles: 0x3399ff,
+                    intensity: 1.2
+                },
+                evening: {
+                    background: 0xff9966,
+                    particles: 0xff6633,
+                    intensity: 0.8
+                },
+                night: {
+                    background: 0x333333,
+                    particles: 0x6666ff,
+                    intensity: 0.5
+                }
+            };
+
+            function init() {
+                // Scene setup
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                // Create particles
+                const geometry = new THREE.BufferGeometry();
+                const particleCount = 1000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    positions[i] = (Math.random() - 0.5) * 10;
+                    positions[i + 1] = (Math.random() - 0.5) * 10;
+                    positions[i + 2] = (Math.random() - 0.5) * 10;
+                }
+
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                const material = new THREE.PointsMaterial({
+                    size: 0.05,
+                    vertexColors: true,
+                    transparent: true
+                });
+
+                particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+
+                camera.position.z = 5;
+
+                // Event listeners
+                window.addEventListener('resize', onWindowResize, false);
+                document.addEventListener('mousemove', onMouseMove, false);
+
+                animate();
+                updateTheme();
+            }
+
+            function getCurrentTheme() {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour < 12) return themes.morning;
+                if (hour >= 12 && hour < 17) return themes.afternoon;
+                if (hour >= 17 && hour < 21) return themes.evening;
+                return themes.night;
+            }
+
+            function updateTheme() {
+                const theme = getCurrentTheme();
+                scene.background = new THREE.Color(theme.background);
+                const colors = particles.geometry.attributes.color;
+                const color = new THREE.Color(theme.particles);
+
+                for (let i = 0; i < colors.array.length; i += 3) {
+                    colors.array[i] = color.r;
+                    colors.array[i + 1] = color.g;
+                    colors.array[i + 2] = color.b;
+                }
+                colors.needsUpdate = true;
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                if (trackingEnabled) {
+                    particles.rotation.x += 0.001;
+                    particles.rotation.y += 0.002;
+
+                    particles.rotation.x += (mouseY * 0.00005);
+                    particles.rotation.y += (mouseX * 0.00005);
+                }
+
+                renderer.render(scene, camera);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onMouseMove(event) {
+                mouseX = event.clientX - window.innerWidth / 2;
+                mouseY = event.clientY - window.innerHeight / 2;
+            }
+
+            window.toggleTracking = function () {
+                trackingEnabled = !trackingEnabled;
+                const button = document.querySelector('.tracking-toggle');
+                button.textContent = trackingEnabled ? 'Disable Tracking' : 'Enable Tracking';
+            }
+
+            // Update theme every minute
+            setInterval(updateTheme, 60000);
+
+            // Initialize everything
+            init();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,430 +1,74 @@
-/*Set a font*/
-html,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-span,
-div {
-  font-family: "Quicksand", 'Hiragino Sans GB', Tahoma, Helvetica, Arial, sans-serif;
+:root {
+  --primary-grey: #4D4D4D;
+  --light-grey: #f5f5f5;
+  --text-color: #333333;
+  --accent-color: #6e85b7;
+}
+
+body {
+  font-family: "Quicksand", 'Hiragino Sans GB', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.profile-section {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
   display: block;
 }
 
-h1 {
-  font-family: 'Hiragino Sans GB', sans-serif;
-  font-weight: 700;
-  color: #568e30;
+.news-section {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  border-left: 2px solid var(--light-grey);
+  padding-left: 1.5rem;
 }
 
-h1.text-center {
-  font-size: 22px;
-  font-weight: 700;
+.news-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--light-grey);
 }
 
-a:link,
-a:visited {
-  /* color: #008b96; */
+.date-label {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
-/* define navbar appearance */
-.navbar {
-  background: white;
+.news-section::-webkit-scrollbar {
+  width: 4px;
 }
 
-.navbar .navbar-collapse {
-  margin: 0px 7%;
+.news-section::-webkit-scrollbar-track {
+  background: var(--light-grey);
 }
 
-.nav-link,
-.navbar-brand {
-  color: grey;
-  cursor: pointer;
-  padding: 8px;
+.news-section::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
 }
 
-.nav-link {
-  margin-right: 1em !important;
-}
-
-.nav-link:hover,
-.navbar-brand:hover {
-  background-color: #bb6f14;
-  color: #f4f4f4;
-  border-radius: 5px;
-}
-
-.navbar-collapse {
-  justify-content: flex-end;
-}
-
-.navbar-toggler {
-  /* background:#215772 !important; */
-  /* border: solid 1px; */
-}
-
-.fa-bars {
-  margin-top: 5px;
-  color: grey;
-}
-
-/*header style*/
-.header {
-  background-image: url("finalCover.jpeg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  vertical-align: middle;
-  display: block;
-}
-
-/* .overlay{
- position: absolute;
- min-height: 110%;
- min-width: 100%;
- left: 0;
- top: 0;
- bottom:0;
- background: rgba(244, 244, 244, 0.60);
-} */
-
-
-
-.description img {
-  width: 180px;
-  height: auto;
-  margin-top: 40px;
-}
-
-.about .description h1 {
-  color: #414042;
-  font-weight: bold;
-  font-size: 150%;
-  margin-top: 20px;
-}
-
-.about .description p {
-  color: #1c1c1c;
-  font-size: 16px;
-  /* line-height: 1.5; */
-  margin: 5px 0;
-}
-
-.description h6 {
-  color: #1c1c1c;
-  font-size: 14px;
-}
-
-.arrow {
-  color: black;
-  height: 1000%;
-  margin: auto;
-}
-
-.description button {
-  background: #317191;
-  color: #fff;
-  font-size: 15px;
-  margin: 70px 0;
-  box-shadow: 2px 2px 4px #383838;
-}
-
-.description .btn a {
-  color: white;
-}
-
-.description .btn a:hover {
-  color: #d8d8d8;
-  text-decoration: none;
-}
-
-/*styling the About section*/
-.about {
-  margin: 30px 10%;
-  /* position: relative; */
-}
-
-.about h1 {
-  margin: 2em 0 1em;
-}
-
-.about p {
-  margin-top: 10%;
-}
-
-.about a {
-  display: inline;
-  /* color: #1b75bc; */
-}
-
-/* news */
-.news {
-  margin: 0 10%;
-}
-
-.news h1 {
-  margin: 2em 0 1em;
-}
-
-.news a {
-  display: inline;
-}
-
-.responsive {
-  width: 100%;
-  height: auto;
-}
-
-
-/* research */
-.research {
-  margin: 10px 10%;
-  position: relative;
-}
-
-.research h1 {
-  margin: 2em 0 1em;
-}
-
-.research h4 {
-  margin: 0px 0px 30px;
-  font-weight: bold;
-  color: grey;
-  font-size: 180%;
-}
-
-.research h5 {
-  font-family: 'Hiragino Sans GB', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.research h6 {
-  font-size: 14px;
-}
-
-.research h8 {
-  font-size: 16px;
-  color: rgb(16, 125, 180);
-  font-style: italic;
-  font-weight: bolder;
-}
-
-.research p {
-  font-size: 15px;
-  margin: 0 0 25px;
-  /* font-family: 'Hiragino Sans GB', sans-serif; */
-}
-
-.research span,
-.about span {
-  font-family: 'Hiragino Sans GB', sans-serif !important;
-  display: inline;
-  /* color: red; */
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.research a {
-  display: inline;
-}
-
-
-
-.btn {
-  font-family: 'Hiragino Sans GB', sans-serif;
-  padding: 2px 4px !important;
-  height: 20px !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-}
-
-.btn-primary.arxiv {
-  background: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-primary.circ {
-  background: #28A745;
-  border-color: #28A745;
-}
-
-.btn-primary.github {
-  background: #d4ce19;
-  border-color: #d4ce19;
-}
-
-
-.btn-outline-primary.arxiv {
-  border-color: #dc3545;
-  color: #dc3545;
-}
-
-.btn-outline-primary.circ {
-  border-color: #28A745;
-  color: #28A745;
-}
-
-.btn-outline-primary.github {
-  border-color: #d4ce19;
-  color: #d7d004;
-}
-
-.btn-outline-primary.blog {
-  border-color: #00adbb;
-  color: #00adbb;
-}
-
-.btn-outline-primary.talk {
-  border-color: #6a52ab;
-  color: #6a52ab;
-}
-
-.btn-outline-primary.slides {
-  border-color: #0484c9;
-  color: #0484c9;
-}
-
-/*footer*/
-.featurette-divider {
-  margin: 30px 10% 40px 10%;
-}
-
-.footer a {
-  color: rgb(218, 218, 218);
-  text-decoration: underline;
-}
-
-.flex-container {
-  margin: 30px 10%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.flex-container .footer_link {
-  color: #317191;
-}
-
-/* ... existing styles ... */
-
-/* Align the toggle icon vertically */
-.theme-toggle {
-  display: flex;
-  /* Enables flexbox */
-  align-items: center;
-  /* Centers vertically in the flex container */
-  justify-content: center;
-  /* Centers horizontally in the flex container */
-  position: absolute;
-  top: 0;
-  /* Align to the top of the navbar */
-  right: 10px;
-  /* Adjust as necessary */
-  height: 100%;
-  /* Set to the height of your navbar */
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.toggle-icon {
-  align-self: center;
-  /* This ensures the icon itself is also centered within the .theme-toggle container */
-}
-
-.to
-
-/* Set the default icon colors appropriate for light mode */
-.toggle-icon .fa-moon {
-  display: block;
-  color: #4D4D4D;
-  /* Dark color for light mode */
-}
-
-.toggle-icon .fa-sun {
-  display: none;
-  /* Hide sun in light mode */
-}
-
-/* Dark Mode Specific Styles */
-.dark-mode {
-  background-color: #0d0d0d;
-  /* Dark background */
-  color: #f8f8f8;
-  /* Light text for dark mode */
-}
-
-/* Change color for sun icon in dark mode */
-.dark-mode .fa-sun {
-  color: #f8f8f8;
-  /* Light color for dark mode */
-}
-
-/* Ensure navbar matches dark mode */
-.dark-mode .navbar {
-  background: #333;
-  /* Darker background for navbar in dark mode */
-}
-
-.dark-mode .navbar .nav-link,
-.dark-mode .navbar .navbar-brand {
-  color: #f8f8f8;
-  /* Light text for navbar links in dark mode */
-}
-
-/* Override color for specific text elements in dark mode */
-.dark-mode .description p,
-.dark-mode .description h1,
-.dark-mode .description h6 {
-  color: #f8f8f8;
-  /* Light text for dark mode */
-}
-
-/* Transition effects for smooth color changes */
-body,
-.navbar,
-.nav-link,
-.navbar-brand,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-span,
-div,
-.toggle-icon i {
-  transition: color 0.04s;
-}
-
-/* Dark Mode Specific Styles */
-.dark-mode {
-  background-color: #0d0d0d;
-  color: #f8f8f8;
-}
-
-/* Change color for sun icon in dark mode */
-.dark-mode .toggle-icon .fa-sun {
-  color: #f8f8f8;
-}
-
-/* Ensure navbar matches dark mode */
-.dark-mode .navbar {
-  background: #333;
-}
-
-.dark-mode .navbar .nav-link,
-.dark-mode .navbar .navbar-brand {
-  color: #f8f8f8;
-}
-
-/* Override color for specific text elements in dark mode */
-.dark-mode .description p,
-.dark-mode .description h1,
-.dark-mode .description h6 {
-  color: #f8f8f8;
+.news-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
 }
