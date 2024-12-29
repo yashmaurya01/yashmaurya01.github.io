@@ -2,326 +2,215 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yash Maurya - Portfolio</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --card-bg: #111111;
-      --text: #ffffff;
-      --accent: #00fff9;
-      --content-width: 1000px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Maurya</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00ff9d;
+            --bg: #000000;
+            --text: #ffffff;
+            --dim: #888888;
+            --orange: #ff6b00;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Major Mono Display', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 4rem;
+        }
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        .page-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            position: relative;
+        }
 
-    .header-content {
-      max-width: var(--content-width);
-      margin: 0 auto;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .content {
+            max-width: 500px;
+        }
 
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin-left: 2rem;
-      opacity: 0.8;
-      transition: 0.3s;
-    }
+        .name {
+            color: var(--neon);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
 
-    nav a:hover {
-      opacity: 1;
-      color: var(--accent);
-    }
+        .handle {
+            color: var(--dim);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            opacity: 0.7;
+        }
 
-    main {
-      max-width: var(--content-width);
-      margin: 0 auto;
-      padding: 80px 1rem 2rem;
-    }
+        .title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
 
-    .section-header {
-      color: var(--text);
-      font-size: 1.5rem;
-      margin: 3rem 0 1.5rem;
-      letter-spacing: 1px;
-    }
+        .description {
+            color: var(--dim);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            max-width: 400px;
+        }
 
-    /* Grid Layouts */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin-top: 1rem;
-    }
+        .status {
+            color: var(--neon);
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            letter-spacing: 1px;
+        }
 
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      transition: 0.3s;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        .contact {
+            margin-top: 4rem;
+        }
 
-    .card:hover {
-      border-color: var(--accent);
-    }
+        .version {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: var(--dim);
+            font-size: 0.8rem;
+        }
 
-    .card-title {
-      color: var(--text);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.5px;
-    }
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
 
-    .card-description {
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
+        .link-btn {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--dim);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
 
-    .card-metrics {
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-family: 'Courier New', monospace;
-    }
+        .link-btn:hover {
+            color: var(--neon);
+            border-color: var(--neon);
+        }
 
-    /* Profile */
-    .profile {
-      text-align: center;
-      margin: 4rem 0;
-    }
+        .illustration {
+            width: 350px;
+            height: auto;
+            position: sticky;
+            top: 4rem;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.3));
+        }
 
-    .profile-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
+        .or-text {
+            color: var(--dim);
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
 
-    /* News */
-    .news-item {
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        .friends-link {
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
 
-    .news-date {
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-family: 'Courier New', monospace;
-    }
+        @media (max-width: 900px) {
+            .page-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-    /* Links */
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      margin: 0.25rem;
-      transition: 0.3s;
-      font-size: 0.9rem;
-    }
+            .illustration {
+                position: relative;
+                top: 0;
+                order: -1;
+                margin-bottom: 2rem;
+            }
 
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .social-links {
-      margin: 1rem 0;
-    }
-
-    /* Email Protection */
-    .email-protection {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--text);
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 0.9rem;
-    }
-
-    .email-protection:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        display: none;
-      }
-    }
-  </style>
+            body {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="header-content">
-      <h1>Yash Maurya</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-      </nav>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="version">1.00</div>
+            <h1 class="name">YASH MAURYA</h1>
+            <div class="handle">@yashmaurya01</div>
+
+            <h2 class="title">PRIVACY ENGINEER</h2>
+            <h4>FOCUSED ON BUILDING PRIVACY-CONSCIOUS AI SOLUTIONS</h4>
+
+            <p class="description">
+                Building privacy-conscious AI solutions and ensuring ethical use of data
+                with a focus on machine learning systems.
+            </p>
+
+            <p class="description">
+                I bridge the gap between <span class="highlight">privacy</span> and
+                <span class="highlight">machine learning</span> to build robust systems that protect user data.
+            </p>
+
+            <div class="status">ACTIVELY LOOKING FOR NEW OPPORTUNITIES</div>
+
+            <div class="contact">
+                <p class="contact-text">Want to chat about privacy or AI?<br>Send me an email.</p>
+                <div class="links">
+                    <a href="#" class="link-btn" id="email-btn">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/yashmaurya01" class="link-btn">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/yashmaurya/" class="link-btn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <!-- <p class="or-text">OR YOU CAN</p>
+                <a href="#" class="friends-link">HIRE MY FRIENDS</a> -->
+            </div>
+        </div>
+
+        <img src="images/yash.jpeg" alt="Profile" class="illustration">
     </div>
-  </header>
 
-  <main>
-    <section id="about" class="profile">
-      <img src="/images/yash.jpeg" alt="Profile" class="profile-image">
-      <h2>Graduate Student</h2>
-      <p>School of Computer Science<br>Carnegie Mellon University</p>
-      <button class="email-protection" id="email-protection">
-        <i class="fas fa-lock"></i> Reveal Contact
-      </button>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/yashmaurya/" class="btn">
-          <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-        <a href="https://github.com/yashmaurya01" class="btn">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-        <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en" class="btn">
-          <i class="fas fa-graduation-cap"></i> Scholar
-        </a>
-      </div>
-      <p style="max-width: 600px; margin: 2rem auto;">
-        I am a graduate student in the Privacy Engineering Program at Carnegie Mellon University,
-        focusing on privacy-conscious AI solutions and ethical data use. My research interests include
-        Privacy Preserving Machine Learning, Fairness, and Differential Privacy.
-      </p>
-    </section>
-
-    <section id="news">
-      <h2 class="section-header">Latest Updates</h2>
-      <div class="news-item">
-        <div class="news-date">June 2024</div>
-        <p>Our work on "User Awareness and Consent in AI" accepted at SOUPS'24 Workshop</p>
-      </div>
-      <div class="news-item">
-        <div class="news-date">May 2024</div>
-        <p>Received CMU's 2023-2024 IAPP Westin Scholar Award</p>
-      </div>
-      <div class="news-item">
-        <div class="news-date">March 2024</div>
-        <p>Received the Project Olympus Spark Grant</p>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2 class="section-header">Projects</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 class="card-title">ENS Data</h3>
-          <p class="card-description">Free public API to look up ENS records, avatars, and Farcaster profiles for an
-            Ethereum wallet.</p>
-          <div class="card-metrics">84.4M SUCCESSFUL LOOKUPS</div>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Link Expander</h3>
-          <p class="card-description">Telegram bot that expands social media links with inline video inside groups and
-            channels.</p>
-          <div class="card-metrics">175,000+ MONTHLY ACTIVE USERS</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="research">
-      <h2 class="section-header">Research</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 class="card-title">Unified Locational DP Framework</h3>
-          <p class="card-description">Novel framework for location privacy in mobile applications.</p>
-          <div class="card-metrics">Published May 2024</div>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Guardrail Baselines for Unlearning</h3>
-          <p class="card-description">Implementing robust unlearning mechanisms in LLMs.</p>
-          <div class="card-metrics">ICLR 2024 Workshop</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    // Time-based theme
-    function updateTheme() {
-      const hour = new Date().getHours();
-      const root = document.documentElement;
-
-      if (hour >= 5 && hour < 12) {
-        root.style.setProperty('--accent', '#00fff9'); // Morning - Cyan
-      } else if (hour >= 12 && hour < 17) {
-        root.style.setProperty('--accent', '#39ff14'); // Afternoon - Green
-      } else if (hour >= 17 && hour < 21) {
-        root.style.setProperty('--accent', '#ff00f1'); // Evening - Magenta
-      } else {
-        root.style.setProperty('--accent', '#0077ff'); // Night - Blue
-      }
-    }
-
-    // Email protection
-    document.getElementById('email-protection').addEventListener('click', async function () {
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const email = 'maurya.yash152@gmail.com';
-      this.innerHTML = '<i class="fas fa-envelope"></i> ' + email;
-      this.disabled = true;
-      this.style.cursor = 'text';
-    });
-
-    // Initialize theme and update every minute
-    updateTheme();
-    setInterval(updateTheme, 60000);
-
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+    <script>
+        document.getElementById('email-btn').addEventListener('click', async function (e) {
+            e.preventDefault();
+            const email = 'maurya.yash152@gmail.com';
+            await navigator.clipboard.writeText(email);
+            alert('Email copied to clipboard: ' + email);
         });
-      });
-    });
-  </script>
+    </script>
 </body>
 
 </html>
