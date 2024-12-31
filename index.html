@@ -678,6 +678,28 @@
             transform: scale(1.1);
             opacity: 0.9;
         }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            85% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
     </style>
 </head>
 
@@ -726,7 +748,7 @@
                             href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
                             magazine</a>.</p>
                     <div class="social-links" style="display: flex; gap: 0.75rem; margin-top: 1rem;">
-                        <a href="mailto:maurya.yash152@gmail.com" class="social-button" data-type="email">
+                        <a href="#" class="social-button" data-type="email" id="email-btn">
                             <i class="fas fa-envelope fa-lg"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button" data-type="linkedin">
@@ -1110,6 +1132,55 @@
 
         // Close popup when clicking overlay
         document.getElementById('overlay').onclick = closePrivacyPopup;
+
+        document.getElementById('email-btn').addEventListener('click', async function (e) {
+            e.preventDefault();
+            const email = 'maurya.yash152@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+
+                // Get the position of the email button
+                const emailBtn = document.getElementById('email-btn');
+                const btnRect = emailBtn.getBoundingClientRect();
+
+                // Create a temporary popup message
+                const popup = document.createElement('div');
+                popup.style.cssText = `
+                    position: fixed;
+                    top: ${btnRect.top - 40}px;  /* Position above the button */
+                    left: ${btnRect.left}px;
+                    background: var(--card-bg);
+                    color: var(--text-primary);
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                    animation: fadeInOut 2s ease forwards;
+                    white-space: nowrap;
+                `;
+                popup.textContent = 'Email copied to clipboard!';
+                document.body.appendChild(popup);
+
+                // Remove popup after animation
+                setTimeout(() => {
+                    document.body.removeChild(popup);
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy email:', err);
+            }
+        });
+
+        // Update the fadeInOut animation
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateY(10px); }
+                    15% { opacity: 1; transform: translateY(0); }
+                    85% { opacity: 1; transform: translateY(0); }
+                    100% { opacity: 0; transform: translateY(-10px); }
+                }
+            </style>
+        `);
     </script>
 </body>
 
