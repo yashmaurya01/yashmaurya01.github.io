@@ -558,6 +558,72 @@
         .theme-menu button:hover {
             background: var(--border-color);
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1100;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .popup.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-content {
+            margin-bottom: 1rem;
+        }
+
+        .popup-close {
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-close:hover {
+            opacity: 0.9;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1050;
+        }
+
+        .overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -738,6 +804,15 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="privacyPopup">
+        <div class="popup-content">
+            <h3>🚧 Under Construction</h3>
+            <p>Privacy features coming soon!</p>
+        </div>
+        <button class="popup-close">Got it</button>
     </div>
 
     <script>
@@ -951,7 +1026,39 @@
 
             // Check time every hour to update theme if needed
             setInterval(setThemeBasedOnTime, 3600000); // 3600000 ms = 1 hour
+
+            // Initialize privacy popup functionality
+            const privacyButton = document.querySelector('.privacy-toggle');
+            if (privacyButton) {
+                privacyButton.addEventListener('click', showPrivacyPopup);
+            }
+
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.addEventListener('click', closePrivacyPopup);
+            }
+
+            const closeButton = document.querySelector('.popup-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', closePrivacyPopup);
+            }
         });
+
+        function showPrivacyPopup() {
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('privacyPopup').classList.add('active');
+        }
+
+        function closePrivacyPopup() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('privacyPopup').classList.remove('active');
+        }
+
+        // Update the privacy button's onclick handler
+        document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
+
+        // Close popup when clicking overlay
+        document.getElementById('overlay').onclick = closePrivacyPopup;
     </script>
 </body>
 
