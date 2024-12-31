@@ -1059,7 +1059,12 @@
                         const sectionId = this.getAttribute('href').slice(1);
                         const section = document.getElementById(sectionId);
                         if (section) {
-                            section.scrollIntoView({ behavior: 'smooth' });
+                            const navHeight = document.querySelector('.nav-container').offsetHeight;
+                            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: sectionTop - navHeight - 20, // Added 20px padding
+                                behavior: 'smooth'
+                            });
                         }
                     }
                 });
