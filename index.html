@@ -4,15 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yash Maurya</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Personal Website</title>
+    <!-- Material Icons and Inter font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for theming */
         :root {
-            --neon: #00ff9d;
-            --bg: #000000;
-            --text: #ffffff;
-            --dim: #888888;
-            --orange: #ff6b00;
+            --bg-primary: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --accent-color: #3B82F6;
+            --card-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --section-bg-1: #FFFFFF;
+            --section-bg-2: #F8FAFC;
+            --section-bg-3: #F1F5F9;
+            --section-bg-4: #F8FAFC;
+
+            /* Button colors */
+            --email-color: #3B82F6;
+            --linkedin-color: #0077B5;
+            --github-color: #333333;
+            --scholar-color: #4285F4;
+            --resume-color: #F59E0B;
+            --theme-color: #8B5CF6;
+            --privacy-color: #EC4899;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --text-primary: #E2E8F0;
+            --accent-color: #60A5FA;
+            --card-bg: #111111;
+            --border-color: #333333;
+            --nav-bg: rgba(0, 0, 0, 0.9);
+            --section-bg-1: #000000;
+            --section-bg-2: #111111;
+            --section-bg-3: #0A0A0A;
+            --section-bg-4: #111111;
         }
 
         * {
@@ -22,193 +53,704 @@
         }
 
         body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Major Mono Display', monospace;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 4rem;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .page-wrapper {
+        h1,
+        h2,
+        h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
-            max-width: 900px;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .control-button {
+            height: 35px;
+            width: 35px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-button {
+            height: 35px;
+            width: 35px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-button[data-type="email"] {
+            background: var(--email-color);
+        }
+
+        .social-button[data-type="linkedin"] {
+            background: var(--linkedin-color);
+        }
+
+        .social-button[data-type="github"] {
+            background: var(--github-color);
+        }
+
+        .social-button[data-type="scholar"] {
+            background: var(--scholar-color);
+        }
+
+        .social-button[data-type="resume"] {
+            background: var(--resume-color);
+        }
+
+        .theme-toggle {
+            background: var(--theme-color);
+        }
+
+        .privacy-toggle {
+            background: var(--privacy-color);
+        }
+
+        /* Main container */
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 6rem 0 2rem 0;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Header section */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             gap: 2rem;
-            position: relative;
         }
 
-        .content {
-            max-width: 500px;
+        .bio {
+            flex: 1;
         }
 
-        .name {
-            color: var(--neon);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
-        .handle {
-            color: var(--dim);
-            font-size: 0.9rem;
-            margin-bottom: 3rem;
-            opacity: 0.7;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-            font-weight: normal;
-        }
-
-        .description {
-            color: var(--dim);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-            max-width: 400px;
-        }
-
-        .status {
-            color: var(--neon);
-            font-size: 0.9rem;
+        /* Privacy quotes */
+        .quotes-section {
             margin: 2rem 0;
-            letter-spacing: 1px;
         }
 
-        .contact {
-            margin-top: 4rem;
-        }
-
-        .version {
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: var(--dim);
-            font-size: 0.8rem;
-        }
-
-        .links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .link-btn {
-            color: var(--dim);
-            text-decoration: none;
+        .scramble-text {
             font-size: 1.2rem;
+            min-height: 2em;
+            padding: 2rem;
+            border-left: 4px solid var(--accent-color);
+            background: var(--card-bg);
+            border-radius: 0 12px 12px 0;
             transition: all 0.3s ease;
-            border: 1px solid var(--dim);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: monospace;
+        }
+
+        /* News timeline */
+        .timeline-container {
+            height: 400px;
+            overflow-y: auto;
+            padding-right: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-bg);
+        }
+
+        .timeline {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 2rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.3rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
             border-radius: 50%;
         }
 
-        .link-btn:hover {
-            color: var(--neon);
-            border-color: var(--neon);
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .illustration {
-            width: 350px;
-            height: auto;
-            position: sticky;
-            top: 4rem;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.3));
-        }
-
-        .or-text {
-            color: var(--dim);
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .friends-link {
-            color: var(--orange);
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
             text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            color: var(--text-primary);
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        @media (max-width: 900px) {
-            .page-wrapper {
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Papers */
+        .paper {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+
+            nav,
+            .container {
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            nav,
+            .container {
+                width: 90%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
             }
 
-            .illustration {
-                position: relative;
-                top: 0;
-                order: -1;
-                margin-bottom: 2rem;
+            .cards-grid,
+            .achievements {
+                grid-template-columns: 1fr;
             }
+        }
 
-            body {
-                padding: 2rem;
-            }
+        .dud {
+            color: var(--accent-color);
         }
     </style>
 </head>
 
 <body>
-    <div class="page-wrapper">
-        <div class="content">
-            <div class="version">1.00</div>
-            <h1 class="name">YASH MAURYA</h1>
-            <div class="handle">@yashmaurya01</div>
-
-            <h2 class="title">PRIVACY ENGINEER</h2>
-            <h4>FOCUSED ON BUILDING PRIVACY-CONSCIOUS AI SOLUTIONS</h4>
-
-            <p class="description">
-                Building privacy-conscious AI solutions and ensuring ethical use of data
-                with a focus on machine learning systems.
-            </p>
-
-            <p class="description">
-                I bridge the gap between <span class="highlight">privacy</span> and
-                <span class="highlight">machine learning</span> to build robust systems that protect user data.
-            </p>
-
-            <div class="status">ACTIVELY LOOKING FOR NEW OPPORTUNITIES</div>
-
-            <div class="contact">
-                <p class="contact-text">Want to chat about privacy or AI?<br>Send me an email.</p>
-                <div class="links">
-                    <a href="#" class="link-btn" id="email-btn">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://github.com/yashmaurya01" class="link-btn">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/yashmaurya/" class="link-btn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="#" class="nav-brand">
+                <i class="material-icons">code</i>
+                Yash Maurya
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#news">News</a>
+                <a href="#research">Research</a>
+                <a href="#projects">Projects</a>
+                <a href="#writings">Writings</a>
+                <a href="#achievements">Achievements</a>
+                <div class="nav-controls">
+                    <button class="control-button privacy-toggle">
+                        <i class="material-icons">security</i>
+                    </button>
+                    <button class="control-button theme-toggle" onclick="toggleTheme()">
+                        <i class="material-icons">dark_mode</i>
+                    </button>
                 </div>
-                <!-- <p class="or-text">OR YOU CAN</p>
-                <a href="#" class="friends-link">HIRE MY FRIENDS</a> -->
             </div>
-        </div>
+        </nav>
+    </div>
 
-        <img src="images/yash.jpeg" alt="Profile" class="illustration">
+    <div class="container">
+        <!-- Header -->
+        <section id="about" class="header-section">
+            <div class="header">
+                <div class="bio">
+                    <h1>Yash Maurya</h1>
+                    <p>I am a graduate student in the <a href="https://privacy.cs.cmu.edu/masters/index.html">Privacy
+                            Engineering Program</a> at <a href="https://www.cmu.edu/">Carnegie Mellon University</a>,
+                        pursuing my passion for creating privacy-conscious AI solutions and ensuring the ethical use of
+                        data. My mission is to design robust privacy systems for the greater good of society.</p>
+                    <p>This summer, as an AI Governance intern at <a
+                            href="https://www.bnymellon.com/us/en/index.jsp">BNY AI Hub</a>, I helped develop Eliza,
+                        BNY's AI platform for 15,000+ users. I implemented LLM safety measures, created benchmarking
+                        pipelines for LLMs and RAG agents, and contributed to governance validation. This work led to
+                        Eliza's feature in <a
+                            href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
+                            magazine</a>.</p>
+                    <div class="social-links" style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+                        <a href="mailto:maurya.yash152@gmail.com" class="social-button" data-type="email">
+                            <i class="material-icons">email</i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button" data-type="linkedin">
+                            <i class="material-icons">business</i>
+                        </a>
+                        <a href="https://github.com/yashmaurya01" class="social-button" data-type="github">
+                            <i class="material-icons">code</i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en" class="social-button"
+                            data-type="scholar">
+                            <i class="material-icons">school</i>
+                        </a>
+                        <a href="cv.pdf" class="social-button" data-type="resume">
+                            <i class="material-icons">description</i>
+                        </a>
+                    </div>
+                </div>
+                <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
+            </div>
+        </section>
+
+        <!-- Privacy quotes -->
+        <section class="quotes-section">
+            <div class="scramble-text">Privacy is not something that I'm merely entitled to, it's an absolute
+                prerequisite.</div>
+        </section>
+
+        <!-- News -->
+        <section id="news">
+            <h2>Recent News</h2>
+            <div class="timeline-container">
+                <div class="timeline" id="news-timeline"></div>
+            </div>
+        </section>
+
+        <!-- Research -->
+        <section id="research">
+            <h2>Research</h2>
+            <div class="paper">
+                <h3>Paper Title</h3>
+                <p>Authors: Author 1, Author 2</p>
+                <p>Published in Conference/Journal, Year</p>
+                <p><strong>TL;DR:</strong> Brief description of the paper...</p>
+            </div>
+            <div class="paper">
+                <h3>Paper Title</h3>
+                <p>Authors: Author 1, Author 2</p>
+                <p>Published in Conference/Journal, Year</p>
+                <p><strong>TL;DR:</strong> Brief description of the paper...</p>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="cards-grid">
+                <a href="#project-1" class="card">
+                    <img src="/api/placeholder/400/200" alt="Project 1">
+                    <div class="card-content">
+                        <h3>Project Title 1</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </a>
+                <a href="#project-2" class="card">
+                    <img src="/api/placeholder/400/200" alt="Project 2">
+                    <div class="card-content">
+                        <h3>Project Title 2</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </a>
+                <a href="#project-3" class="card">
+                    <img src="/api/placeholder/400/200" alt="Project 3">
+                    <div class="card-content">
+                        <h3>Project Title 3</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </a>
+                <a href="#project-4" class="card">
+                    <img src="/api/placeholder/400/200" alt="Project 4">
+                    <div class="card-content">
+                        <h3>Project Title 4</h3>
+                        <p>Description of the project...</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Writings -->
+        <section id="writings">
+            <h2>Writings</h2>
+            <div class="cards-grid">
+                <a href="#writing-1" class="card">
+                    <img src="/api/placeholder/400/200" alt="Writing 1">
+                    <div class="card-content">
+                        <h3>Article Title 1</h3>
+                        <p>Brief overview of the article...</p>
+                    </div>
+                </a>
+                <a href="#writing-2" class="card">
+                    <img src="/api/placeholder/400/200" alt="Writing 2">
+                    <div class="card-content">
+                        <h3>Article Title 2</h3>
+                        <p>Brief overview of the article...</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section id="achievements">
+            <h2>Achievements</h2>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <h3>Achievement 1</h3>
+                    <p>Description of the achievement and its significance...</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Achievement 2</h3>
+                    <p>Description of the achievement and its significance...</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Achievement 3</h3>
+                    <p>Description of the achievement and its significance...</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Achievement 4</h3>
+                    <p>Description of the achievement and its significance...</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
-        document.getElementById('email-btn').addEventListener('click', async function (e) {
-            e.preventDefault();
-            const email = 'maurya.yash152@gmail.com';
-            await navigator.clipboard.writeText(email);
-            alert('Email copied to clipboard: ' + email);
+        // TextScramble class implementation
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="dud">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        // Replace the existing quotes animation with the new one
+        const quotes = [
+            "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite.",
+            "Privacy is power. What people don't know, they can't corrupt.",
+            "Arguing that you don't care about privacy because you have nothing to hide is like saying you don't care about free speech because you have nothing to say.",
+            "Privacy is a fundamental human right.",
+            "The right to privacy is essential to human dignity."
+        ];
+
+        const scrambleText = document.querySelector('.scramble-text');
+        const fx = new TextScramble(scrambleText);
+
+        let counter = 0;
+        const next = () => {
+            fx.setText(quotes[counter]).then(() => {
+                setTimeout(next, 3000); // Wait 3 seconds before showing next quote
+            });
+            counter = (counter + 1) % quotes.length;
+        };
+
+        // News timeline data
+        const newsItems = [
+            { date: '2024-03', content: 'Published new research on privacy-preserving ML' },
+            { date: '2024-02', content: 'Gave a keynote speech at Privacy Conference' },
+            { date: '2024-01', content: 'Awarded research grant for privacy studies' },
+            { date: '2023-12', content: 'Released new open-source privacy tool' },
+            { date: '2023-11', content: 'Published in top privacy journal' }
+        ];
+
+        function createNewsItem(item) {
+            const div = document.createElement('div');
+            div.className = 'timeline-item';
+            div.innerHTML = `
+                <h3>${item.date}</h3>
+                <p>${item.content}</p>
+            `;
+            return div;
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, entry.target.dataset.delay || 0);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start quote animation immediately
+            next();
+
+            // Display news items
+            const timeline = document.getElementById('news-timeline');
+            newsItems.forEach(item => {
+                const newsItem = createNewsItem(item);
+                timeline.appendChild(newsItem);
+                cardObserver.observe(newsItem);
+            });
+
+            // Initialize observers
+            document.querySelectorAll('section').forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            document.querySelectorAll('.card').forEach((card, index) => {
+                card.dataset.delay = index * 100;
+                cardObserver.observe(card);
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('href').slice(1);
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
