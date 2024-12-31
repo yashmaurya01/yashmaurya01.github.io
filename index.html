@@ -700,6 +700,43 @@
                 transform: translate(-50%, -20px);
             }
         }
+
+        .contact-cta {
+            margin: 1.5rem 0;
+            padding: 0.75rem 1rem;
+            background: var(--section-bg-3);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .contact-cta p {
+            font-size: 1rem;
+            font-weight: 400;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .contact-cta .highlight {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                margin-bottom: 1rem;
+            }
+
+            .profile-container .social-links {
+                margin-top: 0.75rem;
+            }
+        }
     </style>
 </head>
 
@@ -747,7 +784,21 @@
                         Eliza's feature in <a
                             href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
                             magazine</a>.</p>
+
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Here's my <a href="cv.pdf">resume</a> in
+                                case you need it.</p>
+                    <div class="contact-cta">
+                        <p>Want to chat? Send me an <a href="#" id="email-btn" class="highlight">email</a> or text on <a
+                                href="https://www.linkedin.com/in/yashmaurya/" class="highlight">LinkedIn</a>!</p>
+                    </div>
                     <div class="social-links" style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+                        <!-- Social links here -->
+                    </div>
+                </div>
+                <div class="profile-container">
+                    <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
+                    <div class="social-links"
+                        style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;">
                         <a href="#" class="social-button" data-type="email" id="email-btn">
                             <i class="fas fa-envelope fa-lg"></i>
                         </a>
@@ -761,12 +812,8 @@
                             data-type="scholar">
                             <i class="fas fa-graduation-cap fa-lg"></i>
                         </a>
-                        <a href="cv.pdf" class="social-button" data-type="resume" style="width: auto; padding: 0 15px;">
-                            Resume
-                        </a>
                     </div>
                 </div>
-                <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
             </div>
         </section>
 
