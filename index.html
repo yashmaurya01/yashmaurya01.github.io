@@ -996,34 +996,39 @@
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
                 icon.textContent = 'brightness_4';
+                localStorage.setItem('theme', 'light');  // Save light theme preference
             } else {
                 body.setAttribute('data-theme', 'dark');
                 icon.textContent = 'brightness_5';
+                localStorage.setItem('theme', 'dark');   // Save dark theme preference
             }
-
-            // Save manual preference
-            localStorage.setItem('preferred-theme', body.getAttribute('data-theme') || '');
         }
 
-        function checkSystemTime() {
-            const hour = new Date().getHours();
-            // Consider daytime between 6 AM and 6 PM (18:00)
-            return hour >= 6 && hour < 18;
-        }
-
-        function setThemeBasedOnTime() {
-            const isDaytime = checkSystemTime();
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
             const body = document.body;
             const icon = document.querySelector('.theme-toggle i');
 
-            // Only auto-switch if user hasn't manually set a preference
-            if (!localStorage.getItem('preferred-theme')) {
+            if (savedTheme) {
+                // Apply saved theme preference
+                if (savedTheme === 'dark') {
+                    body.setAttribute('data-theme', 'dark');
+                    icon.textContent = 'brightness_5';
+                } else {
+                    body.removeAttribute('data-theme');
+                    icon.textContent = 'brightness_4';
+                }
+            } else {
+                // If no preference is saved, set based on time
+                const isDaytime = new Date().getHours() >= 6 && new Date().getHours() < 18;
                 if (isDaytime) {
                     body.removeAttribute('data-theme');
-                    icon.textContent = 'dark_mode';
+                    icon.textContent = 'brightness_4';
+                    localStorage.setItem('theme', 'light');
                 } else {
                     body.setAttribute('data-theme', 'dark');
-                    icon.textContent = 'light_mode';
+                    icon.textContent = 'brightness_5';
+                    localStorage.setItem('theme', 'dark');
                 }
             }
         }
@@ -1070,20 +1075,8 @@
                 });
             });
 
-            // Check for saved theme preference first
-            const savedTheme = localStorage.getItem('preferred-theme');
-            if (savedTheme) {
-                document.body.setAttribute('data-theme', savedTheme);
-                if (savedTheme === 'dark') {
-                    document.querySelector('.theme-toggle i').textContent = 'light_mode';
-                }
-            } else {
-                // If no preference is saved, set theme based on time
-                setThemeBasedOnTime();
-            }
-
-            // Check time every hour to update theme if needed
-            setInterval(setThemeBasedOnTime, 3600000); // 3600000 ms = 1 hour
+            // Initialize theme
+            initializeTheme();
 
             // Initialize privacy popup functionality
             const privacyButton = document.querySelector('.privacy-toggle');
