@@ -8,20 +8,23 @@
     <!-- Material Icons and Inter font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* CSS Variables for theming */
         :root {
             /* Default theme (Minimalist & Clean) */
-            --bg-primary: #FFFFFF;
+            --bg-primary: #F5F5F7;
             --text-primary: #333333;
             --text-secondary: #666666;
             --accent-color: #4A90E2;
             --border-color: #E0E0E0;
             --card-bg: #FFFFFF;
-            --nav-bg: rgba(255, 255, 255, 0.9);
-            --section-bg-1: #FFFFFF;
-            --section-bg-2: #FAFAFA;
-            --section-bg-3: #F5F5F5;
+            --nav-bg: rgba(245, 245, 247, 0.9);
+            --section-bg-1: #F5F5F7;
+            --section-bg-2: #FFFFFF;
+            --section-bg-3: #F0F0F2;
             --section-bg-4: #FFFFFF;
 
             /* Button colors */
@@ -215,8 +218,8 @@
         }
 
         .social-button {
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             border: none;
             border-radius: 8px;
             color: white;
@@ -371,6 +374,7 @@
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
+            transform: scale(1);
         }
 
         .card.visible {
@@ -379,7 +383,8 @@
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
+            background: var(--section-bg-3);
         }
 
         .card img {
@@ -390,7 +395,7 @@
         }
 
         .card:hover img {
-            transform: scale(1.05);
+            transform: none;
         }
 
         .card-content {
@@ -404,6 +409,12 @@
             padding: 1.5rem;
             margin-bottom: 2rem;
             box-shadow: var(--card-shadow);
+            transform: scale(1);
+        }
+
+        .paper:hover {
+            transform: scale(1.02);
+            background: var(--section-bg-3);
         }
 
         /* Achievements */
@@ -419,10 +430,12 @@
             padding: 1.5rem;
             box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
+            transform: scale(1);
         }
 
         .achievement-card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
+            background: var(--section-bg-3);
         }
 
         /* Responsive design */
@@ -489,17 +502,29 @@
         a {
             color: var(--accent-color);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
         a:hover {
             color: var(--accent-color);
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         /* Keep nav links white */
         .nav-links a {
             color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            display: none;
         }
 
         .bio h1 {
@@ -624,6 +649,35 @@
                 opacity: 1;
             }
         }
+
+        .social-button img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+            /* This makes the icons white */
+        }
+
+        /* Update social button hover animation */
+        .social-button {
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* Update control button hover animation */
+        .control-button {
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
     </style>
 </head>
 
@@ -632,7 +686,6 @@
     <div class="nav-container">
         <nav>
             <a href="#" class="nav-brand">
-                <i class="material-icons">code</i>
                 Yash Maurya
             </a>
             <div class="nav-links">
@@ -644,10 +697,10 @@
                 <a href="#achievements">Achievements</a>
                 <div class="nav-controls">
                     <button class="control-button privacy-toggle">
-                        <i class="material-icons">security</i>
+                        <i class="material-icons">lock</i>
                     </button>
                     <button class="control-button theme-toggle" onclick="toggleTheme()">
-                        <i class="material-icons">dark_mode</i>
+                        <i class="material-icons">brightness_4</i>
                     </button>
                 </div>
             </div>
@@ -674,20 +727,20 @@
                             magazine</a>.</p>
                     <div class="social-links" style="display: flex; gap: 0.75rem; margin-top: 1rem;">
                         <a href="mailto:maurya.yash152@gmail.com" class="social-button" data-type="email">
-                            <i class="material-icons">email</i>
+                            <i class="fas fa-envelope fa-lg"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button" data-type="linkedin">
-                            <i class="material-icons">business</i>
+                            <i class="fab fa-linkedin-in fa-lg"></i>
                         </a>
                         <a href="https://github.com/yashmaurya01" class="social-button" data-type="github">
-                            <i class="material-icons">code</i>
+                            <i class="fab fa-github fa-lg"></i>
                         </a>
                         <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en" class="social-button"
                             data-type="scholar">
-                            <i class="material-icons">school</i>
+                            <i class="fas fa-graduation-cap fa-lg"></i>
                         </a>
-                        <a href="cv.pdf" class="social-button" data-type="resume">
-                            <i class="material-icons">description</i>
+                        <a href="cv.pdf" class="social-button" data-type="resume" style="width: auto; padding: 0 15px;">
+                            Resume
                         </a>
                     </div>
                 </div>
@@ -942,10 +995,10 @@
 
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
-                icon.textContent = 'dark_mode';
+                icon.textContent = 'brightness_4';
             } else {
                 body.setAttribute('data-theme', 'dark');
-                icon.textContent = 'light_mode';
+                icon.textContent = 'brightness_5';
             }
 
             // Save manual preference
