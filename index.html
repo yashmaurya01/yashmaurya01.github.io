@@ -1174,19 +1174,13 @@
         }
 
         // Intersection Observer for animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.2
-        };
-
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        });
 
         const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1253,7 +1247,6 @@
             newsItems.forEach(item => {
                 const newsItem = createNewsItem(item);
                 timeline.appendChild(newsItem);
-                cardObserver.observe(newsItem);
             });
 
             // Initialize observers
