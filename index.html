@@ -822,6 +822,49 @@
         .resource-link {
             position: relative;
         }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ff6b6b;
+            /* Red for "not available" */
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1.5s ease infinite;
+        }
+
+        .status-indicator.available .status-dot {
+            background-color: #40c057 !important;
+            /* Green for "available" */
+        }
+
+        .status-indicator.available .status-text {
+            color: #40c057 !important;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -868,15 +911,14 @@
                         Eliza's feature in <a
                             href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
                             magazine</a>.</p>
+                    <p>My key interests are Privacy Preserving Machine Learning, Fairness, Federated Learning,
+                        Differential Privacy, and Responsible AI. </p>
 
                     <p style="font-size: 0.9rem; color: var(--text-secondary);">Here's my <a href="cv.pdf">resume</a> in
                         case you need it.</p>
                     <div class="contact-cta">
                         <p>Want to chat? Send me an <a href="#" id="email-btn" class="highlight">email</a> or text on <a
                                 href="https://www.linkedin.com/in/yashmaurya/" class="highlight">LinkedIn</a>!</p>
-                    </div>
-                    <div class="social-links" style="display: flex; gap: 0.75rem; margin-top: 1rem;">
-                        <!-- Social links here -->
                     </div>
                 </div>
                 <div class="profile-container">
@@ -896,7 +938,12 @@
                             data-type="scholar">
                             <i class="fas fa-graduation-cap fa-lg"></i>
                         </a>
+                        
                     </div>
+                    <!-- <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Currently not taking on any new work.</span>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -1155,268 +1202,268 @@
         </section>
     </div> -->
 
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="privacyPopup">
-        <div class="popup-content">
-            <h3>🚧 Under Construction</h3>
-            <p>Privacy features coming soon!</p>
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="privacyPopup">
+            <div class="popup-content">
+                <h3>🚧 Under Construction</h3>
+                <p>Privacy features coming soon!</p>
+            </div>
+            <button class="popup-close">Got it</button>
         </div>
-        <button class="popup-close">Got it</button>
-    </div>
 
-    <script>
-        // TextScramble class implementation
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.update = this.update.bind(this);
-            }
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise((resolve) => this.resolve = resolve);
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
+        <script>
+            // TextScramble class implementation
+            class TextScramble {
+                constructor(el) {
+                    this.el = el;
+                    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                    this.update = this.update.bind(this);
                 }
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
+                setText(newText) {
+                    const oldText = this.el.innerText;
+                    const length = Math.max(oldText.length, newText.length);
+                    const promise = new Promise((resolve) => this.resolve = resolve);
+                    this.queue = [];
+                    for (let i = 0; i < length; i++) {
+                        const from = oldText[i] || '';
+                        const to = newText[i] || '';
+                        const start = Math.floor(Math.random() * 40);
+                        const end = start + Math.floor(Math.random() * 40);
+                        this.queue.push({ from, to, start, end });
+                    }
+                    cancelAnimationFrame(this.frameRequest);
+                    this.frame = 0;
+                    this.update();
+                    return promise;
+                }
+                update() {
+                    let output = '';
+                    let complete = 0;
+                    for (let i = 0, n = this.queue.length; i < n; i++) {
+                        let { from, to, start, end, char } = this.queue[i];
+                        if (this.frame >= end) {
+                            complete++;
+                            output += to;
+                        } else if (this.frame >= start) {
+                            if (!char || Math.random() < 0.28) {
+                                char = this.randomChar();
+                                this.queue[i].char = char;
+                            }
+                            output += `<span class="dud">${char}</span>`;
+                        } else {
+                            output += from;
                         }
-                        output += `<span class="dud">${char}</span>`;
+                    }
+                    this.el.innerHTML = output;
+                    if (complete === this.queue.length) {
+                        this.resolve();
                     } else {
-                        output += from;
+                        this.frameRequest = requestAnimationFrame(this.update);
+                        this.frame++;
                     }
                 }
-                this.el.innerHTML = output;
-                if (complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update);
-                    this.frame++;
+                randomChar() {
+                    return this.chars[Math.floor(Math.random() * this.chars.length)];
                 }
             }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
 
-        // Replace the existing quotes animation with the new one
-        const quotes = [
-            "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite.",
-            "Privacy is power. What people don't know, they can't corrupt.",
-            "Privacy is a fundamental human right.",
-            "The right to privacy is essential to human dignity."
-        ];
+            // Replace the existing quotes animation with the new one
+            const quotes = [
+                "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite.",
+                "Privacy is power. What people don't know, they can't corrupt.",
+                "Privacy is a fundamental human right.",
+                "The right to privacy is essential to human dignity."
+            ];
 
-        const scrambleText = document.querySelector('.scramble-text');
-        const fx = new TextScramble(scrambleText);
+            const scrambleText = document.querySelector('.scramble-text');
+            const fx = new TextScramble(scrambleText);
 
-        let counter = 0;
-        const next = () => {
-            fx.setText(quotes[counter]).then(() => {
-                setTimeout(next, 3000); // Wait 3 seconds before showing next quote
-            });
-            counter = (counter + 1) % quotes.length;
-        };
+            let counter = 0;
+            const next = () => {
+                fx.setText(quotes[counter]).then(() => {
+                    setTimeout(next, 3000); // Wait 3 seconds before showing next quote
+                });
+                counter = (counter + 1) % quotes.length;
+            };
 
-        // News timeline data
-        const newsItems = [
-            { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
-            { date: '2024-12', content: 'My postion paper on unlearning benchmarks in LLMs got accepted at SatML!' },
-            { date: '2024-09', content: 'Started collaborating with Meta to study "How Information and Control Shape Data Sharing and AI Engagement"' },
-            { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
-            { date: '2024-06', content: 'Presented my work "Through the Lens of LLMs:Unveiling Differential Privacy Challenges" at PEPR\'24 in Santa Clara fully funded by CMU' },
-            { date: '2024-03', content: 'Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University\'s 2023-2024 IAPP Westin Scholar!' },
-            { date: '2024-03', content: 'Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills' },
-            { date: '2024-03', content: "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024" },
-            { date: '2024-01', content: 'Completed the Certified Information Privacy Technologist (CIPT) credential from the IAPP - International Association of Privacy Professionals!' },
-            { date: '2023-09', content: "Won Space Theme in HackCMU'23 with our Space-JEDI Project" }
-        ];
+            // News timeline data
+            const newsItems = [
+                { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
+                { date: '2024-12', content: 'My postion paper on unlearning benchmarks in LLMs got accepted at SatML!' },
+                { date: '2024-09', content: 'Started collaborating with Meta to study "How Information and Control Shape Data Sharing and AI Engagement"' },
+                { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
+                { date: '2024-06', content: 'Presented my work "Through the Lens of LLMs:Unveiling Differential Privacy Challenges" at PEPR\'24 in Santa Clara fully funded by CMU' },
+                { date: '2024-03', content: 'Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University\'s 2023-2024 IAPP Westin Scholar!' },
+                { date: '2024-03', content: 'Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills' },
+                { date: '2024-03', content: "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024" },
+                { date: '2024-01', content: 'Completed the Certified Information Privacy Technologist (CIPT) credential from the IAPP - International Association of Privacy Professionals!' },
+                { date: '2023-09', content: "Won Space Theme in HackCMU'23 with our Space-JEDI Project" }
+            ];
 
-        function createNewsItem(item) {
-            const div = document.createElement('div');
-            div.className = 'timeline-item';
-            div.innerHTML = `
+            function createNewsItem(item) {
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                div.innerHTML = `
                 <h3>${item.date}</h3>
                 <p>${item.content}</p>
             `;
-            return div;
-        }
+                return div;
+            }
 
-        // Intersection Observer for animations
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
+            // Intersection Observer for animations
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                    }, entry.target.dataset.delay || 0);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.querySelector('.theme-toggle i');
-
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                icon.textContent = 'brightness_4';
-                localStorage.setItem('theme', 'light');  // Save light theme preference
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                icon.textContent = 'brightness_5';
-                localStorage.setItem('theme', 'dark');   // Save dark theme preference
-            }
-        }
-
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const body = document.body;
-            const icon = document.querySelector('.theme-toggle i');
-
-            if (savedTheme) {
-                // Apply saved theme preference
-                if (savedTheme === 'dark') {
-                    body.setAttribute('data-theme', 'dark');
-                    icon.textContent = 'brightness_5';
-                } else {
-                    body.removeAttribute('data-theme');
-                    icon.textContent = 'brightness_4';
-                }
-            } else {
-                // If no preference is saved, set based on time
-                const isDaytime = new Date().getHours() >= 6 && new Date().getHours() < 18;
-                if (isDaytime) {
-                    body.removeAttribute('data-theme');
-                    icon.textContent = 'brightness_4';
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.setAttribute('data-theme', 'dark');
-                    icon.textContent = 'brightness_5';
-                    localStorage.setItem('theme', 'dark');
-                }
-            }
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Start quote animation immediately
-            next();
-
-            // Display news items
-            const timeline = document.getElementById('news-timeline');
-            newsItems.forEach(item => {
-                const newsItem = createNewsItem(item);
-                timeline.appendChild(newsItem);
-            });
-
-            // Initialize observers
-            document.querySelectorAll('section').forEach(section => {
-                sectionObserver.observe(section);
-            });
-
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.dataset.delay = index * 100;
-                cardObserver.observe(card);
-            });
-
-            // Smooth scrolling for navigation
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    if (this.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        const sectionId = this.getAttribute('href').slice(1);
-                        const section = document.getElementById(sectionId);
-                        if (section) {
-                            const navHeight = document.querySelector('.nav-container').offsetHeight;
-                            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-                            window.scrollTo({
-                                top: sectionTop - navHeight - 20, // Added 20px padding
-                                behavior: 'smooth'
-                            });
-                        }
                     }
                 });
             });
 
-            // Initialize theme
-            initializeTheme();
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, entry.target.dataset.delay || 0);
+                    }
+                });
+            }, { threshold: 0.1 });
 
-            // Initialize privacy popup functionality
-            const privacyButton = document.querySelector('.privacy-toggle');
-            if (privacyButton) {
-                privacyButton.addEventListener('click', showPrivacyPopup);
+            // Theme toggle
+            function toggleTheme() {
+                const body = document.body;
+                const icon = document.querySelector('.theme-toggle i');
+
+                if (body.getAttribute('data-theme') === 'dark') {
+                    body.removeAttribute('data-theme');
+                    icon.textContent = 'brightness_4';
+                    localStorage.setItem('theme', 'light');  // Save light theme preference
+                } else {
+                    body.setAttribute('data-theme', 'dark');
+                    icon.textContent = 'brightness_5';
+                    localStorage.setItem('theme', 'dark');   // Save dark theme preference
+                }
             }
 
-            const overlay = document.getElementById('overlay');
-            if (overlay) {
-                overlay.addEventListener('click', closePrivacyPopup);
+            function initializeTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                const body = document.body;
+                const icon = document.querySelector('.theme-toggle i');
+
+                if (savedTheme) {
+                    // Apply saved theme preference
+                    if (savedTheme === 'dark') {
+                        body.setAttribute('data-theme', 'dark');
+                        icon.textContent = 'brightness_5';
+                    } else {
+                        body.removeAttribute('data-theme');
+                        icon.textContent = 'brightness_4';
+                    }
+                } else {
+                    // If no preference is saved, set based on time
+                    const isDaytime = new Date().getHours() >= 6 && new Date().getHours() < 18;
+                    if (isDaytime) {
+                        body.removeAttribute('data-theme');
+                        icon.textContent = 'brightness_4';
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        body.setAttribute('data-theme', 'dark');
+                        icon.textContent = 'brightness_5';
+                        localStorage.setItem('theme', 'dark');
+                    }
+                }
             }
 
-            const closeButton = document.querySelector('.popup-close');
-            if (closeButton) {
-                closeButton.addEventListener('click', closePrivacyPopup);
+            // Initialize everything when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                // Start quote animation immediately
+                next();
+
+                // Display news items
+                const timeline = document.getElementById('news-timeline');
+                newsItems.forEach(item => {
+                    const newsItem = createNewsItem(item);
+                    timeline.appendChild(newsItem);
+                });
+
+                // Initialize observers
+                document.querySelectorAll('section').forEach(section => {
+                    sectionObserver.observe(section);
+                });
+
+                document.querySelectorAll('.card').forEach((card, index) => {
+                    card.dataset.delay = index * 100;
+                    cardObserver.observe(card);
+                });
+
+                // Smooth scrolling for navigation
+                document.querySelectorAll('nav a').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        if (this.getAttribute('href').startsWith('#')) {
+                            e.preventDefault();
+                            const sectionId = this.getAttribute('href').slice(1);
+                            const section = document.getElementById(sectionId);
+                            if (section) {
+                                const navHeight = document.querySelector('.nav-container').offsetHeight;
+                                const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+                                window.scrollTo({
+                                    top: sectionTop - navHeight - 20, // Added 20px padding
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    });
+                });
+
+                // Initialize theme
+                initializeTheme();
+
+                // Initialize privacy popup functionality
+                const privacyButton = document.querySelector('.privacy-toggle');
+                if (privacyButton) {
+                    privacyButton.addEventListener('click', showPrivacyPopup);
+                }
+
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.addEventListener('click', closePrivacyPopup);
+                }
+
+                const closeButton = document.querySelector('.popup-close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', closePrivacyPopup);
+                }
+            });
+
+            function showPrivacyPopup() {
+                document.getElementById('overlay').classList.add('active');
+                document.getElementById('privacyPopup').classList.add('active');
             }
-        });
 
-        function showPrivacyPopup() {
-            document.getElementById('overlay').classList.add('active');
-            document.getElementById('privacyPopup').classList.add('active');
-        }
+            function closePrivacyPopup() {
+                document.getElementById('overlay').classList.remove('active');
+                document.getElementById('privacyPopup').classList.remove('active');
+            }
 
-        function closePrivacyPopup() {
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('privacyPopup').classList.remove('active');
-        }
+            // Update the privacy button's onclick handler
+            document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
 
-        // Update the privacy button's onclick handler
-        document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
+            // Close popup when clicking overlay
+            document.getElementById('overlay').onclick = closePrivacyPopup;
 
-        // Close popup when clicking overlay
-        document.getElementById('overlay').onclick = closePrivacyPopup;
+            document.getElementById('email-btn').addEventListener('click', async function (e) {
+                e.preventDefault();
+                const email = 'maurya.yash152@gmail.com';
+                try {
+                    await navigator.clipboard.writeText(email);
 
-        document.getElementById('email-btn').addEventListener('click', async function (e) {
-            e.preventDefault();
-            const email = 'maurya.yash152@gmail.com';
-            try {
-                await navigator.clipboard.writeText(email);
+                    // Get the position of the email button
+                    const emailBtn = document.getElementById('email-btn');
+                    const btnRect = emailBtn.getBoundingClientRect();
 
-                // Get the position of the email button
-                const emailBtn = document.getElementById('email-btn');
-                const btnRect = emailBtn.getBoundingClientRect();
-
-                // Create a temporary popup message
-                const popup = document.createElement('div');
-                popup.style.cssText = `
+                    // Create a temporary popup message
+                    const popup = document.createElement('div');
+                    popup.style.cssText = `
                     position: fixed;
                     top: ${btnRect.top - 40}px;  /* Position above the button */
                     left: ${btnRect.left}px;
@@ -1429,20 +1476,20 @@
                     animation: fadeInOut 2s ease forwards;
                     white-space: nowrap;
                 `;
-                popup.textContent = 'Email copied to clipboard!';
-                document.body.appendChild(popup);
+                    popup.textContent = 'Email copied to clipboard!';
+                    document.body.appendChild(popup);
 
-                // Remove popup after animation
-                setTimeout(() => {
-                    document.body.removeChild(popup);
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy email:', err);
-            }
-        });
+                    // Remove popup after animation
+                    setTimeout(() => {
+                        document.body.removeChild(popup);
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy email:', err);
+                }
+            });
 
-        // Update the fadeInOut animation
-        document.head.insertAdjacentHTML('beforeend', `
+            // Update the fadeInOut animation
+            document.head.insertAdjacentHTML('beforeend', `
             <style>
                 @keyframes fadeInOut {
                     0% { opacity: 0; transform: translateY(10px); }
@@ -1452,7 +1499,15 @@
                 }
             </style>
         `);
-    </script>
+
+            // To make available:
+            document.querySelector('.status-indicator').classList.add('available');
+            document.querySelector('.status-text').textContent = 'Currently looking for new work.';
+
+            // To make unavailable:
+            // document.querySelector('.status-indicator').classList.remove('available');
+            // document.querySelector('.status-text').textContent = 'Currently not taking on any new work.';
+        </script>
 </body>
 
 </html>
