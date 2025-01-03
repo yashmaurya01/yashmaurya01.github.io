@@ -398,8 +398,9 @@
         .paper {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 1.2rem 0;
+            padding: 0.6rem 0;
             padding-left: 0.75rem;
+            padding-right: 0.75rem;
             border-left: 3px solid var(--border-color);
             margin-bottom: 0.5rem;
             box-shadow: var(--card-shadow);
@@ -744,6 +745,7 @@
             padding: 0.6rem 0;
             padding-left: 0.75rem;
             border-left: 3px solid var(--border-color);
+            margin-right: 0.5rem;
         }
 
         .paper a {
@@ -778,7 +780,47 @@
             border-radius: 4px;
             margin-top: 0.2rem;
             margin-bottom: 0.1rem;
+            margin-right: 0.5rem;
             line-height: 1.2;
+        }
+
+        .paper-links {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-right: 0.5rem;
+        }
+
+        .title-link {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+            padding-top: 0.1rem;
+        }
+
+        .link-icons {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .resource-link {
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+
+        .resource-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Add tooltip styles */
+        .resource-link {
+            position: relative;
         }
     </style>
 </head>
@@ -886,8 +928,10 @@
                     <div class="authors">Pratiksha Thaker, Shengyuan Hu, Neil Kale, <b>Yash Maurya</b>, Zhiwei Steven
                         Wu,
                         Virginia Smith</div>
-                    <div class="conference">arXiv preprint arXiv:2410.02879</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="conference">IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), 2024
+                    </div>
+                    <div class="tldr">TL;DR: Discussion about the current state and limitations of LLM unlearning
+                        benchmarks with a focus on forget/retain set methods</div>
                 </div>
 
                 <div class="paper">
@@ -895,14 +939,17 @@
                         Systems</a>
                     <div class="authors">Rachel Kim*, <b>Yash Maurya*</b>, Goutam Mukku*</div>
                     <div class="conference">Course Project for Responsible AI Course(10-735) at CMU</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="tldr">TL;DR: A structured protocol for systematically assessing
+                        AI benefits to enable more
+                        comprehensive AI evaluation.</div>
                 </div>
 
                 <div class="paper">
                     <a href="https://arxiv.org/abs/2405.03903">Unified Locational Differential Privacy Framework</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Suriya Ganesh*, Vy Tran*</div>
                     <div class="conference">arXiv preprint arXiv:2405.03903</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="tldr">TL;DR: A privacy framework for aggregating sensitive location-based data while
+                        protecting individual privacy through differential privacy mechanisms.</div>
                 </div>
 
                 <div class="paper">
@@ -911,7 +958,8 @@
                         Claude</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Zuofei Hong*</div>
                     <div class="conference">arXiv preprint arXiv:2407.01557</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="tldr">TL;DR: Case study on Anthropic's Claude using AI governance and accountability
+                        frameworks, examining compliance with NIST and EU AI Act standards.</div>
                 </div>
 
                 <div class="paper">
@@ -920,20 +968,39 @@
                         Smith
                     </div>
                     <div class="conference">arXiv preprint arXiv:2403.03329</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="tldr">TL;DR: Simple guardrails (prompting and filtering) match finetuning's
+                        effectiveness
+                        for unlearning in LLMs, suggesting the need for better evaluation metrics.</div>
                 </div>
 
                 <div class="paper">
-                    <a href="#">Design and Evaluation of the UsersFirst Privacy Notice and Choice Threat Analysis
-                        Taxonomy</a>
+                    <div class="paper-links">
+                        <a href="https://www.usenix.org/system/files/soups2024_poster22_abstract-li_final.pdf"
+                            class="title-link">Design and Evaluation of the UsersFirst Privacy Notice and Choice Threat
+                            Analysis Taxonomy</a>
+                        <div class="link-icons">
+                            <a href="https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final22.pdf?cap=hcav22CrKQnFRBHGTMMJKUsbbtfpPB"
+                                class="resource-link">[poster]</a>
+                        </div>
+                    </div>
                     <div class="authors">Xinran Alexandra Li, Yu-Ju Yang, <b>Yash Maurya</b>, Tian Wang, Hana Habib,
                         Norman Sadeh, Lorrie Faith Cranor</div>
                     <div class="conference">Under Review</div>
-                    <div class="tldr">TL;DR: Coming soon...</div>
+                    <div class="tldr">TL;DR: An evaluation of the UsersFirst privacy threat taxonomy for assessing
+                        notice and choice interfaces, demonstrating higher threat detection compared to LINDDUN PRO in a
+                        14-participant user study.</div>
                 </div>
 
                 <div class="paper">
-                    <a href="#">UsersFirst: A User-Centric Privacy Threat Modeling Framework for Notice and Choice</a>
+                    <div class="paper-links">
+                        <a href="https://www.usenix.org/system/files/soups2024_poster49_abstract-wang_final.pdf"
+                            class="title-link">UsersFirst: A User-Centric Privacy Threat Modeling Framework for Notice
+                            and Choice</a>
+                        <div class="link-icons">
+                            <a href="https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final49.pdf?cap=hcav49bMUTBoXBmTPeqNjgqsWcmHkB"
+                                class="resource-link">[poster]</a>
+                        </div>
+                    </div>
                     <div class="authors">Tian Wang, Xinran Alexandra Li, Miguel Rivera-Lanas, <b>Yash Maurya</b>, Hana
                         Habib, Lorrie Faith Cranor, Norman Sadeh</div>
                     <div class="conference">Under Review</div>
