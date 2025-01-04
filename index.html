@@ -1288,11 +1288,36 @@
             const fx = new TextScramble(scrambleText);
 
             let counter = 0;
-            const next = () => {
-                fx.setText(quotes[counter]).then(() => {
-                    setTimeout(next, 3000); // Wait 3 seconds before showing next quote
+            let animationPaused = true;
+            let quoteInterval;
+
+            // Create intersection observer for the quotes section
+            const quoteObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Resume animation when visible
+                        animationPaused = false;
+                        next();
+                    } else {
+                        // Pause animation when not visible
+                        animationPaused = true;
+                        if (quoteInterval) {
+                            clearTimeout(quoteInterval);
+                        }
+                    }
                 });
-                counter = (counter + 1) % quotes.length;
+            }, { threshold: 0.1 });
+
+            // Modify the next function to check if animation is paused
+            const next = () => {
+                if (!animationPaused) {
+                    fx.setText(quotes[counter]).then(() => {
+                        if (!animationPaused) {
+                            quoteInterval = setTimeout(next, 3000);
+                        }
+                    });
+                    counter = (counter + 1) % quotes.length;
+                }
             };
 
             // News timeline data
@@ -1442,6 +1467,10 @@
                 if (closeButton) {
                     closeButton.addEventListener('click', closePrivacyPopup);
                 }
+
+                // Start observing the quotes section
+                const quotesSection = document.querySelector('.quotes-section');
+                quoteObserver.observe(quotesSection);
             });
 
             function showPrivacyPopup() {
