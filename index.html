@@ -865,6 +865,20 @@
                 opacity: 1;
             }
         }
+
+        .paper {
+            transition: background-color 0.3s ease;
+        }
+
+        .paper.highlight {
+            background-color: rgba(var(--accent-rgb), 0.1);
+        }
+
+        /* Update the scroll behavior to account for navbar height */
+        html {
+            scroll-padding-top: 80px;
+            /* Adjust this value based on your navbar height */
+        }
     </style>
 </head>
 
@@ -969,16 +983,16 @@
                 contribution</p>
             <div class="research-year">
                 <h3>2024</h3>
-                <div class="paper">
-                    <a href="pdfs/MetaFinalDraft.pdf">Beyond the Accept Button: How Information and
-                        Control Shape Data Sharing and AI Engagement</a>
+                <div class="paper" id="meta-capstone">
+                    <a href="pdfs/MetaFinalDraft.pdf">Beyond the Accept Button: How Information and Control Shape Data
+                        Sharing and AI Engagement</a>
                     <div class="authors">Ibrahim Chhaya*, <b>Yash Maurya*</b>, Zuofei Hong*, Limin Ge*</div>
                     <div class="conference">Sponsored by Meta - MSIT-PE Capstone Report 2024
                     </div>
                     <div class="tldr">TL;DR: Studied how consent flow design impacts AI engagement and data sharing,
                         examining length and control options in social media data sharing.</div>
                 </div>
-                <div class="paper">
+                <div class="paper" id="llm-unlearning">
                     <a href="https://arxiv.org/abs/2410.02879">Position: LLM Unlearning Benchmarks are Weak Measures of
                         Progress</a>
                     <div class="authors">Pratiksha Thaker, Shengyuan Hu, Neil Kale, <b>Yash Maurya</b>, Zhiwei Steven
@@ -990,7 +1004,7 @@
                         benchmarks with a focus on forget/retain set methods</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="benefit-assessment">
                     <a href="pdfs/BenefitAssessmentProtocol.pdf">Designing a Benefit Assessment Protocol for AI
                         Systems</a>
                     <div class="authors">Rachel Kim*, <b>Yash Maurya*</b>, Goutam Mukku*</div>
@@ -1000,7 +1014,7 @@
                         comprehensive AI evaluation.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="location-dp">
                     <a href="https://arxiv.org/abs/2405.03903">Unified Locational Differential Privacy Framework</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Suriya Ganesh*, Vy Tran*</div>
                     <div class="conference">arXiv preprint arXiv:2405.03903</div>
@@ -1008,7 +1022,7 @@
                         protecting individual privacy through differential privacy mechanisms.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="claude-governance">
                     <a href="https://arxiv.org/abs/2407.01557">AI Governance and Accountability: An Analysis of
                         Anthropic's
                         Claude</a>
@@ -1018,7 +1032,7 @@
                         frameworks, examining compliance with NIST and EU AI Act standards.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="guardrail-llm">
                     <a href="https://arxiv.org/abs/2403.03329">Guardrail baselines for unlearning in LLMs</a>
                     <div class="authors">Pratiksha Thaker, <b>Yash Maurya</b>, Shengyuan Hu, Zhiwei Steven Wu, Virginia
                         Smith
@@ -1029,11 +1043,10 @@
                         for unlearning in LLMs, challenging current evaluation metrics.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="usersfirst-taxonomy">
                     <div class="paper-links">
-                        <a href="https://www.usenix.org/system/files/soups2024_poster22_abstract-li_final.pdf"
-                            class="title-link">Design and Evaluation of the UsersFirst Privacy Notice and Choice Threat
-                            Analysis Taxonomy</a>
+                        <a href="https://www.usenix.org/system/files/soups2024_poster22_abstract-li_final.pdf">Design
+                            and Evaluation of the UsersFirst Privacy Notice and Choice Threat Analysis Taxonomy</a>
                         <div class="link-icons">
                             <a href="https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final22.pdf?cap=hcav22CrKQnFRBHGTMMJKUsbbtfpPB"
                                 class="resource-link">[poster]</a>
@@ -1048,11 +1061,10 @@
                         choice threats in user study.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="usersfirst-framework">
                     <div class="paper-links">
-                        <a href="https://www.usenix.org/system/files/soups2024_poster49_abstract-wang_final.pdf"
-                            class="title-link">UsersFirst: A User-Centric Privacy Threat Modeling Framework for Notice
-                            and Choice</a>
+                        <a href="https://www.usenix.org/system/files/soups2024_poster49_abstract-wang_final.pdf">UsersFirst:
+                            A User-Centric Privacy Threat Modeling Framework for Notice and Choice</a>
                         <div class="link-icons">
                             <a href="https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final49.pdf?cap=hcav49bMUTBoXBmTPeqNjgqsWcmHkB"
                                 class="resource-link">[poster]</a>
@@ -1067,7 +1079,7 @@
                         notice and choice threats, extending beyond LINDDUN</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="topics-llm">
                     <a href="https://www.usenix.org/conference/pepr24/presentation/priyanshu">Through the Lens of LLMs:
                         Unveiling Differential Privacy Challenges</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Vy Tran*</div>
@@ -1077,7 +1089,7 @@
                         differential privacy safeguards.</div>
                 </div>
 
-                <div class="paper">
+                <div class="paper" id="gradients-fl">
                     <a href="pdfs/GradientsFL.pdf">Is it Worth Storing Historical Gradients?</a>
                     <div class="authors">Joong Ho Choi*, Yingxin Liu*, <b>Yash Maurya*</b></div>
                     <div class="conference">Course Project for Federated and Collaborative Learning Course(10-719) at
@@ -1089,7 +1101,7 @@
 
             <div class="research-year">
                 <h3>2022</h3>
-                <div class="paper">
+                <div class="paper" id="federated-cancer">
                     <a href="https://ieeexplore.ieee.org/abstract/document/9972224">Federated Learning for Colorectal
                         Cancer Prediction</a>
                     <div class="authors"><b>Yash Maurya*</b>, Prahaladh Chandrahasan*, G Poornalatha</div>
@@ -1102,10 +1114,10 @@
 
             <div class="research-year">
                 <h3>2021</h3>
-                <div class="paper">
+                <div class="paper" id="scorecam-cvpr">
                     <div class="paper-links">
-                        <a href="pdfs/ImprovedScoreCAM_Poster.pdf" class="title-link">Improved variants of Score-CAM via
-                            Smoothing and Integrating</a>
+                        <a href="pdfs/ImprovedScoreCAM_Poster.pdf">Improved variants of Score-CAM via Smoothing and
+                            Integrating</a>
                         <div class="link-icons">
                             <a href="pdfs/ImprovedScoreCAM_Poster.pdf" class="resource-link">[poster only]</a>
                         </div>
@@ -1119,7 +1131,7 @@
 
             <div class="research-year">
                 <h3>2020</h3>
-                <div class="paper">
+                <div class="paper" id="is-cam">
                     <a href="https://arxiv.org/abs/2010.03023">IS-CAM: Integrated Score-CAM for axiomatic-based
                         explanations</a>
                     <div class="authors">Rakshit Naidu, Ankita Ghosh, <b>Yash Maurya</b>, Shamanth R Nayak K, Soumya
@@ -1323,10 +1335,10 @@
             // News timeline data
             const newsItems = [
                 { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
-                { date: '2024-12', content: 'My postion paper on unlearning benchmarks in LLMs got accepted at SatML!' },
-                { date: '2024-09', content: 'Started collaborating with Meta to study "How Information and Control Shape Data Sharing and AI Engagement"' },
+                { date: '2024-12', content: 'My <a href="#llm-unlearning">postion paper</a> on unlearning benchmarks in LLMs got accepted at SatML!' },
+                { date: '2024-09', content: 'Started collaborating with Meta to study <a href="#meta-capstone">"How Information and Control Shape Data Sharing and AI Engagement"</a>' },
                 { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
-                { date: '2024-06', content: 'Presented my work "Through the Lens of LLMs:Unveiling Differential Privacy Challenges" at PEPR\'24 in Santa Clara fully funded by CMU' },
+                { date: '2024-06', content: 'Presented my work <a href="#topics-llm">"Through the Lens of LLMs:Unveiling Differential Privacy Challenges"</a> at PEPR\'24 in Santa Clara fully funded by CMU' },
                 { date: '2024-03', content: 'Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University\'s 2023-2024 IAPP Westin Scholar!' },
                 { date: '2024-03', content: 'Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills' },
                 { date: '2024-03', content: "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024" },
@@ -1471,6 +1483,35 @@
                 // Start observing the quotes section
                 const quotesSection = document.querySelector('.quotes-section');
                 quoteObserver.observe(quotesSection);
+
+                // Add click handler for news links
+                document.querySelectorAll('#news-timeline a').forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        if (this.getAttribute('href').startsWith('#')) {
+                            e.preventDefault();
+                            const paperId = this.getAttribute('href').slice(1);
+                            const paperElement = document.getElementById(paperId);
+
+                            if (paperElement) {
+                                // Remove any existing highlights
+                                document.querySelectorAll('.paper.highlight').forEach(p => {
+                                    p.classList.remove('highlight');
+                                });
+
+                                // Add highlight to clicked paper
+                                paperElement.classList.add('highlight');
+
+                                // Scroll to the paper
+                                paperElement.scrollIntoView({ behavior: 'smooth' });
+
+                                // Remove highlight after 2 seconds
+                                setTimeout(() => {
+                                    paperElement.classList.remove('highlight');
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
             });
 
             function showPrivacyPopup() {
