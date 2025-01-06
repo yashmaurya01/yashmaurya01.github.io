@@ -1654,31 +1654,32 @@
             // Close popup when clicking overlay
             document.getElementById('overlay').onclick = closePrivacyPopup;
 
-            document.getElementById('footer-email-btn').addEventListener('click', async function (e) {
+            // Function to handle email copy
+            async function handleEmailCopy(e, buttonId) {
                 e.preventDefault();
                 const email = 'maurya.yash152@gmail.com';
                 try {
                     await navigator.clipboard.writeText(email);
 
-                    // Get the position of the footer email button
-                    const emailBtn = document.getElementById('footer-email-btn');
+                    // Get the position of the clicked email button
+                    const emailBtn = document.getElementById(buttonId);
                     const btnRect = emailBtn.getBoundingClientRect();
 
                     // Create a temporary popup message
                     const popup = document.createElement('div');
                     popup.style.cssText = `
-                    position: fixed;
-                    top: ${btnRect.top - 40}px;
-                    left: ${btnRect.left}px;
-                    background: var(--card-bg);
-                    color: var(--text-primary);
-                    padding: 10px 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                    z-index: 1000;
-                    animation: fadeInOut 2s ease forwards;
-                    white-space: nowrap;
-                `;
+                        position: fixed;
+                        top: ${btnRect.top - 40}px;
+                        left: ${btnRect.left}px;
+                        background: var(--card-bg);
+                        color: var(--text-primary);
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        z-index: 1000;
+                        animation: fadeInOut 2s ease forwards;
+                        white-space: nowrap;
+                    `;
                     popup.textContent = 'Email copied to clipboard!';
                     document.body.appendChild(popup);
 
@@ -1689,19 +1690,23 @@
                 } catch (err) {
                     console.error('Failed to copy email:', err);
                 }
-            });
+            }
+
+            // Add event listeners for both email buttons
+            document.getElementById('email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'email-btn'));
+            document.getElementById('footer-email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'footer-email-btn'));
 
             // Update the fadeInOut animation
             document.head.insertAdjacentHTML('beforeend', `
-            <style>
-                @keyframes fadeInOut {
-                    0% { opacity: 0; transform: translateY(10px); }
-                    15% { opacity: 1; transform: translateY(0); }
-                    85% { opacity: 1; transform: translateY(0); }
-                    100% { opacity: 0; transform: translateY(-10px); }
-                }
-            </style>
-        `);
+                <style>
+                    @keyframes fadeInOut {
+                        0% { opacity: 0; transform: translateY(10px); }
+                        15% { opacity: 1; transform: translateY(0); }
+                        85% { opacity: 1; transform: translateY(0); }
+                        100% { opacity: 0; transform: translateY(-10px); }
+                    }
+                </style>
+            `);
 
             // To make available:
             document.querySelector('.status-indicator').classList.add('available');
