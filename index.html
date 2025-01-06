@@ -1297,6 +1297,29 @@
         </section>
     </div> -->
 
+        <footer style="
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--section-bg-3);
+        ">
+            <!-- Copyright -->
+            <p style="margin-bottom: 1rem;">© 2024 Yash Maurya. All rights reserved.</p>
+
+            <!-- Links -->
+            <div style="display: flex; justify-content: center; gap: 2rem;">
+                <a href="#" id="footer-email-btn" style="color: var(--text-secondary); text-decoration: none;">Email</a>
+                <a href="https://www.linkedin.com/in/yashmaurya/"
+                    style="color: var(--text-secondary); text-decoration: none;">LinkedIn</a>
+                <a href="https://github.com/yashmaurya01"
+                    style="color: var(--text-secondary); text-decoration: none;">GitHub</a>
+                <a href="/sitemap.xml" style="color: var(--text-secondary); text-decoration: none;">Sitemap</a>
+            </div>
+        </footer>
+
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="privacyPopup">
             <div class="popup-content">
@@ -1631,21 +1654,21 @@
             // Close popup when clicking overlay
             document.getElementById('overlay').onclick = closePrivacyPopup;
 
-            document.getElementById('email-btn').addEventListener('click', async function (e) {
+            document.getElementById('footer-email-btn').addEventListener('click', async function (e) {
                 e.preventDefault();
                 const email = 'maurya.yash152@gmail.com';
                 try {
                     await navigator.clipboard.writeText(email);
 
-                    // Get the position of the email button
-                    const emailBtn = document.getElementById('email-btn');
+                    // Get the position of the footer email button
+                    const emailBtn = document.getElementById('footer-email-btn');
                     const btnRect = emailBtn.getBoundingClientRect();
 
                     // Create a temporary popup message
                     const popup = document.createElement('div');
                     popup.style.cssText = `
                     position: fixed;
-                    top: ${btnRect.top - 40}px;  /* Position above the button */
+                    top: ${btnRect.top - 40}px;
                     left: ${btnRect.left}px;
                     background: var(--card-bg);
                     color: var(--text-primary);
