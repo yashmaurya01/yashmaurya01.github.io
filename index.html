@@ -890,6 +890,66 @@
             scroll-padding-top: 80px;
             /* Adjust this value based on your navbar height */
         }
+
+        /* Update the nav-links for mobile */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Add hamburger menu icon */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Mobile navigation styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                /* Adjust based on your navbar height */
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-color);
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Keep controls visible */
+            .nav-controls {
+                display: flex !important;
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            /* Adjust spacing for menu items */
+            .nav-links a {
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -900,6 +960,9 @@
             <a href="#about" class="nav-brand">
                 Yash Maurya
             </a>
+            <button class="menu-toggle">
+                <i class="material-icons">menu</i>
+            </button>
             <div class="nav-links">
                 <a href="#news">News</a>
                 <a href="#research">Research</a>
@@ -1521,6 +1584,33 @@
                                 }, 2000);
                             }
                         }
+                    });
+                });
+
+                // Mobile menu toggle
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navLinks = document.querySelector('.nav-links');
+
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    // Change icon based on menu state
+                    const icon = menuToggle.querySelector('i');
+                    icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                        menuToggle.querySelector('i').textContent = 'menu';
+                    }
+                });
+
+                // Close menu when clicking a link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        menuToggle.querySelector('i').textContent = 'menu';
                     });
                 });
             });
