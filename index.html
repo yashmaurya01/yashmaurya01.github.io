@@ -433,14 +433,38 @@
         .achievement-card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .achievement-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .achievement-card h3,
+        .achievement-card p,
+        .achievement-card a {
+            padding: 0 1.5rem;
+        }
+
+        .achievement-card h3 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-card p {
+            margin-bottom: 1rem;
         }
 
         .achievement-card:hover {
             box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.2);
             background: var(--section-bg-3);
+            transform: translateY(-5px);
         }
 
         /* Responsive design */
@@ -1062,7 +1086,8 @@
                     <a href="pdfs/MetaFinalDraft.pdf">Beyond the Accept Button: How Information and Control Shape Data
                         Sharing and AI Engagement</a>
                     <div class="authors">Ibrahim Chhaya*, <b>Yash Maurya*</b>, Zuofei Hong*, Limin Ge*</div>
-                    <div class="conference">Sponsored by Meta - MSIT-PE Capstone Report 2024
+                    <div class="conference">Sponsored by Meta - MSIT-PE Capstone Report 2024 (Advisor: Professor Lorrie
+                        Cranor)
                     </div>
                     <div class="tldr">TL;DR: Studied how consent flow design impacts AI engagement and data sharing,
                         examining length and control options in social media data sharing.</div>
@@ -1083,7 +1108,8 @@
                     <a href="pdfs/BenefitAssessmentProtocol.pdf">Designing a Benefit Assessment Protocol for AI
                         Systems</a>
                     <div class="authors">Rachel Kim*, <b>Yash Maurya*</b>, Goutam Mukku*</div>
-                    <div class="conference">Course Project for Responsible AI Course(10-735) at CMU</div>
+                    <div class="conference">Course Project for Responsible AI Course(10-735) at CMU (Advisor: Professor
+                        Hoda Heidari)</div>
                     <div class="tldr">TL;DR: A structured protocol for systematically assessing
                         AI benefits to enable more
                         comprehensive AI evaluation.</div>
@@ -1092,7 +1118,7 @@
                 <div class="paper" id="location-dp">
                     <a href="https://arxiv.org/abs/2405.03903">Unified Locational Differential Privacy Framework</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Suriya Ganesh*, Vy Tran*</div>
-                    <div class="conference">arXiv preprint arXiv:2405.03903</div>
+                    <div class="conference">arXiv preprint arXiv:2405.03903 (Advisor: Professor Hana Habib)</div>
                     <div class="tldr">TL;DR: A privacy framework for aggregating sensitive location-based data while
                         protecting individual privacy through differential privacy mechanisms.</div>
                 </div>
@@ -1102,7 +1128,7 @@
                         Anthropic's
                         Claude</a>
                     <div class="authors">Aman Priyanshu*, <b>Yash Maurya*</b>, Zuofei Hong*</div>
-                    <div class="conference">arXiv preprint arXiv:2407.01557</div>
+                    <div class="conference">arXiv preprint arXiv:2407.01557 (Advisor: Professor Norman Sadeh)</div>
                     <div class="tldr">TL;DR: Case study on Anthropic's Claude using AI governance and accountability
                         frameworks, examining compliance with NIST and EU AI Act standards.</div>
                 </div>
@@ -1127,7 +1153,7 @@
                                 class="resource-link">[poster]</a>
                         </div>
                     </div>
-                    <div class="authors">Xinran Alexandra Li, Yu-Ju Yang, <b>Yash Maurya</b>, Tian Wang, Hana Habib,
+                    <div class="authors">Xinran Alexandra Li*, Yu-Ju Yang*, <b>Yash Maurya*</b>, Tian Wang*, Hana Habib,
                         Norman Sadeh, Lorrie Faith Cranor</div>
                     <div class="conference">Twentieth Symposium on Usable Privacy and Security (SOUPS 2024 Posters)
                         <b>&</b> SOUPS 2024 Societal & User-Centered Privacy in AI Workshop (SUPA 2024)
@@ -1145,7 +1171,8 @@
                                 class="resource-link">[poster]</a>
                         </div>
                     </div>
-                    <div class="authors">Tian Wang, Xinran Alexandra Li, Miguel Rivera-Lanas, <b>Yash Maurya</b>, Hana
+                    <div class="authors">Tian Wang*, Xinran Alexandra Li*, Miguel Rivera-Lanas*, <b>Yash Maurya*</b>,
+                        Hana
                         Habib, Lorrie Faith Cranor, Norman Sadeh</div>
                     <div class="conference">Twentieth Symposium on Usable Privacy and Security (SOUPS 2024 Posters)
                         <b>&</b> SOUPS 2024 Workshop on Privacy Threat Modeling (WPTM 2024)
@@ -1168,7 +1195,7 @@
                     <a href="pdfs/GradientsFL.pdf">Is it Worth Storing Historical Gradients?</a>
                     <div class="authors">Joong Ho Choi*, Yingxin Liu*, <b>Yash Maurya*</b></div>
                     <div class="conference">Course Project for Federated and Collaborative Learning Course(10-719) at
-                        CMU</div>
+                        CMU (Advisor: Professor Virginia Smith)</div>
                     <div class="tldr">TL;DR: Current weights beat historical gradients for detecting FL attacks, saving
                         storage and enhancing privacy.</div>
                 </div>
@@ -1272,33 +1299,42 @@
                     </div>
                 </a>
             </div>
-        </section>
+        </section> -->
 
-        Achievements 
+        <!-- Achievements  -->
         <section id="achievements">
             <h2>Achievements</h2>
             <div class="achievements">
                 <div class="achievement-card">
-                    <h3>Achievement 1</h3>
-                    <p>Description of the achievement and its significance...</p>
+                    <img src="images/achievements/westin.jpeg" alt="IAPP Westin Scholar Award"
+                        class="achievement-image">
+                    <a
+                        href="https://iapp.org/resources/article/westin-scholar-awards/#:~:text=Yash%20Maurya%2C%20Carnegie%20Mellon%20University">
+                        <h3>IAPP Westin Scholar Award</h3>
+                    </a>
+                    <p>Selected as Carnegie Mellon University's recipient of the prestigious IAPP Westin Scholar Award
+                        for leadership in privacy and data protection (2023-2024).</p>
                 </div>
                 <div class="achievement-card">
+                    <img src="images/achievements/achievement2.png" alt="Achievement 2" class="achievement-image">
                     <h3>Achievement 2</h3>
                     <p>Description of the achievement and its significance...</p>
                 </div>
                 <div class="achievement-card">
+                    <img src="images/achievements/achievement3.png" alt="Achievement 3" class="achievement-image">
                     <h3>Achievement 3</h3>
                     <p>Description of the achievement and its significance...</p>
                 </div>
                 <div class="achievement-card">
+                    <img src="images/achievements/achievement4.png" alt="Achievement 4" class="achievement-image">
                     <h3>Achievement 4</h3>
                     <p>Description of the achievement and its significance...</p>
                 </div>
             </div>
         </section>
-    </div> -->
+    </div>
 
-        <footer style="
+    <footer style="
             text-align: center;
             padding: 2rem 0;
             margin-top: 2rem;
@@ -1307,368 +1343,368 @@
             border-top: 1px solid var(--border-color);
             background: var(--section-bg-3);
         ">
-            <!-- Copyright -->
-            <p style="margin-bottom: 1rem;">© 2024 Yash Maurya. All rights reserved.</p>
+        <!-- Copyright -->
+        <p style="margin-bottom: 1rem;">© 2024 Yash Maurya. All rights reserved.</p>
 
-            <!-- Links -->
-            <div style="display: flex; justify-content: center; gap: 2rem;">
-                <a href="#" id="footer-email-btn" style="color: var(--text-secondary); text-decoration: none;">Email</a>
-                <a href="https://www.linkedin.com/in/yashmaurya/"
-                    style="color: var(--text-secondary); text-decoration: none;">LinkedIn</a>
-                <a href="https://github.com/yashmaurya01"
-                    style="color: var(--text-secondary); text-decoration: none;">GitHub</a>
-                <a href="/sitemap.xml" style="color: var(--text-secondary); text-decoration: none;">Sitemap</a>
-            </div>
-        </footer>
-
-        <div class="overlay" id="overlay"></div>
-        <div class="popup" id="privacyPopup">
-            <div class="popup-content">
-                <h3>🚧 Under Construction</h3>
-                <p>Privacy features coming soon!</p>
-            </div>
-            <button class="popup-close">Got it</button>
+        <!-- Links -->
+        <div style="display: flex; justify-content: center; gap: 2rem;">
+            <a href="#" id="footer-email-btn" style="color: var(--text-secondary); text-decoration: none;">Email</a>
+            <a href="https://www.linkedin.com/in/yashmaurya/"
+                style="color: var(--text-secondary); text-decoration: none;">LinkedIn</a>
+            <a href="https://github.com/yashmaurya01"
+                style="color: var(--text-secondary); text-decoration: none;">GitHub</a>
+            <a href="/sitemap.xml" style="color: var(--text-secondary); text-decoration: none;">Sitemap</a>
         </div>
+    </footer>
 
-        <script>
-            // TextScramble class implementation
-            class TextScramble {
-                constructor(el) {
-                    this.el = el;
-                    this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                    this.update = this.update.bind(this);
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="privacyPopup">
+        <div class="popup-content">
+            <h3>🚧 Under Construction</h3>
+            <p>Privacy features coming soon!</p>
+        </div>
+        <button class="popup-close">Got it</button>
+    </div>
+
+    <script>
+        // TextScramble class implementation
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
                 }
-                setText(newText) {
-                    const oldText = this.el.innerText;
-                    const length = Math.max(oldText.length, newText.length);
-                    const promise = new Promise((resolve) => this.resolve = resolve);
-                    this.queue = [];
-                    for (let i = 0; i < length; i++) {
-                        const from = oldText[i] || '';
-                        const to = newText[i] || '';
-                        const start = Math.floor(Math.random() * 40);
-                        const end = start + Math.floor(Math.random() * 40);
-                        this.queue.push({ from, to, start, end });
-                    }
-                    cancelAnimationFrame(this.frameRequest);
-                    this.frame = 0;
-                    this.update();
-                    return promise;
-                }
-                update() {
-                    let output = '';
-                    let complete = 0;
-                    for (let i = 0, n = this.queue.length; i < n; i++) {
-                        let { from, to, start, end, char } = this.queue[i];
-                        if (this.frame >= end) {
-                            complete++;
-                            output += to;
-                        } else if (this.frame >= start) {
-                            if (!char || Math.random() < 0.28) {
-                                char = this.randomChar();
-                                this.queue[i].char = char;
-                            }
-                            output += `<span class="dud">${char}</span>`;
-                        } else {
-                            output += from;
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
                         }
-                    }
-                    this.el.innerHTML = output;
-                    if (complete === this.queue.length) {
-                        this.resolve();
+                        output += `<span class="dud">${char}</span>`;
                     } else {
-                        this.frameRequest = requestAnimationFrame(this.update);
-                        this.frame++;
+                        output += from;
                     }
                 }
-                randomChar() {
-                    return this.chars[Math.floor(Math.random() * this.chars.length)];
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
                 }
             }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
 
-            // Replace the existing quotes animation with the new one
-            const quotes = [
-                "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite.",
-                "Privacy is power. What people don't know, they can't corrupt.",
-                "Privacy is a fundamental human right.",
-                "The right to privacy is essential to human dignity."
-            ];
+        // Replace the existing quotes animation with the new one
+        const quotes = [
+            "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite.",
+            "Privacy is power. What people don't know, they can't corrupt.",
+            "Privacy is a fundamental human right.",
+            "The right to privacy is essential to human dignity."
+        ];
 
-            const scrambleText = document.querySelector('.scramble-text');
-            const fx = new TextScramble(scrambleText);
+        const scrambleText = document.querySelector('.scramble-text');
+        const fx = new TextScramble(scrambleText);
 
-            let counter = 0;
-            let animationPaused = true;
-            let quoteInterval;
+        let counter = 0;
+        let animationPaused = true;
+        let quoteInterval;
 
-            // Create intersection observer for the quotes section
-            const quoteObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Resume animation when visible
-                        animationPaused = false;
-                        next();
-                    } else {
-                        // Pause animation when not visible
-                        animationPaused = true;
-                        if (quoteInterval) {
-                            clearTimeout(quoteInterval);
-                        }
+        // Create intersection observer for the quotes section
+        const quoteObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Resume animation when visible
+                    animationPaused = false;
+                    next();
+                } else {
+                    // Pause animation when not visible
+                    animationPaused = true;
+                    if (quoteInterval) {
+                        clearTimeout(quoteInterval);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Modify the next function to check if animation is paused
+        const next = () => {
+            if (!animationPaused) {
+                fx.setText(quotes[counter]).then(() => {
+                    if (!animationPaused) {
+                        quoteInterval = setTimeout(next, 3000);
                     }
                 });
-            }, { threshold: 0.1 });
+                counter = (counter + 1) % quotes.length;
+            }
+        };
 
-            // Modify the next function to check if animation is paused
-            const next = () => {
-                if (!animationPaused) {
-                    fx.setText(quotes[counter]).then(() => {
-                        if (!animationPaused) {
-                            quoteInterval = setTimeout(next, 3000);
-                        }
-                    });
-                    counter = (counter + 1) % quotes.length;
-                }
-            };
+        // News timeline data
+        const newsItems = [
+            { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
+            { date: '2024-12', content: 'My <a href="#llm-unlearning">postion paper</a> on unlearning benchmarks in LLMs got accepted at SatML!' },
+            { date: '2024-09', content: 'Started collaborating with Meta to study <a href="#meta-capstone">"How Information and Control Shape Data Sharing and AI Engagement"</a>' },
+            { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
+            { date: '2024-06', content: 'Presented my work <a href="#topics-llm">"Through the Lens of LLMs:Unveiling Differential Privacy Challenges"</a> at PEPR\'24 in Santa Clara fully funded by CMU' },
+            { date: '2024-03', content: 'Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University\'s 2023-2024 IAPP Westin Scholar!' },
+            { date: '2024-03', content: 'Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills' },
+            { date: '2024-03', content: "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024" },
+            { date: '2024-01', content: 'Completed the Certified Information Privacy Technologist (CIPT) credential from the IAPP - International Association of Privacy Professionals!' },
+            { date: '2023-09', content: "Won Space Theme in HackCMU'23 with our Space-JEDI Project" }
+        ];
 
-            // News timeline data
-            const newsItems = [
-                { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
-                { date: '2024-12', content: 'My <a href="#llm-unlearning">postion paper</a> on unlearning benchmarks in LLMs got accepted at SatML!' },
-                { date: '2024-09', content: 'Started collaborating with Meta to study <a href="#meta-capstone">"How Information and Control Shape Data Sharing and AI Engagement"</a>' },
-                { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
-                { date: '2024-06', content: 'Presented my work <a href="#topics-llm">"Through the Lens of LLMs:Unveiling Differential Privacy Challenges"</a> at PEPR\'24 in Santa Clara fully funded by CMU' },
-                { date: '2024-03', content: 'Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University\'s 2023-2024 IAPP Westin Scholar!' },
-                { date: '2024-03', content: 'Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills' },
-                { date: '2024-03', content: "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024" },
-                { date: '2024-01', content: 'Completed the Certified Information Privacy Technologist (CIPT) credential from the IAPP - International Association of Privacy Professionals!' },
-                { date: '2023-09', content: "Won Space Theme in HackCMU'23 with our Space-JEDI Project" }
-            ];
-
-            function createNewsItem(item) {
-                const div = document.createElement('div');
-                div.className = 'timeline-item';
-                div.innerHTML = `
+        function createNewsItem(item) {
+            const div = document.createElement('div');
+            div.className = 'timeline-item';
+            div.innerHTML = `
                 <h3>${item.date}</h3>
                 <p>${item.content}</p>
             `;
-                return div;
-            }
+            return div;
+        }
 
-            // Intersection Observer for animations
-            const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
+        // Intersection Observer for animations
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        });
 
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, entry.target.dataset.delay || 0);
-                    }
-                });
-            }, { threshold: 0.1 });
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, entry.target.dataset.delay || 0);
+                }
+            });
+        }, { threshold: 0.1 });
 
-            // Theme toggle
-            function toggleTheme() {
-                const body = document.body;
-                const icon = document.querySelector('.theme-toggle i');
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
 
-                if (body.getAttribute('data-theme') === 'dark') {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.textContent = 'brightness_4';
+                localStorage.setItem('theme', 'light');  // Save light theme preference
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.textContent = 'brightness_5';
+                localStorage.setItem('theme', 'dark');   // Save dark theme preference
+            }
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+
+            if (savedTheme) {
+                // Apply saved theme preference
+                if (savedTheme === 'dark') {
+                    body.setAttribute('data-theme', 'dark');
+                    icon.textContent = 'brightness_5';
+                } else {
                     body.removeAttribute('data-theme');
                     icon.textContent = 'brightness_4';
-                    localStorage.setItem('theme', 'light');  // Save light theme preference
+                }
+            } else {
+                // If no preference is saved, set based on time
+                const isDaytime = new Date().getHours() >= 6 && new Date().getHours() < 18;
+                if (isDaytime) {
+                    body.removeAttribute('data-theme');
+                    icon.textContent = 'brightness_4';
+                    localStorage.setItem('theme', 'light');
                 } else {
                     body.setAttribute('data-theme', 'dark');
                     icon.textContent = 'brightness_5';
-                    localStorage.setItem('theme', 'dark');   // Save dark theme preference
+                    localStorage.setItem('theme', 'dark');
                 }
             }
+        }
 
-            function initializeTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                const body = document.body;
-                const icon = document.querySelector('.theme-toggle i');
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start quote animation immediately
+            next();
 
-                if (savedTheme) {
-                    // Apply saved theme preference
-                    if (savedTheme === 'dark') {
-                        body.setAttribute('data-theme', 'dark');
-                        icon.textContent = 'brightness_5';
-                    } else {
-                        body.removeAttribute('data-theme');
-                        icon.textContent = 'brightness_4';
-                    }
-                } else {
-                    // If no preference is saved, set based on time
-                    const isDaytime = new Date().getHours() >= 6 && new Date().getHours() < 18;
-                    if (isDaytime) {
-                        body.removeAttribute('data-theme');
-                        icon.textContent = 'brightness_4';
-                        localStorage.setItem('theme', 'light');
-                    } else {
-                        body.setAttribute('data-theme', 'dark');
-                        icon.textContent = 'brightness_5';
-                        localStorage.setItem('theme', 'dark');
-                    }
-                }
-            }
+            // Display news items
+            const timeline = document.getElementById('news-timeline');
+            newsItems.forEach(item => {
+                const newsItem = createNewsItem(item);
+                timeline.appendChild(newsItem);
+            });
 
-            // Initialize everything when DOM is loaded
-            document.addEventListener('DOMContentLoaded', () => {
-                // Start quote animation immediately
-                next();
+            // Initialize observers
+            document.querySelectorAll('section').forEach(section => {
+                sectionObserver.observe(section);
+            });
 
-                // Display news items
-                const timeline = document.getElementById('news-timeline');
-                newsItems.forEach(item => {
-                    const newsItem = createNewsItem(item);
-                    timeline.appendChild(newsItem);
-                });
+            document.querySelectorAll('.card').forEach((card, index) => {
+                card.dataset.delay = index * 100;
+                cardObserver.observe(card);
+            });
 
-                // Initialize observers
-                document.querySelectorAll('section').forEach(section => {
-                    sectionObserver.observe(section);
-                });
-
-                document.querySelectorAll('.card').forEach((card, index) => {
-                    card.dataset.delay = index * 100;
-                    cardObserver.observe(card);
-                });
-
-                // Smooth scrolling for navigation
-                document.querySelectorAll('nav a').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        if (this.getAttribute('href').startsWith('#')) {
-                            e.preventDefault();
-                            const sectionId = this.getAttribute('href').slice(1);
-                            const section = document.getElementById(sectionId);
-                            if (section) {
-                                const navHeight = document.querySelector('.nav-container').offsetHeight;
-                                const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-                                window.scrollTo({
-                                    top: sectionTop - navHeight - 20, // Added 20px padding
-                                    behavior: 'smooth'
-                                });
-                            }
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('href').slice(1);
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            const navHeight = document.querySelector('.nav-container').offsetHeight;
+                            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: sectionTop - navHeight - 20, // Added 20px padding
+                                behavior: 'smooth'
+                            });
                         }
-                    });
-                });
-
-                // Initialize theme
-                initializeTheme();
-
-                // Initialize privacy popup functionality
-                const privacyButton = document.querySelector('.privacy-toggle');
-                if (privacyButton) {
-                    privacyButton.addEventListener('click', showPrivacyPopup);
-                }
-
-                const overlay = document.getElementById('overlay');
-                if (overlay) {
-                    overlay.addEventListener('click', closePrivacyPopup);
-                }
-
-                const closeButton = document.querySelector('.popup-close');
-                if (closeButton) {
-                    closeButton.addEventListener('click', closePrivacyPopup);
-                }
-
-                // Start observing the quotes section
-                const quotesSection = document.querySelector('.quotes-section');
-                quoteObserver.observe(quotesSection);
-
-                // Add click handler for news links
-                document.querySelectorAll('#news-timeline a').forEach(link => {
-                    link.addEventListener('click', function (e) {
-                        if (this.getAttribute('href').startsWith('#')) {
-                            e.preventDefault();
-                            const paperId = this.getAttribute('href').slice(1);
-                            const paperElement = document.getElementById(paperId);
-
-                            if (paperElement) {
-                                // Remove any existing highlights
-                                document.querySelectorAll('.paper.highlight').forEach(p => {
-                                    p.classList.remove('highlight');
-                                });
-
-                                // Add highlight to clicked paper
-                                paperElement.classList.add('highlight');
-
-                                // Scroll to the paper
-                                paperElement.scrollIntoView({ behavior: 'smooth' });
-
-                                // Remove highlight after 2 seconds
-                                setTimeout(() => {
-                                    paperElement.classList.remove('highlight');
-                                }, 2000);
-                            }
-                        }
-                    });
-                });
-
-                // Mobile menu toggle
-                const menuToggle = document.querySelector('.menu-toggle');
-                const navLinks = document.querySelector('.nav-links');
-
-                menuToggle.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    // Change icon based on menu state
-                    const icon = menuToggle.querySelector('i');
-                    icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                        navLinks.classList.remove('active');
-                        menuToggle.querySelector('i').textContent = 'menu';
                     }
-                });
-
-                // Close menu when clicking a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                        menuToggle.querySelector('i').textContent = 'menu';
-                    });
                 });
             });
 
-            function showPrivacyPopup() {
-                document.getElementById('overlay').classList.add('active');
-                document.getElementById('privacyPopup').classList.add('active');
+            // Initialize theme
+            initializeTheme();
+
+            // Initialize privacy popup functionality
+            const privacyButton = document.querySelector('.privacy-toggle');
+            if (privacyButton) {
+                privacyButton.addEventListener('click', showPrivacyPopup);
             }
 
-            function closePrivacyPopup() {
-                document.getElementById('overlay').classList.remove('active');
-                document.getElementById('privacyPopup').classList.remove('active');
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.addEventListener('click', closePrivacyPopup);
             }
 
-            // Update the privacy button's onclick handler
-            document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
+            const closeButton = document.querySelector('.popup-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', closePrivacyPopup);
+            }
 
-            // Close popup when clicking overlay
-            document.getElementById('overlay').onclick = closePrivacyPopup;
+            // Start observing the quotes section
+            const quotesSection = document.querySelector('.quotes-section');
+            quoteObserver.observe(quotesSection);
 
-            // Function to handle email copy
-            async function handleEmailCopy(e, buttonId) {
-                e.preventDefault();
-                const email = 'maurya.yash152@gmail.com';
-                try {
-                    await navigator.clipboard.writeText(email);
+            // Add click handler for news links
+            document.querySelectorAll('#news-timeline a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const paperId = this.getAttribute('href').slice(1);
+                        const paperElement = document.getElementById(paperId);
 
-                    // Get the position of the clicked email button
-                    const emailBtn = document.getElementById(buttonId);
-                    const btnRect = emailBtn.getBoundingClientRect();
+                        if (paperElement) {
+                            // Remove any existing highlights
+                            document.querySelectorAll('.paper.highlight').forEach(p => {
+                                p.classList.remove('highlight');
+                            });
 
-                    // Create a temporary popup message
-                    const popup = document.createElement('div');
-                    popup.style.cssText = `
+                            // Add highlight to clicked paper
+                            paperElement.classList.add('highlight');
+
+                            // Scroll to the paper
+                            paperElement.scrollIntoView({ behavior: 'smooth' });
+
+                            // Remove highlight after 2 seconds
+                            setTimeout(() => {
+                                paperElement.classList.remove('highlight');
+                            }, 2000);
+                        }
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Change icon based on menu state
+                const icon = menuToggle.querySelector('i');
+                icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').textContent = 'menu';
+                }
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').textContent = 'menu';
+                });
+            });
+        });
+
+        function showPrivacyPopup() {
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('privacyPopup').classList.add('active');
+        }
+
+        function closePrivacyPopup() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('privacyPopup').classList.remove('active');
+        }
+
+        // Update the privacy button's onclick handler
+        document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
+
+        // Close popup when clicking overlay
+        document.getElementById('overlay').onclick = closePrivacyPopup;
+
+        // Function to handle email copy
+        async function handleEmailCopy(e, buttonId) {
+            e.preventDefault();
+            const email = 'maurya.yash152@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+
+                // Get the position of the clicked email button
+                const emailBtn = document.getElementById(buttonId);
+                const btnRect = emailBtn.getBoundingClientRect();
+
+                // Create a temporary popup message
+                const popup = document.createElement('div');
+                popup.style.cssText = `
                         position: fixed;
                         top: ${btnRect.top - 40}px;
                         left: ${btnRect.left}px;
@@ -1681,24 +1717,24 @@
                         animation: fadeInOut 2s ease forwards;
                         white-space: nowrap;
                     `;
-                    popup.textContent = 'Email copied to clipboard!';
-                    document.body.appendChild(popup);
+                popup.textContent = 'Email copied to clipboard!';
+                document.body.appendChild(popup);
 
-                    // Remove popup after animation
-                    setTimeout(() => {
-                        document.body.removeChild(popup);
-                    }, 2000);
-                } catch (err) {
-                    console.error('Failed to copy email:', err);
-                }
+                // Remove popup after animation
+                setTimeout(() => {
+                    document.body.removeChild(popup);
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy email:', err);
             }
+        }
 
-            // Add event listeners for both email buttons
-            document.getElementById('email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'email-btn'));
-            document.getElementById('footer-email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'footer-email-btn'));
+        // Add event listeners for both email buttons
+        document.getElementById('email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'email-btn'));
+        document.getElementById('footer-email-btn').addEventListener('click', (e) => handleEmailCopy(e, 'footer-email-btn'));
 
-            // Update the fadeInOut animation
-            document.head.insertAdjacentHTML('beforeend', `
+        // Update the fadeInOut animation
+        document.head.insertAdjacentHTML('beforeend', `
                 <style>
                     @keyframes fadeInOut {
                         0% { opacity: 0; transform: translateY(10px); }
@@ -1709,14 +1745,14 @@
                 </style>
             `);
 
-            // To make available:
-            document.querySelector('.status-indicator').classList.add('available');
-            document.querySelector('.status-text').textContent = 'Currently looking for new work.';
+        // To make available:
+        document.querySelector('.status-indicator').classList.add('available');
+        document.querySelector('.status-text').textContent = 'Currently looking for new work.';
 
-            // To make unavailable:
-            // document.querySelector('.status-indicator').classList.remove('available');
-            // document.querySelector('.status-text').textContent = 'Currently not taking on any new work.';
-        </script>
+        // To make unavailable:
+        // document.querySelector('.status-indicator').classList.remove('available');
+        // document.querySelector('.status-text').textContent = 'Currently not taking on any new work.';
+    </script>
 </body>
 
 </html>
