@@ -491,12 +491,73 @@
                 flex-direction: column-reverse;
                 align-items: center;
                 text-align: center;
+                gap: 1.5rem;
+            }
+
+            .bio {
+                width: 100%;
+                text-align: center;
+            }
+
+            .bio h1 {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .bio .title {
+                text-align: center;
+                font-size: 1.25rem;
+            }
+
+            .profile-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1rem;
             }
 
             .profile-photo {
-                margin-top: 1rem;
-                width: 180px;
-                height: 180px;
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1rem;
+            }
+
+            .social-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .about-section {
+                text-align: left;
+            }
+
+            .bio-intro {
+                text-align: left;
+            }
+
+            .focus-areas,
+            .education,
+            .experience,
+            .research-interests {
+                text-align: left;
+            }
+
+            .focus-areas h4,
+            .research-interests h4 {
+                text-align: left;
+            }
+
+            .focus-areas ul {
+                text-align: left;
+            }
+
+            .contact-cta {
+                text-align: left;
+            }
+
+            .contact-cta p {
+                text-align: left;
             }
 
             .cards-grid,
@@ -510,6 +571,11 @@
 
             .bio .title {
                 font-size: 1.25rem;
+            }
+
+            /* Center the resume link */
+            .bio>p:last-of-type {
+                text-align: center;
             }
         }
 
@@ -943,7 +1009,6 @@
                 display: none;
                 position: fixed;
                 top: 60px;
-                /* Adjust based on your navbar height */
                 left: 0;
                 right: 0;
                 background: var(--nav-bg);
@@ -971,6 +1036,85 @@
             .nav-links a {
                 padding: 0.5rem 0;
                 width: 100%;
+                text-align: center;
+            }
+
+            /* Fix mobile header alignment */
+            .header {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .bio {
+                width: 100%;
+                text-align: center;
+            }
+
+            .bio h1 {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .bio .title {
+                text-align: center;
+                font-size: 1.25rem;
+            }
+
+            .profile-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1rem;
+            }
+
+            .social-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .about-section {
+                text-align: left;
+            }
+
+            .bio-intro {
+                text-align: left;
+            }
+
+            .focus-areas,
+            .education,
+            .experience,
+            .research-interests {
+                text-align: left;
+            }
+
+            .focus-areas h4,
+            .research-interests h4 {
+                text-align: left;
+            }
+
+            .focus-areas ul {
+                text-align: left;
+            }
+
+            .contact-cta {
+                text-align: left;
+            }
+
+            .contact-cta p {
+                text-align: left;
+            }
+
+            /* Center the resume link */
+            .bio>p:last-of-type {
                 text-align: center;
             }
         }
@@ -1098,10 +1242,21 @@
                         </div>
 
                         <div class="education">
-                            <p>I completed my Master's in the <a
-                                    href="https://privacy.cs.cmu.edu/masters/index.html">Privacy Engineering Program</a>
-                                at
-                                CMU, where I combined technical skills with practical applications.</p>
+                            <p>During my time at CMU's <a href="https://privacy.cs.cmu.edu/masters/index.html">Privacy
+                                    Engineering Program</a>, I conducted research under the mentorship of leading
+                                privacy experts including Professors - <a href="https://www.hanahabib.com/">Hana
+                                    Habib</a>, <a href="https://lorrie.cranor.org/">Lorrie Cranor</a>, <a
+                                    href="https://www.normsadeh.org/">Norman Sadeh</a>, and <a
+                                    href="https://www.cs.cmu.edu/~smithv/">Virginia Smith</a>. My work focused on
+                                developing practical privacy solutions through research and industry collaborations with
+                                companies like <a href="https://www.meta.com/">Meta</a> and <a
+                                    href="https://www.pwc.com/">PwC</a>, resulting in publications at <a
+                                    href="https://www.usenix.org/conference/pepr25">PEPR</a>, <a
+                                    href="https://www.usenix.org/conference/soups2024">SOUPS</a>, <a
+                                    href="https://set-llm.github.io/">ICLR</a>, <a href="https://satml.org/">SaTML</a>
+                                and earning recognition as an <a
+                                    href="https://iapp.org/resources/article/westin-scholar-awards/">IAPP Westin
+                                    Scholar</a>. </p>
                         </div>
 
                         <div class="experience">
