@@ -974,6 +974,66 @@
                 text-align: center;
             }
         }
+
+        .about-section {
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        .bio-intro {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .focus-areas,
+        .education,
+        .experience,
+        .research-interests {
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-areas h4,
+        .research-interests h4 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .focus-areas ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .focus-areas li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .focus-areas li:before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .about-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .about-section a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .experience p {
+            text-align: justify;
+        }
     </style>
     <meta name="google-site-verification" content="IDiKsjVcf-LgII8Lj50mgeAsS0Wb4bw38THd3R2nJZc" />
 </head>
@@ -1013,19 +1073,45 @@
                 <div class="bio">
                     <h1>Yash Maurya</h1>
                     <div class="title">Privacy Engineer</div>
-                    <p>I am a graduate student in the <a href="https://privacy.cs.cmu.edu/masters/index.html">Privacy
-                            Engineering Program</a> at <a href="https://www.cmu.edu/">Carnegie Mellon University</a>,
-                        pursuing my passion for creating privacy-conscious AI solutions and ensuring the ethical use of
-                        data. My mission is to design robust privacy systems for the greater good of society.</p>
-                    <p>Last summer, as an AI Governance intern at <a
-                            href="https://www.bny.com/corporate/global/en.html">BNY AI Hub</a>, I helped develop Eliza,
-                        BNY's AI platform for 15,000+ users. I implemented LLM safety measures, created benchmarking
-                        pipelines for LLMs and RAG agents, and contributed to governance validation. This work led to
-                        Eliza's feature in <a
-                            href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
-                            magazine</a>.</p>
-                    <p>My key interests are Privacy Preserving Machine Learning, Fairness, Federated Learning,
-                        Differential Privacy, and Responsible AI. </p>
+                    <div class="about-section">
+                        <p class="bio-intro">I'm a Privacy Researcher at <a href="https://www.cmu.edu/">Carnegie Mellon
+                                University</a>,
+                            where I build privacy-preserving systems that are both usable and effective.</p>
+
+                        <div class="focus-areas">
+                            <h4>My work focuses on:</h4>
+                            <ul>
+                                <li>Developing structured taxonomies of privacy attacks in ML systems</li>
+                                <li>Evaluating trust and safety mechanisms for online platforms</li>
+                                <li>Creating privacy tools that actually work in real-world scenarios</li>
+                            </ul>
+                        </div>
+
+                        <div class="education">
+                            <p>I completed my Master's in the <a
+                                    href="https://privacy.cs.cmu.edu/masters/index.html">Privacy Engineering Program</a>
+                                at
+                                CMU, where I combined technical skills with practical applications.</p>
+                        </div>
+
+                        <div class="experience">
+                            <p>During Summer 2024, I worked as an AI Governance intern at <a
+                                    href="https://www.bny.com/corporate/global/en.html">BNY AI Hub</a>,
+                                helping develop Eliza—BNY's AI platform used by 15,000+ people. I implemented LLM safety
+                                measures, built
+                                benchmarking pipelines, and contributed to governance frameworks. This project was
+                                featured in
+                                <a
+                                    href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
+                                    magazine</a>.
+                            </p>
+                        </div>
+
+                        <div class="research-interests">
+                            <h4>Research Interests</h4>
+                            <p>Privacy-Preserving ML, Differential Privacy, Federated Learning, and Responsible AI</p>
+                        </div>
+                    </div>
 
                     <p style="font-size: 0.9rem; color: var(--text-secondary);">Here's my <a href="cv.pdf">resume</a> in
                         case you need it.</p>
@@ -1468,8 +1554,11 @@
 
         // News timeline data
         const newsItems = [
+            { date: '2025-03', content: 'My submission titled "When Privacy Guarantees Meet Pre-trained LLMs: A Case Study in Synthetic Data" got accepted to PEPR\'25!' },
+            { date: '2025-02', content: 'Started a new role as a Privacy Researcher at Carnegie Mellon University' },
+            { date: '2024-12', content: 'Graduated from Carnegie Mellon University with a Master\'s in Privacy Engineering' },
             { date: '2024-12', content: 'Wrote an <a href="https://amanpriyanshu.github.io/SynthLeak/">article</a> on auditing real-world differentially private synthetic data' },
-            { date: '2024-12', content: 'My <a href="#llm-unlearning">postion paper</a> on unlearning benchmarks in LLMs got accepted at SatML!' },
+            { date: '2024-12', content: 'My <a href="#llm-unlearning">position paper</a> on unlearning benchmarks in LLMs got accepted at SatML!' },
             { date: '2024-09', content: 'Started collaborating with Meta to study <a href="#meta-capstone">"How Information and Control Shape Data Sharing and AI Engagement"</a>' },
             { date: '2024-06', content: 'Joined the AI Hub at <a href="https://www.bnymellon.com/">BNY(Bank of New York Mellon)</a> as an AI Governance Intern!' },
             { date: '2024-06', content: 'Presented my work <a href="#topics-llm">"Through the Lens of LLMs:Unveiling Differential Privacy Challenges"</a> at PEPR\'24 in Santa Clara fully funded by CMU' },
