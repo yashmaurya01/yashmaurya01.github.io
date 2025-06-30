@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator | Yash Maurya</title>
+    <!-- Material Icons and Inter font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --bg-primary: #F5F5F7;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-color: #4A90E2;
+            --border-color: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --nav-bg: rgba(245, 245, 247, 0.9);
+            --accent-rgb: 74, 144, 226;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            width: 55%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            width: 55%;
+            margin: 0 auto;
+            padding: 7rem 0 2rem 0;
+        }
+
+        .qr-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2rem 2rem 2rem;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            background: var(--section-bg-2, #fff);
+            color: var(--text-primary);
+        }
+
+        .options {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .options label {
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            background: var(--section-bg-2, #fff);
+            color: var(--text-primary);
+        }
+
+        button {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: #3578c7;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0 12px 0;
+        }
+
+        .download-btn {
+            display: block;
+            margin: 0 auto;
+            background: #28a745;
+            color: #fff;
+            margin-top: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--section-bg-3, #F0F0F2);
+        }
+
+        @media (max-width: 1024px) {
+
+            nav,
+            .container {
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            nav,
+            .container {
+                width: 95%;
+            }
+
+            .qr-section {
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="nav-container">
+        <nav>
+            <a href="../index.html" class="nav-brand">Yash Maurya</a>
+            <div class="nav-links">
+                <a href="../index.html#news">News</a>
+                <a href="../index.html#research">Research</a>
+                <a href="../index.html#about">About</a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <section class="qr-section">
+            <h1>QR Code Generator</h1>
+            <form id="qr-form" autocomplete="off">
+                <label for="qr-text">Enter text or URL:</label>
+                <input type="text" id="qr-text" placeholder="e.g. https://example.com" required>
+                <div class="options">
+                    <label>Size:
+                        <select id="qr-size">
+                            <option value="128">128x128</option>
+                            <option value="192">192x192</option>
+                            <option value="256" selected>256x256</option>
+                            <option value="384">384x384</option>
+                            <option value="512">512x512</option>
+                        </select>
+                    </label>
+                    <label>EC Level:
+                        <select id="qr-ec">
+                            <option value="L">L (7%)</option>
+                            <option value="M" selected>M (15%)</option>
+                            <option value="Q">Q (25%)</option>
+                            <option value="H">H (30%)</option>
+                        </select>
+                    </label>
+                </div>
+                <button type="submit">Generate QR Code</button>
+            </form>
+            <div id="qrcode"></div>
+            <button id="download-btn" class="download-btn" style="display:none;">Download PNG</button>
+        </section>
+    </div>
+    <footer class="footer">
+        <p>© 2024 Yash Maurya. All rights reserved. &mdash; <a href="https://github.com/davidshimjs/qrcodejs"
+                target="_blank" rel="noopener">Powered by QRCode.js</a></p>
+    </footer>
+    <script>
+        const form = document.getElementById('qr-form');
+        const qrText = document.getElementById('qr-text');
+        const qrSize = document.getElementById('qr-size');
+        const qrEC = document.getElementById('qr-ec');
+        const qrCodeDiv = document.getElementById('qrcode');
+        const downloadBtn = document.getElementById('download-btn');
+        let qrCode = null;
+
+        function clearQRCode() {
+            qrCodeDiv.innerHTML = '';
+            downloadBtn.style.display = 'none';
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            clearQRCode();
+            const text = qrText.value.trim();
+            if (!text) return;
+            const size = parseInt(qrSize.value, 10);
+            const ecLevel = qrEC.value;
+            qrCode = new QRCode(qrCodeDiv, {
+                text: text,
+                width: size,
+                height: size,
+                colorDark: "#222",
+                colorLight: "#fff",
+                correctLevel: QRCode.CorrectLevel[ecLevel]
+            });
+            setTimeout(() => {
+                // Show download button if QR code is rendered
+                const img = qrCodeDiv.querySelector('img') || qrCodeDiv.querySelector('canvas');
+                if (img) {
+                    downloadBtn.style.display = 'block';
+                }
+            }, 300);
+        });
+
+        downloadBtn.addEventListener('click', function () {
+            const img = qrCodeDiv.querySelector('img');
+            const canvas = qrCodeDiv.querySelector('canvas');
+            let url = '';
+            if (img) {
+                url = img.src;
+            } else if (canvas) {
+                url = canvas.toDataURL('image/png');
+            }
+            if (url) {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'qrcode.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        });
+    </script>
+</body>
+
+</html>
