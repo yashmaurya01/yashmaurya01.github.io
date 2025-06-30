@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diff Checker | Yash Maurya</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #F5F5F7;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-color: #4A90E2;
+            --border-color: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --nav-bg: rgba(245, 245, 247, 0.9);
+            --added: #e6ffed;
+            --removed: #ffeef0;
+            --changed: #fff5b1;
+            --unchanged: #f5f5f7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        nav {
+            width: 55%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .container {
+            width: 55%;
+            margin: 0 auto;
+            padding: 6rem 0 2rem 0;
+        }
+
+        @media (max-width: 1024px) {
+
+            nav,
+            .container {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            nav,
+            .container {
+                width: 98%;
+            }
+
+            .diff-inputs {
+                flex-direction: column;
+            }
+
+            .diff-input {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-panel {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .settings-panel label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .diff-inputs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .diff-input {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diff-input label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            resize: vertical;
+            font-family: 'Inter', monospace;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .compare-btn {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        .compare-btn:hover {
+            background: #357ab8;
+        }
+
+        .diff-output {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 1rem 0.5rem;
+            font-family: 'Inter', monospace;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+
+        .diff-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .diff-table td,
+        .diff-table th {
+            padding: 0.2rem 0.5rem;
+            vertical-align: top;
+            font-size: 1rem;
+            white-space: pre-wrap;
+        }
+
+        .diff-table tr.added {
+            background: #d4f8e8;
+            /* brighter green */
+        }
+
+        .diff-table tr.removed {
+            background: #ffd6d6;
+            /* brighter red */
+        }
+
+        .diff-table tr.unchanged {
+            background: var(--unchanged);
+        }
+
+        .diff-table tr.changed {
+            background: #fff3cd;
+            /* brighter yellow */
+        }
+
+        .diff-table td.line-num {
+            color: #aaa;
+            width: 2.5em;
+            text-align: right;
+            user-select: none;
+        }
+
+        .diff-table td.marker {
+            width: 1.5em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .diff-mode-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            font-weight: 500;
+        }
+
+        .diff-mode-toggle.active {
+            text-decoration: underline;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--unchanged);
+            margin-top: 2rem;
+        }
+
+        .diff-word-added {
+            background: #a6f3c6;
+            color: #155724;
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        .diff-word-removed {
+            background: #ffb3b3;
+            color: #721c24;
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        .diff-char-added {
+            background: #a6f3c6;
+            color: #155724;
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+
+        .diff-char-removed {
+            background: #ffb3b3;
+            color: #721c24;
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="nav-brand">
+                <span class="material-icons">compare_arrows</span> Diff Checker
+            </a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Diff Checker</h1>
+        <div class="settings-panel">
+            <label><input type="checkbox" id="ignore-whitespace"> Ignore Whitespace</label>
+            <label><input type="checkbox" id="ignore-case"> Ignore Case</label>
+            <span style="flex:1"></span>
+            <button class="diff-mode-toggle active" id="side-by-side-btn">Side-by-Side</button>
+            <button class="diff-mode-toggle" id="unified-btn">Unified</button>
+            <button class="copy-btn" id="copy-diff" title="Copy diff to clipboard"><span
+                    class="material-icons">content_copy</span></button>
+        </div>
+        <div class="diff-inputs">
+            <div class="diff-input">
+                <label for="left-text">Left (Original)</label>
+                <textarea id="left-text" placeholder="Paste or type original text here..."></textarea>
+            </div>
+            <div class="diff-input">
+                <label for="right-text">Right (Modified)</label>
+                <textarea id="right-text" placeholder="Paste or type modified text here..."></textarea>
+            </div>
+        </div>
+        <button class="compare-btn" id="compare-btn">Compare</button>
+        <div class="diff-output" id="diff-output"></div>
+    </div>
+    <div class="footer">
+        &copy; 2025 Yash Maurya. All rights reserved. | <a href="index.html"
+            style="color:var(--accent-color);text-decoration:none;">Home</a>
+    </div>
+    <script>
+        // Settings
+        const ignoreWhitespace = document.getElementById('ignore-whitespace');
+        const ignoreCase = document.getElementById('ignore-case');
+        const leftText = document.getElementById('left-text');
+        const rightText = document.getElementById('right-text');
+        const compareBtn = document.getElementById('compare-btn');
+        const diffOutput = document.getElementById('diff-output');
+        const sideBySideBtn = document.getElementById('side-by-side-btn');
+        const unifiedBtn = document.getElementById('unified-btn');
+        const copyBtn = document.getElementById('copy-diff');
+        let currentMode = 'side';
+
+        function processLines(text) {
+            let lines = text.split(/\r?\n/);
+            if (ignoreWhitespace.checked) {
+                lines = lines.map(l => l.trim());
+            }
+            if (ignoreCase.checked) {
+                lines = lines.map(l => l.toLowerCase());
+            }
+            return lines;
+        }
+
+        function wordDiff(a, b) {
+            // Simple word diff: highlight words in b not in a (added), and in a not in b (removed)
+            const aWords = a.split(/(\s+)/);
+            const bWords = b.split(/(\s+)/);
+            let resultA = '', resultB = '';
+            let i = 0, j = 0;
+            while (i < aWords.length || j < bWords.length) {
+                if (i < aWords.length && j < bWords.length && aWords[i] === bWords[j]) {
+                    resultA += escapeHTML(aWords[i]);
+                    resultB += escapeHTML(bWords[j]);
+                    i++; j++;
+                } else if (j < bWords.length && !aWords.includes(bWords[j])) {
+                    resultB += `<span class='diff-word-added'>${escapeHTML(bWords[j])}</span>`;
+                    j++;
+                } else if (i < aWords.length && !bWords.includes(aWords[i])) {
+                    resultA += `<span class='diff-word-removed'>${escapeHTML(aWords[i])}</span>`;
+                    i++;
+                } else {
+                    // fallback: just show as changed
+                    if (i < aWords.length) {
+                        resultA += `<span class='diff-word-removed'>${escapeHTML(aWords[i])}</span>`;
+                        i++;
+                    }
+                    if (j < bWords.length) {
+                        resultB += `<span class='diff-word-added'>${escapeHTML(bWords[j])}</span>`;
+                        j++;
+                    }
+                }
+            }
+            return [resultA, resultB];
+        }
+
+        function compareTexts(left, right) {
+            // Improved line-by-line diff using LCS for better accuracy
+            const l = processLines(left);
+            const r = processLines(right);
+            // LCS table
+            const m = l.length, n = r.length;
+            const dp = Array(m + 1).fill(0).map(() => Array(n + 1).fill(0));
+            for (let i = m - 1; i >= 0; i--) {
+                for (let j = n - 1; j >= 0; j--) {
+                    if (l[i] === r[j]) dp[i][j] = 1 + dp[i + 1][j + 1];
+                    else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+                }
+            }
+            let i = 0, j = 0;
+            let diff = [];
+            while (i < m && j < n) {
+                if (l[i] === r[j]) {
+                    diff.push({ type: 'unchanged', left: l[i], right: r[j], i, j });
+                    i++; j++;
+                } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+                    diff.push({ type: 'removed', left: l[i], right: '', i, j: null });
+                    i++;
+                } else {
+                    diff.push({ type: 'added', left: '', right: r[j], i: null, j });
+                    j++;
+                }
+            }
+            while (i < m) {
+                diff.push({ type: 'removed', left: l[i], right: '', i, j: null });
+                i++;
+            }
+            while (j < n) {
+                diff.push({ type: 'added', left: '', right: r[j], i: null, j });
+                j++;
+            }
+            // Mark changed lines (removed followed by added)
+            let finalDiff = [];
+            for (let k = 0; k < diff.length; k++) {
+                if (diff[k].type === 'removed' && diff[k + 1] && diff[k + 1].type === 'added') {
+                    finalDiff.push({
+                        type: 'changed',
+                        left: diff[k].left,
+                        right: diff[k + 1].right,
+                        i: diff[k].i,
+                        j: diff[k + 1].j
+                    });
+                    k++; // skip next
+                } else {
+                    finalDiff.push(diff[k]);
+                }
+            }
+            return finalDiff;
+        }
+
+        function charDiff(a, b) {
+            const m = a.length, n = b.length;
+            const dp = Array(m + 1).fill(0).map(() => Array(n + 1).fill(0));
+            for (let i = m - 1; i >= 0; i--) {
+                for (let j = n - 1; j >= 0; j--) {
+                    if (a[i] === b[j]) dp[i][j] = 1 + dp[i + 1][j + 1];
+                    else dp[i][j] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+                }
+            }
+            let i = 0, j = 0;
+            let outA = '', outB = '';
+            while (i < m && j < n) {
+                if (a[i] === b[j]) {
+                    outA += escapeHTML(a[i]);
+                    outB += escapeHTML(b[j]);
+                    i++; j++;
+                } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+                    outA += `<span class="diff-char-removed">${escapeHTML(a[i])}</span>`;
+                    i++;
+                } else {
+                    outB += `<span class="diff-char-added">${escapeHTML(b[j])}</span>`;
+                    j++;
+                }
+            }
+            while (i < m) {
+                outA += `<span class="diff-char-removed">${escapeHTML(a[i])}</span>`;
+                i++;
+            }
+            while (j < n) {
+                outB += `<span class="diff-char-added">${escapeHTML(b[j])}</span>`;
+                j++;
+            }
+            return [outA, outB];
+        }
+
+        function generateDiffHTML(diff, mode) {
+            if (mode === 'side') {
+                let html = '<table class="diff-table">';
+                html += '<tr><th></th><th>Left</th><th></th><th>Right</th></tr>';
+                diff.forEach((d, idx) => {
+                    html += `<tr class="${d.type}">`;
+                    html += `<td class="line-num">${d.i !== null && d.i !== undefined ? d.i + 1 : ''}</td>`;
+                    if (d.type === 'changed') {
+                        const [leftHTML, rightHTML] = charDiff(d.left, d.right);
+                        html += `<td>${leftHTML}</td>`;
+                        html += `<td class="line-num">${d.j !== null && d.j !== undefined ? d.j + 1 : ''}</td>`;
+                        html += `<td>${rightHTML}</td>`;
+                    } else {
+                        html += `<td>${d.left !== undefined ? escapeHTML(d.left) : ''}</td>`;
+                        html += `<td class="line-num">${d.j !== null && d.j !== undefined ? d.j + 1 : ''}</td>`;
+                        html += `<td>${d.right !== undefined ? escapeHTML(d.right) : ''}</td>`;
+                    }
+                    html += '</tr>';
+                });
+                html += '</table>';
+                return html;
+            } else {
+                // Unified view
+                let html = '<table class="diff-table">';
+                diff.forEach((d, idx) => {
+                    let marker = d.type === 'added' ? '+' : d.type === 'removed' ? '-' : d.type === 'changed' ? '~' : ' ';
+                    html += `<tr class="${d.type}">`;
+                    html += `<td class="marker">${marker}</td>`;
+                    html += `<td class="line-num">${d.i !== null && d.i !== undefined ? d.i + 1 : (d.j !== null && d.j !== undefined ? d.j + 1 : '')}</td>`;
+                    if (d.type === 'changed') {
+                        const [leftHTML, rightHTML] = charDiff(d.left, d.right);
+                        html += `<td>${leftHTML}</td>`;
+                        html += '</tr>';
+                        html += `<tr class="${d.type}"><td class="marker">~</td><td class="line-num">${d.j + 1}</td><td>${rightHTML}</td></tr>`;
+                    } else {
+                        html += `<td>${escapeHTML(d.type === 'added' ? d.right : d.left)}</td>`;
+                        html += '</tr>';
+                    }
+                });
+                html += '</table>';
+                return html;
+            }
+        }
+
+        function escapeHTML(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[c];
+            });
+        }
+
+        function doCompare() {
+            const left = leftText.value;
+            const right = rightText.value;
+            const diff = compareTexts(left, right);
+            diffOutput.innerHTML = generateDiffHTML(diff, currentMode);
+        }
+
+        compareBtn.onclick = doCompare;
+        ignoreWhitespace.onchange = doCompare;
+        ignoreCase.onchange = doCompare;
+        leftText.oninput = rightText.oninput = function () {
+            diffOutput.innerHTML = '';
+        };
+        sideBySideBtn.onclick = function () {
+            currentMode = 'side';
+            sideBySideBtn.classList.add('active');
+            unifiedBtn.classList.remove('active');
+            doCompare();
+        };
+        unifiedBtn.onclick = function () {
+            currentMode = 'unified';
+            unifiedBtn.classList.add('active');
+            sideBySideBtn.classList.remove('active');
+            doCompare();
+        };
+        copyBtn.onclick = function () {
+            const temp = document.createElement('textarea');
+            temp.value = diffOutput.innerText;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            copyBtn.innerHTML = '<span class="material-icons">check</span>';
+            setTimeout(() => {
+                copyBtn.innerHTML = '<span class="material-icons">content_copy</span>';
+            }, 1200);
+        };
+    </script>
+</body>
+
+</html>
