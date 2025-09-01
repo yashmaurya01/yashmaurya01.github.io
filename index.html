@@ -260,9 +260,7 @@
             background: var(--theme-color);
         }
 
-        .privacy-toggle {
-            background: var(--privacy-color);
-        }
+
 
         /* Main container */
         .container {
@@ -1209,9 +1207,6 @@
                 <a href="#writings">Writings</a>
                 <a href="#achievements">Achievements</a> -->
                 <div class="nav-controls">
-                    <button class="control-button privacy-toggle">
-                        <i class="material-icons">lock</i>
-                    </button>
                     <button class="control-button theme-toggle" onclick="toggleTheme()">
                         <i class="material-icons">brightness_4</i>
                     </button>
@@ -1226,18 +1221,21 @@
             <div class="header">
                 <div class="bio">
                     <h1>Yash Maurya</h1>
-                    <div class="title">Privacy Engineer</div>
+                    <div class="title">Research Engineer</div>
                     <div class="about-section">
-                        <p class="bio-intro">I'm a Privacy Researcher at <a href="https://www.cmu.edu/">Carnegie Mellon
-                                University</a>,
-                            where I build privacy-preserving systems that are both usable and effective.</p>
+                        <p class="bio-intro">I'm a Research Engineer at <a href="https://scale.com"
+                                target="_blank">Scale AI</a>
+                            where I lead LLM red teaming and adversarial testing for frontier AI labs. My work centers
+                            on finding
+                            privacy and safety vulnerabilities in AI systems before they reach production.</p>
 
                         <div class="focus-areas">
-                            <h4>My work focuses on:</h4>
+                            <h4>Currently working on:</h4>
                             <ul>
-                                <li>Developing structured taxonomies of privacy attacks in ML systems</li>
-                                <li>Evaluating trust and safety mechanisms for online platforms</li>
-                                <li>Creating privacy tools that actually work in real-world scenarios</li>
+                                <li>Red teaming safety and privacy capabilities for frontier AI laboratories</li>
+                                <li>Building automated frameworks to evaluate enterprise LLMs against content policies
+                                </li>
+                                <li>Developing attack taxonomies and defenses for large-scale ML systems</li>
                             </ul>
                         </div>
 
@@ -1720,8 +1718,9 @@
 
         // News timeline data
         const newsItems = [
+            { date: '2025-08', content: 'Attended the <a href="https://www.airisksummit.com/" target="_blank">AI Risk Summit 2025</a> at the Ritz-Carlton, Half Moon Bay and conducted a red-teaming workshop titled <a href="https://www.airisksummit.com/event-session/ai-red-teaming-room/" target="_blank">"AI Red Teaming Room"</a>.' },
             { date: '2025-06', content: 'My paper titled <b>"Making Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework"</b> was accepted to the SUPA 2025 workshop at SOUPS!' },
-            { date: '2025-05', content: 'Started working at <a href="https://scale.com" target="_blank">Scale AI</a> as an AI Safety Engineer.' },
+            { date: '2025-05', content: 'Started working at <a href="https://scale.com" target="_blank">Scale AI</a> as a Research Engineer.' },
             { date: '2025-03', content: 'My submission titled <a href = "https://www.usenix.org/conference/pepr25/presentation/maurya">"When Privacy Guarantees Meet Pre-trained LLMs: A Case Study in Synthetic Data"</a> got accepted to PEPR\'25!' },
             { date: '2025-02', content: 'Started a new role as a Privacy Researcher at Carnegie Mellon University' },
             { date: '2024-12', content: 'Graduated from Carnegie Mellon University with a Master\'s in Privacy Engineering' },
@@ -1855,11 +1854,7 @@
             // Initialize theme
             initializeTheme();
 
-            // Initialize privacy popup functionality
-            const privacyButton = document.querySelector('.privacy-toggle');
-            if (privacyButton) {
-                privacyButton.addEventListener('click', showPrivacyPopup);
-            }
+            // Privacy popup functionality removed
 
             const overlay = document.getElementById('overlay');
             if (overlay) {
@@ -1942,8 +1937,7 @@
             document.getElementById('privacyPopup').classList.remove('active');
         }
 
-        // Update the privacy button's onclick handler
-        document.querySelector('.privacy-toggle').onclick = showPrivacyPopup;
+        // Privacy button functionality removed
 
         // Close popup when clicking overlay
         document.getElementById('overlay').onclick = closePrivacyPopup;
