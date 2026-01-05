@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Anime.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
     <style>
         /* CSS Variables for theming */
         :root {
@@ -1188,46 +1186,6 @@
         .research-interests p {
             margin-bottom: 0;
         }
-
-        /* Anime.js Animation Initial States */
-        .animate-hero-name,
-        .animate-hero-title,
-        .animate-hero-bio,
-        .animate-profile-photo,
-        .animate-social-links {
-            opacity: 0;
-        }
-
-        .animate-timeline-item {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .animate-paper {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            opacity: 0;
-        }
-
-        .scroll-indicator i {
-            font-size: 32px;
-            color: var(--accent-color);
-        }
-
-        /* Enhanced hover states for anime.js */
-        .social-button,
-        .control-button {
-            will-change: transform;
-        }
     </style>
     <meta name="google-site-verification" content="IDiKsjVcf-LgII8Lj50mgeAsS0Wb4bw38THd3R2nJZc" />
 </head>
@@ -1262,9 +1220,9 @@
         <section id="about" class="header-section">
             <div class="header">
                 <div class="bio">
-                    <h1 class="animate-hero-name">Yash Maurya</h1>
-                    <div class="title animate-hero-title">Research Engineer</div>
-                    <div class="about-section animate-hero-bio">
+                    <h1>Yash Maurya</h1>
+                    <div class="title">Research Engineer</div>
+                    <div class="about-section">
                         <p class="bio-intro">I'm a Research Engineer at <a href="https://scale.com"
                                 target="_blank">Scale AI</a>
                             where I lead LLM red teaming and adversarial testing for frontier AI labs. My work centers
@@ -1326,8 +1284,8 @@
                     </div>
                 </div>
                 <div class="profile-container">
-                    <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo animate-profile-photo">
-                    <div class="social-links animate-social-links"
+                    <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
+                    <div class="social-links"
                         style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;">
                         <a href="#" class="social-button" data-type="email" id="social-email-btn"
                             onclick="handleEmailCopy(event, 'social-email-btn')" title="Copy Email Address"
@@ -1376,6 +1334,56 @@
             <h2>Research</h2>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">* indicates equal
                 contribution</p>
+            <div class="research-year">
+                <h3>2025</h3>
+                <div class="paper" id="morebench">
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2510.16380">MoReBench: Evaluating Procedural and Pluralistic
+                            Moral
+                            Reasoning in Language Models, More than Outcomes</a>
+                        <div class="link-icons">
+                            <a href="https://morebench.github.io/" class="resource-link" target="_blank"
+                                rel="noopener noreferrer">[website]</a>
+                        </div>
+                    </div>
+                    <div class="authors">Yu Ying Chiu*, Michael S. Lee*, Rachel Calcott, Brandon Handoko, Paul de
+                        Font-Reaulx, Paula Rodriguez, Chen Bo Calvin Zhang, Ziwen Han†, Udari Madhushani Sehwag,
+                        <b>Yash Maurya</b>, Christina Q. Knight, Harry R. Lloyd, Florence Bacus, Mantas Mazeika, Bing
+                        Liu,
+                        Yejin Choi, Mitchell L. Gordon, Sydney Levine
+                    </div>
+                    <div class="conference">arXiv preprint arXiv:2510.16380; under submission to ICLR 2026</div>
+                    <div class="tldr">TL;DR: Introduces MoReBench, a benchmark of 1,000 moral scenarios and 23k+ rubric
+                        criteria to evaluate how language models reason about moral dilemmas, emphasizing pluralistic
+                        and
+                        process-focused moral reasoning over just final outcomes.</div>
+                </div>
+                <div class="paper" id="accessible-privacy-framework">
+                    <div class="paper-links">
+                        <a href="https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations">Making
+                            Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework</a>
+                        <div class="link-icons">
+                            <a href="https://ieee-isope.org/program/#:~:text=Making%20Privacy%2DPreserving%20AI%20Accessible%3A%20A%20Practitioner%2DOriented%20Framework"
+                                class="resource-link" target="_blank" rel="noopener noreferrer">[program]</a>
+                        </div>
+                    </div>
+                    <div class="authors"><b>Yash Maurya</b>, Ibrahim Mohamed Anis Chhaya, Hana Habib</div>
+                    <div class="conference">IEEE Symposium on Privacy Expectations (ISoPE) 2025 &amp; SUPA 2025 Workshop
+                        on Societal &amp; User-Centered Privacy in AI</div>
+                    <div class="tldr">TL;DR: Practitioner-oriented framework that organizes concrete ML privacy
+                        mitigations, tools, and design patterns across the ML lifecycle to help teams operationalize
+                        privacy-preserving AI in real-world deployments.</div>
+                </div>
+                <div class="paper" id="synthetic-llm-pepr25">
+                    <a href="https://www.usenix.org/conference/pepr25/presentation/maurya">When Privacy Guarantees Meet
+                        Pre-trained LLMs: A Case Study in Synthetic Data</a>
+                    <div class="authors"><b>Yash Maurya*</b>, Aman Priyanshu*</div>
+                    <div class="conference">2025 USENIX Conference on Privacy Engineering Practice and Respect (PEPR'25)
+                    </div>
+                    <div class="tldr">TL;DR: Case study evaluating how privacy guarantees behave when using pre-trained
+                        LLMs to generate synthetic data, highlighting practical leakage risks.</div>
+                </div>
+            </div>
             <div class="research-year">
                 <h3>2024</h3>
                 <div class="paper" id="meta-capstone">
@@ -1662,11 +1670,6 @@
         <button class="popup-close">Got it</button>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-        <i class="material-icons">keyboard_arrow_down</i>
-    </div>
-
     <script>
         // TextScramble class implementation
         class TextScramble {
@@ -1863,166 +1866,14 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // ========== ANIME.JS ANIMATIONS ==========
-
-            // 1. Hero Section Entrance Animation
-            anime.timeline({
-                easing: 'easeOutExpo'
-            })
-                .add({
-                    targets: '.animate-hero-name',
-                    opacity: [0, 1],
-                    translateY: [30, 0],
-                    duration: 1200
-                })
-                .add({
-                    targets: '.animate-hero-title',
-                    opacity: [0, 1],
-                    translateY: [20, 0],
-                    duration: 1000
-                }, '-=800')
-                .add({
-                    targets: '.animate-hero-bio',
-                    opacity: [0, 1],
-                    translateY: [20, 0],
-                    duration: 1000
-                }, '-=700')
-                .add({
-                    targets: '.animate-profile-photo',
-                    opacity: [0, 1],
-                    scale: [0.8, 1],
-                    duration: 1000,
-                    easing: 'easeOutElastic(1, .6)'
-                }, '-=900')
-                .add({
-                    targets: '.animate-social-links',
-                    opacity: [0, 1],
-                    translateY: [20, 0],
-                    duration: 800
-                }, '-=600');
-
-            // 2. Scroll Indicator Animation
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            anime({
-                targets: scrollIndicator,
-                opacity: [0, 1],
-                translateY: [-10, 0],
-                duration: 1000,
-                delay: 2000,
-                easing: 'easeOutQuad'
-            });
-
-            // Pulsing scroll indicator animation
-            anime({
-                targets: '.scroll-indicator i',
-                translateY: [0, 10, 0],
-                duration: 1500,
-                loop: true,
-                easing: 'easeInOutQuad',
-                delay: 2500
-            });
-
-            // Hide scroll indicator on scroll
-            let scrollIndicatorVisible = true;
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100 && scrollIndicatorVisible) {
-                    anime({
-                        targets: scrollIndicator,
-                        opacity: 0,
-                        duration: 300
-                    });
-                    scrollIndicatorVisible = false;
-                } else if (window.scrollY <= 100 && !scrollIndicatorVisible) {
-                    anime({
-                        targets: scrollIndicator,
-                        opacity: 1,
-                        duration: 300
-                    });
-                    scrollIndicatorVisible = true;
-                }
-            });
-
-            // 3. Spring-based hover animations for social buttons
-            document.querySelectorAll('.social-button, .control-button').forEach(button => {
-                button.addEventListener('mouseenter', function () {
-                    anime({
-                        targets: this,
-                        scale: 1.15,
-                        duration: 600,
-                        easing: 'easeOutElastic(1, .5)'
-                    });
-                });
-
-                button.addEventListener('mouseleave', function () {
-                    anime({
-                        targets: this,
-                        scale: 1,
-                        duration: 400,
-                        easing: 'easeOutQuad'
-                    });
-                });
-            });
-
-            // 4. Timeline Items Animation (Scroll-based)
-            const timelineObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                        entry.target.classList.add('animated');
-                        anime({
-                            targets: entry.target,
-                            opacity: [0, 1],
-                            translateX: [-20, 0],
-                            duration: 800,
-                            easing: 'easeOutQuad',
-                            delay: entry.target.dataset.index * 50
-                        });
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            // 5. Research Papers Animation (Scroll-based)
-            const paperObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                        entry.target.classList.add('animated');
-                        anime({
-                            targets: entry.target,
-                            opacity: [0, 1],
-                            translateY: [10, 0],
-                            duration: 600,
-                            easing: 'easeOutQuad',
-                            delay: entry.target.dataset.index * 80
-                        });
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            // 6. Enhanced nav link animation
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                const underline = link.querySelector('::after');
-                link.addEventListener('mouseenter', function () {
-                    anime({
-                        targets: this,
-                        color: 'var(--accent-color)',
-                        duration: 300,
-                        easing: 'easeOutQuad'
-                    });
-                });
-            });
-
-            // ========== END ANIME.JS ANIMATIONS ==========
-
             // Start quote animation immediately
             next();
 
             // Display news items
             const timeline = document.getElementById('news-timeline');
-            newsItems.forEach((item, index) => {
+            newsItems.forEach(item => {
                 const newsItem = createNewsItem(item);
-                newsItem.classList.add('animate-timeline-item');
-                newsItem.dataset.index = index;
                 timeline.appendChild(newsItem);
-                timelineObserver.observe(newsItem);
             });
 
             // Initialize observers
@@ -2033,13 +1884,6 @@
             document.querySelectorAll('.card').forEach((card, index) => {
                 card.dataset.delay = index * 100;
                 cardObserver.observe(card);
-            });
-
-            // Observe research papers for animation
-            document.querySelectorAll('.paper').forEach((paper, index) => {
-                paper.classList.add('animate-paper');
-                paper.dataset.index = index;
-                paperObserver.observe(paper);
             });
 
             // Smooth scrolling for navigation
