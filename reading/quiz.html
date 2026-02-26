@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recap Studio | Yash Maurya</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #eef2f7;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --accent-color: #0f4c81;
+      --border-color: #d8dee8;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(238, 242, 247, 0.92);
+      --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
+      --ok: #1f7a5a;
+      --bad: #ad3131;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #000000;
+      --text-primary: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --accent-color: #60a5fa;
+      --border-color: #333333;
+      --card-bg: #111111;
+      --nav-bg: rgba(0, 0, 0, 0.9);
+      --card-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 76, 129, 0.08), transparent 38%),
+        radial-gradient(circle at 100% 100%, rgba(72, 110, 149, 0.06), transparent 34%),
+        var(--bg-primary);
+      min-height: 100vh;
+    }
+
+    body[data-theme="dark"] { background: var(--bg-primary); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.95rem 0;
+    }
+
+    .nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0.45rem 0.72rem;
+    }
+
+    .container { width: min(980px, 92vw); margin: 1.2rem auto 2rem; }
+
+    .hero,
+    .section,
+    .q-card,
+    .summary,
+    .flashcard-stage {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .hero { padding: 1.05rem; margin-bottom: 0.9rem; }
+    .hero h1 { font-family: 'Newsreader', serif; margin-bottom: 0.35rem; }
+    .hero p { color: var(--text-secondary); }
+
+    .mode-row {
+      display: flex;
+      gap: 0.55rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .mode-btn {
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 10px;
+      padding: 0.42rem 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .mode-btn.active {
+      border-color: var(--accent-color);
+      color: var(--text-primary);
+      box-shadow: 0 0 0 1px var(--accent-color) inset;
+      background: color-mix(in srgb, var(--accent-color) 12%, var(--card-bg) 88%);
+    }
+
+    .section { padding: 0.9rem; margin-bottom: 0.85rem; }
+
+    .flashcard-stage {
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      padding: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .flashcard-stage:hover { transform: translateY(-2px); }
+
+    .flashcard-content {
+      text-align: center;
+      max-width: 640px;
+    }
+
+    .flashcard-label {
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      margin-bottom: 0.55rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .flashcard-text {
+      font-size: 1.1rem;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .flashcard-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.65rem;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 0.22rem 0.55rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.72rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .primary { background: var(--accent-color); color: #fff; }
+    .secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
+
+    .quiz { display: grid; gap: 0.75rem; }
+
+    .q-card { padding: 0.88rem; }
+    .q-title { font-weight: 700; margin-bottom: 0.55rem; line-height: 1.4; }
+    .q-options { display: grid; gap: 0.45rem; }
+
+    .q-options label {
+      display: block;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.5rem 0.6rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .q-options label:hover { border-color: var(--accent-color); }
+
+    .btn-row { display: flex; gap: 0.55rem; margin-top: 0.75rem; flex-wrap: wrap; }
+
+    .feedback {
+      margin-top: 0.55rem;
+      border-left: 3px solid var(--border-color);
+      padding-left: 0.55rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .feedback.ok { border-color: var(--ok); color: var(--ok); }
+    .feedback.bad { border-color: var(--bad); color: var(--bad); }
+
+    .summary { margin-top: 0.9rem; padding: 0.8rem; display: none; }
+    .summary.show { display: block; }
+
+    .hidden { display: none !important; }
+
+    .hub-list {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+
+    .hub-list a {
+      text-decoration: none;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.6rem 0.68rem;
+      display: block;
+    }
+
+    .hub-list a:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="../index.html">Yash Maurya</a>
+      <div style="display:flex; gap:0.8rem; align-items:center;">
+        <a href="index.html">Reading Studio</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">Toggle Theme</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1 id="page-title">Recap Studio</h1>
+      <p id="page-subtitle">Flashcards + MCQ checks for each reading.</p>
+      <div class="mode-row" id="mode-row">
+        <button type="button" class="mode-btn" data-mode="flashcards">Flashcards</button>
+        <button type="button" class="mode-btn" data-mode="quiz">MCQ Quiz</button>
+      </div>
+    </section>
+
+    <section class="section hidden" id="hub-section">
+      <p>Choose an article from Reading Studio:</p>
+      <div class="hub-list" id="hub-list"></div>
+    </section>
+
+    <section class="section" id="flashcards-section">
+      <div class="flashcard-stage" id="flashcard-stage" aria-live="polite">
+        <div class="flashcard-content">
+          <div class="flashcard-label" id="card-face-label">Front</div>
+          <div class="flashcard-text" id="card-text"></div>
+        </div>
+      </div>
+      <div class="flashcard-controls">
+        <div class="controls-left">
+          <span class="pill" id="card-index">Card 1/1</span>
+          <span class="pill">Click card to flip</span>
+        </div>
+        <div class="controls-right">
+          <button type="button" class="secondary" id="prev-card">Prev</button>
+          <button type="button" class="secondary" id="shuffle-cards">Shuffle</button>
+          <button type="button" class="secondary" id="next-card">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz-section">
+      <section class="quiz" id="quiz-root"></section>
+      <div class="btn-row" id="quiz-actions">
+        <button class="primary" type="button" id="grade-btn">Check Answers</button>
+        <button class="secondary" type="button" id="reset-btn">Reset</button>
+      </div>
+      <section class="summary" id="summary"></section>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      } else {
+        document.body.removeAttribute('data-theme');
+      }
+    }
+
+    function escapeHTML(text) {
+      return String(text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getParams() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        set: p.get('set'),
+        mode: p.get('mode') || 'flashcards'
+      };
+    }
+
+    const params = getParams();
+    const data = window.READING_DATA;
+
+    const article = data.articles.find((a) => a.id === params.set) || null;
+    const quiz = article ? data.quizzes[article.id] : null;
+    let cards = article ? [...(data.flashcards[article.id] || [])] : [];
+
+    const pageTitle = document.getElementById('page-title');
+    const pageSubtitle = document.getElementById('page-subtitle');
+    const hubSection = document.getElementById('hub-section');
+    const hubList = document.getElementById('hub-list');
+
+    const flashcardsSection = document.getElementById('flashcards-section');
+    const quizSection = document.getElementById('quiz-section');
+
+    const cardLabel = document.getElementById('card-face-label');
+    const cardText = document.getElementById('card-text');
+    const cardIndex = document.getElementById('card-index');
+
+    let currentCard = 0;
+    let showingBack = false;
+
+    function renderHub() {
+      hubList.innerHTML = data.articles.map((a) => {
+        return `<a href="quiz.html?set=${encodeURIComponent(a.id)}&amp;mode=flashcards">${escapeHTML(a.title)} (${escapeHTML(a.venue)})</a>`;
+      }).join('');
+    }
+
+    function setMode(mode) {
+      document.querySelectorAll('.mode-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+      });
+
+      flashcardsSection.classList.toggle('hidden', mode !== 'flashcards');
+      quizSection.classList.toggle('hidden', mode !== 'quiz');
+    }
+
+    function renderCard() {
+      if (!cards.length) {
+        cardLabel.textContent = 'No Cards';
+        cardText.textContent = 'No flashcards are available for this reading yet.';
+        cardIndex.textContent = 'Card 0/0';
+        return;
+      }
+
+      const card = cards[currentCard];
+      cardLabel.textContent = showingBack ? 'Back' : 'Front';
+      cardText.textContent = showingBack ? card.back : card.front;
+      cardIndex.textContent = `Card ${currentCard + 1}/${cards.length}`;
+    }
+
+    function renderQuiz(setQuiz) {
+      const root = document.getElementById('quiz-root');
+      root.innerHTML = '';
+      setQuiz.questions.forEach((q, i) => {
+        const card = document.createElement('article');
+        card.className = 'q-card';
+        card.innerHTML = `
+          <h2 class="q-title">Q${i + 1}. ${escapeHTML(q.prompt)}</h2>
+          <div class="q-options">
+            ${q.options.map((opt, j) => `<label><input type="radio" name="q-${i}" value="${j}"> ${escapeHTML(opt)}</label>`).join('')}
+          </div>
+          <div class="feedback" id="fb-${i}"></div>
+        `;
+        root.appendChild(card);
+      });
+    }
+
+    function gradeQuiz(setQuiz) {
+      let correct = 0;
+      const total = setQuiz.questions.length;
+
+      setQuiz.questions.forEach((q, i) => {
+        const fb = document.getElementById(`fb-${i}`);
+        fb.className = 'feedback';
+
+        const selected = document.querySelector(`input[name="q-${i}"]:checked`);
+        if (!selected) {
+          fb.textContent = 'No option selected yet.';
+          return;
+        }
+
+        const picked = Number(selected.value);
+        if (picked === q.answer) {
+          correct += 1;
+          fb.classList.add('ok');
+          fb.textContent = q.feedback;
+        } else {
+          fb.classList.add('bad');
+          fb.textContent = `Not quite. ${q.feedback}`;
+        }
+      });
+
+      const summary = document.getElementById('summary');
+      const pct = Math.round((correct / total) * 100);
+      summary.classList.add('show');
+      summary.innerHTML = `<strong>Score:</strong> ${correct}/${total} (${pct}%).`;
+    }
+
+    function resetQuiz() {
+      if (!article) return;
+      window.location.href = `quiz.html?set=${encodeURIComponent(article.id)}&mode=quiz`;
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    if (!article || !quiz) {
+      pageTitle.textContent = 'Recap Studio';
+      pageSubtitle.textContent = 'Select an article from the list below.';
+      hubSection.classList.remove('hidden');
+      flashcardsSection.classList.add('hidden');
+      quizSection.classList.add('hidden');
+      document.getElementById('mode-row').classList.add('hidden');
+      renderHub();
+    } else {
+      pageTitle.textContent = article.title;
+      pageSubtitle.textContent = `${article.venue} · ${article.published}`;
+
+      document.querySelectorAll('.mode-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.mode;
+          const url = `quiz.html?set=${encodeURIComponent(article.id)}&mode=${encodeURIComponent(mode)}`;
+          window.history.replaceState({}, '', url);
+          setMode(mode);
+        });
+      });
+
+      setMode(params.mode === 'quiz' ? 'quiz' : 'flashcards');
+
+      renderCard();
+      renderQuiz(quiz);
+
+      document.getElementById('flashcard-stage').addEventListener('click', () => {
+        showingBack = !showingBack;
+        renderCard();
+      });
+
+      document.getElementById('next-card').addEventListener('click', () => {
+        if (!cards.length) return;
+        currentCard = (currentCard + 1) % cards.length;
+        showingBack = false;
+        renderCard();
+      });
+
+      document.getElementById('prev-card').addEventListener('click', () => {
+        if (!cards.length) return;
+        currentCard = (currentCard - 1 + cards.length) % cards.length;
+        showingBack = false;
+        renderCard();
+      });
+
+      document.getElementById('shuffle-cards').addEventListener('click', () => {
+        cards = shuffleArray(cards);
+        currentCard = 0;
+        showingBack = false;
+        renderCard();
+      });
+
+      document.getElementById('grade-btn').addEventListener('click', () => gradeQuiz(quiz));
+      document.getElementById('reset-btn').addEventListener('click', resetQuiz);
+    }
+  </script>
+</body>
+
+</html>

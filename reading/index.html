@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Studio | Yash Maurya</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #eef2f7;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --accent-color: #0f4c81;
+      --border-color: #d8dee8;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(238, 242, 247, 0.92);
+      --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #000000;
+      --text-primary: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --accent-color: #60a5fa;
+      --border-color: #333333;
+      --card-bg: #111111;
+      --nav-bg: rgba(0, 0, 0, 0.9);
+      --card-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 76, 129, 0.08), transparent 38%),
+        radial-gradient(circle at 100% 100%, rgba(72, 110, 149, 0.06), transparent 34%),
+        var(--bg-primary);
+      min-height: 100vh;
+    }
+
+    body[data-theme="dark"] { background: var(--bg-primary); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      width: min(1080px, 92vw);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.95rem 0;
+    }
+
+    .nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0.45rem 0.72rem;
+    }
+
+    .container { width: min(1080px, 92vw); margin: 1.2rem auto 2rem; }
+
+    .hero,
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .hero { padding: 1.2rem; margin-bottom: 1rem; }
+
+    .hero h1 {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p { color: var(--text-secondary); }
+
+    .panel { padding: 1rem; margin-bottom: 1rem; }
+
+    .section-title {
+      font-family: 'Newsreader', serif;
+      font-size: 1.28rem;
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.02em;
+    }
+
+    .section-note {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .chip {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 0.34rem 0.68rem;
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 0.79rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      transform: translateY(-1px);
+    }
+
+    .chip.active {
+      border-color: var(--accent-color);
+      background: color-mix(in srgb, var(--accent-color) 14%, var(--card-bg) 86%);
+      color: var(--text-primary);
+      box-shadow: 0 0 0 1px var(--accent-color) inset;
+    }
+
+    .filter-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .clear-btn {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      padding: 0.32rem 0.55rem;
+      cursor: pointer;
+    }
+
+    .clear-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .result-count {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+    }
+
+    .reading-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .reading-item {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.85rem;
+      background: var(--card-bg);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .reading-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-color);
+      box-shadow: 0 8px 16px rgba(15, 76, 129, 0.08);
+    }
+
+    .reading-item h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    .reading-item h3 a {
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .reading-item h3 a:hover { color: var(--accent-color); }
+
+    .reading-meta {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .reading-blurb {
+      color: var(--text-primary);
+      font-size: 0.91rem;
+      margin-bottom: 0.45rem;
+      line-height: 1.45;
+    }
+
+    .reading-writeup {
+      margin: 0.1rem 0 0.55rem;
+      border-left: 3px solid var(--accent-color);
+      background: color-mix(in srgb, var(--card-bg) 92%, var(--accent-color) 8%);
+      border-radius: 8px;
+      padding: 0.55rem 0.65rem;
+    }
+
+    .reading-writeup h4 {
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      color: var(--accent-color);
+    }
+
+    .reading-writeup p {
+      font-size: 0.89rem;
+      line-height: 1.48;
+      color: var(--text-primary);
+    }
+
+    .tag-row { display: flex; gap: 0.42rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+
+    .tag {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: color-mix(in srgb, var(--card-bg) 90%, var(--accent-color) 10%);
+    }
+
+    .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .actions a {
+      text-decoration: none;
+      font-size: 0.79rem;
+      border-radius: 8px;
+      padding: 0.36rem 0.58rem;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .actions a:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .empty {
+      border: 1px dashed var(--border-color);
+      border-radius: 10px;
+      padding: 0.85rem;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="../index.html">Yash Maurya</a>
+      <div style="display:flex; gap:0.8rem; align-items:center;">
+        <a href="../index.html">Home</a>
+        <a href="quiz.html">Quiz Hub</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">Toggle Theme</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Reading Studio</h1>
+      <p>A research reading log with filterable topics, recap flashcards, and MCQ checks for each article.</p>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Topic Filters</h2>
+      <p class="section-note">Pick one or more topics/tags to narrow the archive.</p>
+      <div class="filter-toolbar">
+        <span class="result-count" id="result-count"></span>
+        <button type="button" class="clear-btn" id="clear-filters">Clear Filters</button>
+      </div>
+      <div class="chip-row" id="filter-chips"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-title">Reading Archive</h2>
+      <div class="reading-list" id="reading-list"></div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      } else {
+        document.body.removeAttribute('data-theme');
+      }
+    }
+
+    function escapeHTML(text) {
+      return String(text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    const data = window.READING_DATA;
+    const selectedFilters = new Set();
+
+    const listRoot = document.getElementById('reading-list');
+    const filterRoot = document.getElementById('filter-chips');
+    const resultCount = document.getElementById('result-count');
+
+    const allFilters = Array.from(new Set(
+      data.articles.flatMap((a) => [...a.tags, ...a.topics])
+    )).sort((a, b) => a.localeCompare(b));
+
+    function renderFilters() {
+      filterRoot.innerHTML = allFilters.map((name) => `
+        <button type="button" class="chip ${selectedFilters.has(name) ? 'active' : ''}" data-filter="${escapeHTML(name)}">${escapeHTML(name)}</button>
+      `).join('');
+
+      filterRoot.querySelectorAll('.chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const key = chip.dataset.filter;
+          if (selectedFilters.has(key)) {
+            selectedFilters.delete(key);
+          } else {
+            selectedFilters.add(key);
+          }
+          renderFilters();
+          renderReadingList();
+        });
+      });
+    }
+
+    function filteredArticles() {
+      if (!selectedFilters.size) return data.articles;
+
+      return data.articles.filter((article) => {
+        const pool = new Set([...article.tags, ...article.topics]);
+        for (const item of selectedFilters) {
+          if (pool.has(item)) return true;
+        }
+        return false;
+      });
+    }
+
+    function renderReadingList() {
+      const items = filteredArticles();
+      resultCount.textContent = `${items.length} article${items.length === 1 ? '' : 's'} shown`;
+
+      if (!items.length) {
+        listRoot.innerHTML = '<div class="empty">No articles match the current filters.</div>';
+        return;
+      }
+
+      listRoot.innerHTML = items.map((item) => `
+        <article class="reading-item">
+          <h3><a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)}</a></h3>
+          <p class="reading-meta">${escapeHTML(item.venue)} · ${escapeHTML(item.published)}</p>
+          <p class="reading-blurb">${escapeHTML(item.blurb)}</p>
+          <div class="reading-writeup">
+            <h4>Quick Writeup</h4>
+            <p>${escapeHTML(item.writeup || 'Writeup coming soon.')}</p>
+          </div>
+          <div class="tag-row">
+            ${item.tags.map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
+            ${item.topics.map((topic) => `<span class="tag">${escapeHTML(topic)}</span>`).join('')}
+          </div>
+          <div class="actions">
+            <a href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=flashcards">Flashcards</a>
+            <a href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=quiz">MCQ Quiz</a>
+            <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">Open Source</a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    document.getElementById('clear-filters').addEventListener('click', () => {
+      selectedFilters.clear();
+      renderFilters();
+      renderReadingList();
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    renderFilters();
+    renderReadingList();
+  </script>
+</body>
+
+</html>
