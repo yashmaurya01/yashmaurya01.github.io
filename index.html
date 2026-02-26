@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yash Maurya</title>
-    <!-- Material Icons and Inter font -->
+    <!-- Material Icons and typography -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,17 +16,18 @@
         /* CSS Variables for theming */
         :root {
             /* Default theme (Minimalist & Clean) */
-            --bg-primary: #F5F5F7;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --accent-color: #4A90E2;
-            --border-color: #E0E0E0;
+            --bg-primary: #eef2f7;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --accent-color: #0f4c81;
+            --border-color: #d8dee8;
             --card-bg: #FFFFFF;
-            --nav-bg: rgba(245, 245, 247, 0.9);
-            --section-bg-1: #F5F5F7;
+            --nav-bg: rgba(238, 242, 247, 0.92);
+            --section-bg-1: #eef2f7;
             --section-bg-2: #FFFFFF;
-            --section-bg-3: #F0F0F2;
+            --section-bg-3: #f6f9fc;
             --section-bg-4: #FFFFFF;
+            --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
 
             /* Button colors */
             --email-color: #E67E22;
@@ -35,8 +37,7 @@
             --resume-color: #F39C12;
             --theme-color: #8E44AD;
             --privacy-color: #C0392B;
-            --accent-rgb: 74, 144, 226;
-            /* This matches the default accent color #4A90E2 */
+            --accent-rgb: 15, 76, 129;
         }
 
         [data-theme="warm"] {
@@ -107,6 +108,7 @@
             --section-bg-2: #111111;
             --section-bg-3: #0A0A0A;
             --section-bg-4: #111111;
+            --card-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
         }
 
         * {
@@ -116,11 +118,18 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'IBM Plex Sans', sans-serif;
             line-height: 1.6;
-            background: var(--bg-primary);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(var(--accent-rgb), 0.08), transparent 38%),
+                radial-gradient(circle at 100% 100%, rgba(72, 110, 149, 0.06), transparent 34%),
+                var(--bg-primary);
             color: var(--text-primary);
             transition: background-color 0.3s, color 0.3s;
+        }
+
+        body[data-theme="dark"] {
+            background: var(--bg-primary);
         }
 
         h1,
@@ -133,6 +142,8 @@
         h2 {
             font-size: 2rem;
             font-weight: 600;
+            font-family: 'Newsreader', serif;
+            letter-spacing: 0.02em;
         }
 
         /* Navigation */
@@ -165,6 +176,8 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-family: 'Newsreader', serif;
+            letter-spacing: 0.03em;
         }
 
         .nav-links {
@@ -624,6 +637,8 @@
             font-size: 2.75rem;
             margin-bottom: 0.5rem;
             line-height: 1.2;
+            font-family: 'Newsreader', serif;
+            letter-spacing: 0.02em;
         }
 
         .bio .title {
@@ -813,6 +828,24 @@
             font-weight: 500;
         }
 
+        .profile-inline {
+            float: right;
+            width: 210px;
+            margin: 0 0 0.75rem 1.25rem;
+            text-align: center;
+        }
+
+        .profile-inline .profile-photo {
+            width: 170px;
+            height: 170px;
+            margin-bottom: 0.75rem;
+        }
+
+        .profile-inline .social-links {
+            margin-top: 0;
+            justify-content: center;
+        }
+
         .profile-container {
             display: flex;
             flex-direction: column;
@@ -820,6 +853,18 @@
         }
 
         @media (max-width: 768px) {
+            .profile-inline {
+                float: none;
+                width: 100%;
+                margin: 0 0 1rem 0;
+            }
+
+            .profile-inline .profile-photo {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 0.65rem;
+            }
+
             .profile-container {
                 margin-bottom: 1rem;
             }
@@ -971,6 +1016,28 @@
 
         .paper.highlight {
             background-color: rgba(var(--accent-rgb), 0.1);
+        }
+
+        #news,
+        #research {
+            background: var(--section-bg-3);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .paper,
+        .timeline-item {
+            border-radius: 12px;
+            background: var(--card-bg);
+            box-shadow: 0 10px 25px rgba(15, 76, 129, 0.05);
+        }
+
+        [data-theme="dark"] .paper,
+        [data-theme="dark"] .timeline-item {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
         }
 
         /* Update the scroll behavior to account for navbar height */
@@ -1221,21 +1288,44 @@
             <div class="header">
                 <div class="bio">
                     <h1>Yash Maurya</h1>
-                    <div class="title">Research Engineer</div>
+                    <div class="title">Research Engineer | LLM Safety and Evaluation</div>
                     <div class="about-section">
-                        <p class="bio-intro">I'm a Research Engineer at <a href="https://scale.com"
-                                target="_blank">Scale AI</a>
-                            where I lead LLM red teaming and adversarial testing for frontier AI labs. My work centers
-                            on finding
-                            privacy and safety vulnerabilities in AI systems before they reach production.</p>
+                        <div class="profile-inline">
+                            <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
+                            <div class="social-links"
+                                style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;">
+                                <a href="#" class="social-button" data-type="email" id="social-email-btn"
+                                    onclick="handleEmailCopy(event, 'social-email-btn')" title="Copy Email Address"
+                                    aria-label="Copy email address">
+                                    <i class="fas fa-envelope fa-lg"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button"
+                                    data-type="linkedin" title="LinkedIn Profile"
+                                    aria-label="Visit LinkedIn profile" target="_blank">
+                                    <i class="fab fa-linkedin-in fa-lg"></i>
+                                </a>
+                                <a href="https://github.com/yashmaurya01" class="social-button" data-type="github"
+                                    title="GitHub Profile" aria-label="Visit GitHub profile" target="_blank">
+                                    <i class="fab fa-github fa-lg"></i>
+                                </a>
+                                <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en"
+                                    class="social-button" data-type="scholar" title="Google Scholar Profile"
+                                    aria-label="Visit Google Scholar profile" target="_blank">
+                                    <i class="fas fa-graduation-cap fa-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="bio-intro">Research Engineer at <a href="https://scale.com" target="_blank">Scale
+                                AI</a>, building red-teaming and evaluation systems for frontier LLM safety and
+                            privacy.</p>
 
                         <div class="focus-areas">
                             <h4>Currently working on:</h4>
                             <ul>
-                                <li>Red teaming safety and privacy capabilities for frontier AI laboratories</li>
-                                <li>Building automated frameworks to evaluate enterprise LLMs against content policies
-                                </li>
-                                <li>Developing attack taxonomies and defenses for large-scale ML systems</li>
+                                <li>Post-training and evaluation loops using RLHF, DPO, and GRPO-style workflows</li>
+                                <li>Automated red-teaming pipelines with LLM judges for policy and safety testing</li>
+                                <li>Long-horizon agent robustness and attack-defense analysis</li>
                             </ul>
                         </div>
 
@@ -1258,21 +1348,17 @@
                         </div>
 
                         <div class="experience">
-                            <p>During Summer 2024, I worked as an AI Governance intern at <a
-                                    href="https://www.bny.com/corporate/global/en.html">BNY AI Hub</a>,
-                                helping develop Eliza—BNY's AI platform used by 15,000+ people. I implemented LLM safety
-                                measures, built
-                                benchmarking pipelines, and contributed to governance frameworks. This project was
-                                featured in
-                                <a
-                                    href="https://fortune.com/2024/08/15/exclusive-how-bnys-new-ai-tool-eliza-is-minting-an-army-of-disposable-assistants-that-could-save-billions-in-labor-costs/">Fortune
-                                    magazine</a>.
-                            </p>
+                            <p>Previously at <a href="https://www.bny.com/corporate/global/en.html">BNY AI Hub</a>, I
+                                built an end-to-end LLM evaluation and guardrail stack (Mixtral, Llama, GPT-class) with
+                                real-time PII detection using Presidio and NeMo for enterprise deployment at scale. I
+                                also worked at Samsung and DynamoFL on large-scale data systems and privacy-preserving ML
+                                workflows.</p>
                         </div>
 
                         <div class="research-interests">
                             <h4>Research Interests</h4>
-                            <p>Privacy-Preserving ML, Differential Privacy, Federated Learning, and Responsible AI</p>
+                            <p>LLM Evaluation, Guardrails &amp; Safety, Red Teaming, Privacy Engineering, and AI
+                                Governance</p>
                         </div>
                     </div>
 
@@ -1282,35 +1368,6 @@
                         <p>Want to chat? Send me an <a href="#" id="email-btn" class="highlight">email</a> or text on <a
                                 href="https://www.linkedin.com/in/yashmaurya/" class="highlight">LinkedIn</a>!</p>
                     </div>
-                </div>
-                <div class="profile-container">
-                    <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
-                    <div class="social-links"
-                        style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;">
-                        <a href="#" class="social-button" data-type="email" id="social-email-btn"
-                            onclick="handleEmailCopy(event, 'social-email-btn')" title="Copy Email Address"
-                            aria-label="Copy email address">
-                            <i class="fas fa-envelope fa-lg"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button" data-type="linkedin"
-                            title="LinkedIn Profile" aria-label="Visit LinkedIn profile" target="_blank">
-                            <i class="fab fa-linkedin-in fa-lg"></i>
-                        </a>
-                        <a href="https://github.com/yashmaurya01" class="social-button" data-type="github"
-                            title="GitHub Profile" aria-label="Visit GitHub profile" target="_blank">
-                            <i class="fab fa-github fa-lg"></i>
-                        </a>
-                        <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en" class="social-button"
-                            data-type="scholar" title="Google Scholar Profile" aria-label="Visit Google Scholar profile"
-                            target="_blank">
-                            <i class="fas fa-graduation-cap fa-lg"></i>
-                        </a>
-
-                    </div>
-                    <!-- <div class="status-indicator">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Currently not taking on any new work.</span>
-                    </div> -->
                 </div>
             </div>
         </section>
@@ -1334,6 +1391,33 @@
             <h2>Research</h2>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">* indicates equal
                 contribution</p>
+            <div class="research-year">
+                <h3>2026 (Submissions)</h3>
+                <div class="paper" id="lhaw">
+                    <a href="https://arxiv.org/abs/2602.10525">LHAW: Controllable Underspecification for Long-Horizon
+                        Tasks</a>
+                    <div class="authors">George Pu, Michael S. Lee, Udari Madhushani Sehwag, David J. Lee, Bryan Zhu,
+                        <b>Yash Maurya</b>, Mohit Raghavendra, Yuan Xue, Samuel Marc Denton</div>
+                    <div class="conference">Under submission to ICML 2026</div>
+                    <div class="tldr">TL;DR: Investigates controllable underspecification strategies for improving
+                        long-horizon task behavior in language-model-based systems.</div>
+                </div>
+                <div class="paper" id="rok-fortress">
+                    <div class="title-link">ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for
+                        National Security and Public Safety</div>
+                    <div class="authors"><b>Yash Maurya</b>, collaborators</div>
+                    <div class="conference">Under submission to ICML 2026</div>
+                    <div class="tldr">TL;DR: Evaluates how geopolitical transcreation impacts public-safety and
+                        national-security performance in multilingual model deployments.</div>
+                </div>
+                <div class="paper" id="dualchem">
+                    <div class="title-link">DualChem: Can LLMs Provide Dangerous Uplift in Dual Use Chemistry?</div>
+                    <div class="authors"><b>Yash Maurya</b>, collaborators</div>
+                    <div class="conference">Under submission to ICML 2026</div>
+                    <div class="tldr">TL;DR: Studies potential harmful capability uplift in chemistry-related queries
+                        and proposes safer model-evaluation criteria.</div>
+                </div>
+            </div>
             <div class="research-year">
                 <h3>2025</h3>
                 <div class="paper" id="morebench">
@@ -1402,7 +1486,7 @@
                     <div class="authors">Pratiksha Thaker, Shengyuan Hu, Neil Kale, <b>Yash Maurya</b>, Zhiwei Steven
                         Wu,
                         Virginia Smith</div>
-                    <div class="conference">IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), 2024
+                    <div class="conference">IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), 2025
                     </div>
                     <div class="tldr">TL;DR: Discussion about the current state and limitations of LLM unlearning
                         benchmarks with a focus on forget/retain set methods</div>
@@ -1648,7 +1732,7 @@
             background: var(--section-bg-3);
         ">
         <!-- Copyright -->
-        <p style="margin-bottom: 1rem;">© 2025 Yash Maurya. All rights reserved.</p>
+        <p style="margin-bottom: 1rem;">© 2026 Yash Maurya. All rights reserved.</p>
 
         <!-- Links -->
         <div style="display: flex; justify-content: center; gap: 2rem;">
@@ -1979,6 +2063,7 @@
                     menuToggle.querySelector('i').textContent = 'menu';
                 });
             });
+
         });
 
         function showPrivacyPopup() {
