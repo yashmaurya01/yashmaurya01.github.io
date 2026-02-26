@@ -833,6 +833,7 @@
             width: 210px;
             margin: 0 0 0.75rem 1.25rem;
             text-align: center;
+            background: transparent !important;
         }
 
         .profile-inline .profile-photo {
@@ -842,8 +843,14 @@
         }
 
         .profile-inline .social-links {
-            margin-top: 0;
+            display: flex;
             justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            width: auto;
+            padding: 0;
+            background: transparent !important;
+            box-shadow: none !important;
         }
 
         .profile-container {
@@ -1185,13 +1192,23 @@
         }
 
         .about-section {
-            max-width: 800px;
-            line-height: 1.5;
+            max-width: none;
+            line-height: 1.58;
+        }
+
+        .about-section p {
+            max-width: none;
+            margin-bottom: 0.9rem;
+            text-wrap: pretty;
+        }
+
+        .about-section p:last-child {
+            margin-bottom: 0;
         }
 
         .bio-intro {
             font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
             color: var(--text-primary);
         }
 
@@ -1287,79 +1304,55 @@
         <section id="about" class="header-section">
             <div class="header">
                 <div class="bio">
+                    <div class="profile-inline">
+                        <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
+                        <div class="social-links">
+                            <a href="#" class="social-button" data-type="email" id="social-email-btn"
+                                onclick="handleEmailCopy(event, 'social-email-btn')" title="Copy Email Address"
+                                aria-label="Copy email address">
+                                <i class="fas fa-envelope fa-lg"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button"
+                                data-type="linkedin" title="LinkedIn Profile"
+                                aria-label="Visit LinkedIn profile" target="_blank">
+                                <i class="fab fa-linkedin-in fa-lg"></i>
+                            </a>
+                            <a href="https://github.com/yashmaurya01" class="social-button" data-type="github"
+                                title="GitHub Profile" aria-label="Visit GitHub profile" target="_blank">
+                                <i class="fab fa-github fa-lg"></i>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en"
+                                class="social-button" data-type="scholar" title="Google Scholar Profile"
+                                aria-label="Visit Google Scholar profile" target="_blank">
+                                <i class="fas fa-graduation-cap fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
                     <h1>Yash Maurya</h1>
-                    <div class="title">Research Engineer | LLM Safety and Evaluation</div>
+                    <div class="title">AI Safety &amp; Evaluation</div>
                     <div class="about-section">
-                        <div class="profile-inline">
-                            <img src="images/yash.jpeg" alt="Yash Maurya" class="profile-photo">
-                            <div class="social-links"
-                                style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;">
-                                <a href="#" class="social-button" data-type="email" id="social-email-btn"
-                                    onclick="handleEmailCopy(event, 'social-email-btn')" title="Copy Email Address"
-                                    aria-label="Copy email address">
-                                    <i class="fas fa-envelope fa-lg"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/yashmaurya/" class="social-button"
-                                    data-type="linkedin" title="LinkedIn Profile"
-                                    aria-label="Visit LinkedIn profile" target="_blank">
-                                    <i class="fab fa-linkedin-in fa-lg"></i>
-                                </a>
-                                <a href="https://github.com/yashmaurya01" class="social-button" data-type="github"
-                                    title="GitHub Profile" aria-label="Visit GitHub profile" target="_blank">
-                                    <i class="fab fa-github fa-lg"></i>
-                                </a>
-                                <a href="https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en"
-                                    class="social-button" data-type="scholar" title="Google Scholar Profile"
-                                    aria-label="Visit Google Scholar profile" target="_blank">
-                                    <i class="fas fa-graduation-cap fa-lg"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <p class="bio-intro">I'm a Research Engineer at <a href="https://scale.com"
+                                target="_blank">Scale AI</a>, building post-training, evaluation, and red-teaming
+                            systems for frontier language models, with a focus on alignment, safety, privacy, and
+                            dependable behavior in enterprise deployments.</p>
 
-                        <p class="bio-intro">Research Engineer at <a href="https://scale.com" target="_blank">Scale
-                                AI</a>, building red-teaming and evaluation systems for frontier LLM safety and
-                            privacy.</p>
-
-                        <div class="focus-areas">
-                            <h4>Currently working on:</h4>
-                            <ul>
-                                <li>Post-training and evaluation loops using RLHF, DPO, and GRPO-style workflows</li>
-                                <li>Automated red-teaming pipelines with LLM judges for policy and safety testing</li>
-                                <li>Long-horizon agent robustness and attack-defense analysis</li>
-                            </ul>
-                        </div>
+                        <p>I care about making advanced models trustworthy in production, especially under adversarial
+                            and edge-case behavior. My work sits at the intersection of model capability, policy
+                            constraints, and operational risk.</p>
 
                         <div class="education">
-                            <p>During my time at CMU's <a href="https://privacy.cs.cmu.edu/masters/index.html">Privacy
-                                    Engineering Program</a>, I conducted research under the mentorship of leading
-                                privacy experts including Professors - <a href="https://www.hanahabib.com/">Hana
-                                    Habib</a>, <a href="https://lorrie.cranor.org/">Lorrie Cranor</a>, <a
-                                    href="https://www.normsadeh.org/">Norman Sadeh</a>, and <a
-                                    href="https://www.cs.cmu.edu/~smithv/">Virginia Smith</a>. My work focused on
-                                developing practical privacy solutions through research and industry collaborations with
-                                companies like <a href="https://www.meta.com/">Meta</a> and <a
-                                    href="https://www.pwc.com/">PwC</a>, resulting in publications at <a
-                                    href="https://www.usenix.org/conference/pepr25">PEPR</a>, <a
-                                    href="https://www.usenix.org/conference/soups2024">SOUPS</a>, <a
-                                    href="https://set-llm.github.io/">ICLR</a>, <a href="https://satml.org/">SaTML</a>
-                                and earning recognition as an <a
-                                    href="https://iapp.org/resources/article/westin-scholar-awards/">IAPP Westin
-                                    Scholar</a>. </p>
+                            <p>I completed my master's at Carnegie Mellon University in Privacy Engineering, where I
+                                worked on privacy, LLM safety, and evaluation research across academia and industry
+                                collaborations.</p>
                         </div>
 
                         <div class="experience">
-                            <p>Previously at <a href="https://www.bny.com/corporate/global/en.html">BNY AI Hub</a>, I
-                                built an end-to-end LLM evaluation and guardrail stack (Mixtral, Llama, GPT-class) with
-                                real-time PII detection using Presidio and NeMo for enterprise deployment at scale. I
-                                also worked at Samsung and DynamoFL on large-scale data systems and privacy-preserving ML
-                                workflows.</p>
+                            <p>Previously, I worked on AI governance and evaluation at <a
+                                    href="https://www.bny.com/corporate/global/en.html">BNY</a>, and earlier on
+                                large-scale ML and privacy-preserving systems at Samsung and DynamoFL.</p>
                         </div>
 
-                        <div class="research-interests">
-                            <h4>Research Interests</h4>
-                            <p>LLM Evaluation, Guardrails &amp; Safety, Red Teaming, Privacy Engineering, and AI
-                                Governance</p>
-                        </div>
                     </div>
 
                     <p style="font-size: 0.9rem; color: var(--text-secondary);">Here's my <a href="cv.pdf">resume</a> in
@@ -1436,7 +1429,7 @@
                         Liu,
                         Yejin Choi, Mitchell L. Gordon, Sydney Levine
                     </div>
-                    <div class="conference">arXiv preprint arXiv:2510.16380; under submission to ICLR 2026</div>
+                    <div class="conference">ICLR 2026 (Accepted) · arXiv:2510.16380</div>
                     <div class="tldr">TL;DR: Introduces MoReBench, a benchmark of 1,000 moral scenarios and 23k+ rubric
                         criteria to evaluate how language models reason about moral dilemmas, emphasizing pluralistic
                         and
@@ -1856,6 +1849,7 @@
 
         // News timeline data
         const newsItems = [
+            { date: '2026-02', content: 'Our paper <a href="https://arxiv.org/abs/2510.16380" target="_blank">"MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes"</a> was accepted to ICLR 2026! <a href="https://morebench.github.io/" target="_blank">[project page]</a>' },
             { date: '2025-08', content: 'Attended the <a href="https://www.airisksummit.com/" target="_blank">AI Risk Summit 2025</a> at the Ritz-Carlton, Half Moon Bay and conducted a red-teaming workshop titled <a href="https://www.airisksummit.com/event-session/ai-red-teaming-room/" target="_blank">"AI Red Teaming Room"</a>.' },
             { date: '2025-06', content: 'My paper titled <b>"Making Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework"</b> was accepted to the SUPA 2025 workshop at SOUPS!' },
             { date: '2025-05', content: 'Started working at <a href="https://scale.com" target="_blank">Scale AI</a> as a Research Engineer.' },
