@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reading Studio | Yash Maurya</title>
+  <title>Reading Logs | Yash Maurya</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
     rel="stylesheet">
   <style>
@@ -17,6 +18,7 @@
       --card-bg: #ffffff;
       --nav-bg: rgba(238, 242, 247, 0.92);
       --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
+      --theme-color: #8E44AD;
     }
 
     [data-theme="dark"] {
@@ -44,40 +46,76 @@
 
     body[data-theme="dark"] { background: var(--bg-primary); }
 
-    .nav {
-      position: sticky;
+    .nav-container {
+      position: fixed;
       top: 0;
-      z-index: 20;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
       background: var(--nav-bg);
-      border-bottom: 1px solid var(--border-color);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .nav-inner {
-      width: min(1080px, 92vw);
-      margin: 0 auto;
+    nav {
+      width: 55%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.95rem 0;
     }
 
-    .nav a {
+    .nav-brand {
+      font-family: 'Newsreader', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
       color: var(--text-primary);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .control-button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .control-button:hover {
+      transform: translateY(-2px);
     }
 
     .theme-toggle {
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--card-bg);
-      color: var(--text-primary);
-      cursor: pointer;
-      padding: 0.45rem 0.72rem;
+      background: var(--theme-color);
     }
 
-    .container { width: min(1080px, 92vw); margin: 1.2rem auto 2rem; }
+    .theme-toggle .material-icons {
+      font-size: 20px;
+    }
+
+    .container { width: 55%; margin: 5.3rem auto 2rem; }
 
     .hero,
     .panel {
@@ -87,7 +125,11 @@
       box-shadow: var(--card-shadow);
     }
 
-    .hero { padding: 1.2rem; margin-bottom: 1rem; }
+    .hero {
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border-top: 3px solid color-mix(in srgb, var(--accent-color) 70%, transparent 30%);
+    }
 
     .hero h1 {
       font-family: 'Newsreader', serif;
@@ -98,7 +140,11 @@
 
     .hero p { color: var(--text-secondary); }
 
-    .panel { padding: 1rem; margin-bottom: 1rem; }
+    .panel {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-top: 2px solid color-mix(in srgb, var(--accent-color) 40%, transparent 60%);
+    }
 
     .section-title {
       font-family: 'Newsreader', serif;
@@ -183,6 +229,7 @@
       border-radius: 12px;
       padding: 0.85rem;
       background: var(--card-bg);
+      border-left: 3px solid color-mix(in srgb, var(--accent-color) 45%, var(--border-color) 55%);
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -192,18 +239,20 @@
       box-shadow: 0 8px 16px rgba(15, 76, 129, 0.08);
     }
 
+    .reading-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.28rem;
+      flex-wrap: wrap;
+    }
+
     .reading-item h3 {
       font-size: 1.02rem;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0;
       line-height: 1.3;
     }
-
-    .reading-item h3 a {
-      color: var(--text-primary);
-      text-decoration: none;
-    }
-
-    .reading-item h3 a:hover { color: var(--accent-color); }
 
     .reading-meta {
       color: var(--text-secondary);
@@ -262,9 +311,63 @@
       color: var(--text-primary);
     }
 
+    .actions-inline a {
+      background: color-mix(in srgb, var(--accent-color) 10%, var(--card-bg) 90%);
+      border-color: color-mix(in srgb, var(--accent-color) 40%, var(--border-color) 60%);
+    }
+
+    .actions-inline .btn-blog {
+      color: #0f4c81;
+      background: rgba(15, 76, 129, 0.1);
+      border-color: rgba(15, 76, 129, 0.32);
+    }
+
+    .actions-inline .btn-notes {
+      color: #2f5e2a;
+      background: rgba(47, 94, 42, 0.11);
+      border-color: rgba(47, 94, 42, 0.3);
+    }
+
+    .actions-inline .btn-flashcards {
+      color: #7a4a11;
+      background: rgba(122, 74, 17, 0.12);
+      border-color: rgba(122, 74, 17, 0.3);
+    }
+
+    .actions-inline .btn-quiz {
+      color: #6a2f8f;
+      background: rgba(106, 47, 143, 0.12);
+      border-color: rgba(106, 47, 143, 0.3);
+    }
+
+    [data-theme="dark"] .actions-inline .btn-blog {
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(147, 197, 253, 0.38);
+    }
+
+    [data-theme="dark"] .actions-inline .btn-notes {
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.16);
+      border-color: rgba(134, 239, 172, 0.34);
+    }
+
+    [data-theme="dark"] .actions-inline .btn-flashcards {
+      color: #fdba74;
+      background: rgba(251, 146, 60, 0.17);
+      border-color: rgba(253, 186, 116, 0.34);
+    }
+
+    [data-theme="dark"] .actions-inline .btn-quiz {
+      color: #d8b4fe;
+      background: rgba(168, 85, 247, 0.17);
+      border-color: rgba(216, 180, 254, 0.34);
+    }
+
     .actions a:hover {
       border-color: var(--accent-color);
       color: var(--accent-color);
+      background: color-mix(in srgb, var(--accent-color) 15%, var(--card-bg) 85%);
     }
 
     .empty {
@@ -274,24 +377,36 @@
       color: var(--text-secondary);
       font-size: 0.88rem;
     }
+
+    @media (max-width: 1024px) {
+      nav,
+      .container { width: 70%; }
+    }
+
+    @media (max-width: 768px) {
+      nav,
+      .container { width: 90%; }
+    }
   </style>
 </head>
 
 <body>
-  <div class="nav">
-    <div class="nav-inner">
-      <a href="../index.html">Yash Maurya</a>
-      <div style="display:flex; gap:0.8rem; align-items:center;">
+  <div class="nav-container">
+    <nav>
+      <a href="../index.html" class="nav-brand">Yash Maurya</a>
+      <div class="nav-links">
         <a href="../index.html">Home</a>
         <a href="quiz.html">Quiz Hub</a>
-        <button class="theme-toggle" id="theme-toggle" type="button">Toggle Theme</button>
+        <button class="control-button theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <i class="material-icons">brightness_4</i>
+        </button>
       </div>
-    </div>
+    </nav>
   </div>
 
   <main class="container">
     <section class="hero">
-      <h1>Reading Studio</h1>
+      <h1>Reading Logs</h1>
       <p>A research reading log with filterable topics, recap flashcards, and MCQ checks for each article.</p>
     </section>
 
@@ -318,6 +433,10 @@
         document.body.setAttribute('data-theme', 'dark');
       } else {
         document.body.removeAttribute('data-theme');
+      }
+      const icon = document.querySelector('#theme-toggle i');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? 'brightness_7' : 'brightness_4';
       }
     }
 
@@ -383,21 +502,24 @@
 
       listRoot.innerHTML = items.map((item) => `
         <article class="reading-item">
-          <h3><a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)}</a></h3>
+          <div class="reading-head">
+            <h3>${escapeHTML(item.title)}</h3>
+            <div class="actions actions-inline">
+              <a class="btn-blog" href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">Blog Link</a>
+              <a class="btn-notes" href="${escapeHTML(item.notesUrl || `/reading/notes/${item.id}.html`)}">My Notes</a>
+              <a class="btn-flashcards" href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=flashcards">Flashcards</a>
+              <a class="btn-quiz" href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=quiz">MCQ Quiz</a>
+            </div>
+          </div>
           <p class="reading-meta">${escapeHTML(item.venue)} · ${escapeHTML(item.published)}</p>
           <p class="reading-blurb">${escapeHTML(item.blurb)}</p>
           <div class="reading-writeup">
-            <h4>Quick Writeup</h4>
+            <h4>TL;DR</h4>
             <p>${escapeHTML(item.writeup || 'Writeup coming soon.')}</p>
           </div>
           <div class="tag-row">
             ${item.tags.map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
             ${item.topics.map((topic) => `<span class="tag">${escapeHTML(topic)}</span>`).join('')}
-          </div>
-          <div class="actions">
-            <a href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=flashcards">Flashcards</a>
-            <a href="quiz.html?set=${escapeHTML(item.id)}&amp;mode=quiz">MCQ Quiz</a>
-            <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">Open Source</a>
           </div>
         </article>
       `).join('');

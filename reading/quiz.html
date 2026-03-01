@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recap Studio | Yash Maurya</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
     rel="stylesheet">
   <style>
@@ -19,6 +20,7 @@
       --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
       --ok: #1f7a5a;
       --bad: #ad3131;
+      --theme-color: #8E44AD;
     }
 
     [data-theme="dark"] {
@@ -46,40 +48,76 @@
 
     body[data-theme="dark"] { background: var(--bg-primary); }
 
-    .nav {
-      position: sticky;
+    .nav-container {
+      position: fixed;
       top: 0;
-      z-index: 20;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
       background: var(--nav-bg);
-      border-bottom: 1px solid var(--border-color);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .nav-inner {
-      width: min(980px, 92vw);
-      margin: 0 auto;
+    nav {
+      width: 55%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.95rem 0;
     }
 
-    .nav a {
+    .nav-brand {
+      font-family: 'Newsreader', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
       color: var(--text-primary);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .control-button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .control-button:hover {
+      transform: translateY(-2px);
     }
 
     .theme-toggle {
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--card-bg);
-      color: var(--text-primary);
-      cursor: pointer;
-      padding: 0.45rem 0.72rem;
+      background: var(--theme-color);
     }
 
-    .container { width: min(980px, 92vw); margin: 1.2rem auto 2rem; }
+    .theme-toggle .material-icons {
+      font-size: 20px;
+    }
+
+    .container { width: 55%; margin: 5.3rem auto 2rem; }
 
     .hero,
     .section,
@@ -92,7 +130,11 @@
       box-shadow: var(--card-shadow);
     }
 
-    .hero { padding: 1.05rem; margin-bottom: 0.9rem; }
+    .hero {
+      padding: 1.05rem;
+      margin-bottom: 0.9rem;
+      border-top: 3px solid color-mix(in srgb, var(--accent-color) 70%, transparent 30%);
+    }
     .hero h1 { font-family: 'Newsreader', serif; margin-bottom: 0.35rem; }
     .hero p { color: var(--text-secondary); }
 
@@ -242,18 +284,30 @@
       border-color: var(--accent-color);
       color: var(--accent-color);
     }
+
+    @media (max-width: 1024px) {
+      nav,
+      .container { width: 70%; }
+    }
+
+    @media (max-width: 768px) {
+      nav,
+      .container { width: 90%; }
+    }
   </style>
 </head>
 
 <body>
-  <div class="nav">
-    <div class="nav-inner">
-      <a href="../index.html">Yash Maurya</a>
-      <div style="display:flex; gap:0.8rem; align-items:center;">
-        <a href="index.html">Reading Studio</a>
-        <button class="theme-toggle" id="theme-toggle" type="button">Toggle Theme</button>
+  <div class="nav-container">
+    <nav>
+      <a href="../index.html" class="nav-brand">Yash Maurya</a>
+      <div class="nav-links">
+        <a href="index.html">Reading Logs</a>
+        <button class="control-button theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <i class="material-icons">brightness_4</i>
+        </button>
       </div>
-    </div>
+    </nav>
   </div>
 
   <main class="container">
@@ -267,7 +321,7 @@
     </section>
 
     <section class="section hidden" id="hub-section">
-      <p>Choose an article from Reading Studio:</p>
+      <p>Choose an article from Reading Logs:</p>
       <div class="hub-list" id="hub-list"></div>
     </section>
 
@@ -308,6 +362,10 @@
         document.body.setAttribute('data-theme', 'dark');
       } else {
         document.body.removeAttribute('data-theme');
+      }
+      const icon = document.querySelector('#theme-toggle i');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? 'brightness_7' : 'brightness_4';
       }
     }
 

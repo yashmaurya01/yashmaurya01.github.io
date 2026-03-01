@@ -194,21 +194,6 @@
             position: relative;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         .nav-controls {
             display: flex;
             align-items: center;
@@ -627,10 +612,6 @@
         .nav-links a:hover {
             color: var(--accent-color);
             text-decoration: none;
-        }
-
-        .nav-links a::after {
-            display: none;
         }
 
         .bio h1 {

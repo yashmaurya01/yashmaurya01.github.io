@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Notes | Frontier Model Training Methodologies</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,600&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #eef2f7;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --accent-color: #0f4c81;
+      --border-color: #d8dee8;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(238, 242, 247, 0.92);
+      --card-shadow: 0 16px 35px rgba(15, 76, 129, 0.06);
+      --theme-color: #8E44AD;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #000000;
+      --text-primary: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --accent-color: #60a5fa;
+      --border-color: #333333;
+      --card-bg: #111111;
+      --nav-bg: rgba(0, 0, 0, 0.9);
+      --card-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 76, 129, 0.08), transparent 38%),
+        radial-gradient(circle at 100% 100%, rgba(72, 110, 149, 0.06), transparent 34%),
+        var(--bg-primary);
+      min-height: 100vh;
+    }
+
+    body[data-theme="dark"] { background: var(--bg-primary); }
+
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      width: 55%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.92rem 0;
+    }
+
+    .nav-brand {
+      font-family: 'Newsreader', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .control-button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .control-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle {
+      background: var(--theme-color);
+    }
+
+    .theme-toggle .material-icons {
+      font-size: 20px;
+    }
+
+    .container {
+      width: 55%;
+      margin: 5.3rem auto 2rem;
+    }
+
+    .note-doc {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(15, 76, 129, 0.04);
+      padding: 1.4rem 1.3rem;
+    }
+
+    .hero {
+      margin-bottom: 1.15rem;
+      padding: 0 0 0.9rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero h1 {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(1.55rem, 2.9vw, 2.05rem);
+      margin-bottom: 0.28rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p,
+    .section p {
+      color: var(--text-primary);
+      line-height: 1.68;
+    }
+
+    .meta {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      margin-top: 0.2rem;
+    }
+
+    .meta a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    .section h2 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.24rem;
+      margin-bottom: 0.34rem;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+    }
+
+    .section {
+      margin-bottom: 1.35rem;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.1rem;
+    }
+
+    .template-note {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .meta-badges {
+      display: inline-flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-top: 0.45rem;
+    }
+
+    .meta-badge {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--card-bg);
+    }
+
+    .note-content img,
+    .note-figure img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: min(72vh, 900px);
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: color-mix(in srgb, var(--card-bg) 92%, var(--text-secondary) 8%);
+      cursor: zoom-in;
+    }
+
+    .note-figure {
+      margin-top: 0.6rem;
+    }
+
+    .note-figure figcaption {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      z-index: 2000;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: min(1200px, 95vw);
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+      background: #111;
+    }
+
+    @media (max-width: 1024px) {
+      nav,
+      .container { width: 70%; }
+    }
+
+    @media (max-width: 768px) {
+      nav,
+      .container { width: 90%; }
+    }
+
+    @media (max-width: 760px) {
+      .note-doc {
+        padding: 1.05rem 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-container">
+    <nav>
+      <a href="../index.html" class="nav-brand">Yash Maurya</a>
+      <div class="nav-links">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Reading Logs</a>
+        <button class="control-button theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <i class="material-icons">brightness_4</i>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container note-content" id="note-content">
+    <section class="hero">
+      <h1>My Notes: Frontier Model Training Methodologies</h1>
+      <p class="meta">Source: <a href="https://djdumpling.github.io/2026/01/31/frontier_training.html" target="_blank" rel="noopener noreferrer">Blog Link</a> · Status: Draft Template</p>
+      <div class="meta-badges">
+        <span class="meta-badge" id="estimated-read-time">Estimated read: -- min</span>
+      </div>
+    </section>
+
+    <article class="note-doc">
+    <section class="section">
+      <h2>0. Visual Notes</h2>
+      <p>[Add images/figures directly. Large images auto-fit; click any image to expand.]</p>
+      <figure class="note-figure">
+        <img src="https://placehold.co/1400x800/png?text=Add+Key+Figure+or+Chart+Here" alt="Placeholder visual note">
+        <figcaption>[Caption: what this figure supports and why it matters.]</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2>1. Thesis</h2>
+      <p>[Write the central argument in 3-5 sentences.]</p>
+      <p>[What was non-obvious or surprising?]</p>
+    </section>
+
+    <section class="section">
+      <h2>2. Key Technical Claims</h2>
+      <p>[Claim 1 + why it matters.]</p>
+      <p>[Claim 2 + dependency or assumption.]</p>
+      <p>[Claim 3 + practical implication.]</p>
+    </section>
+
+    <section class="section">
+      <h2>3. Evidence and Methodology Quality</h2>
+      <p>[Assess strength of evidence, ablations, and possible confounders.]</p>
+      <p>[What was well-supported?]</p>
+      <p>[What felt under-validated?]</p>
+      <p>[What additional experiment would change your confidence most?]</p>
+    </section>
+
+    <section class="section">
+      <h2>4. Failure Modes / Open Risks</h2>
+      <p>[Failure mode 1.]</p>
+      <p>[Failure mode 2.]</p>
+      <p>[Failure mode 3.]</p>
+    </section>
+
+    <section class="section">
+      <h2>5. Transfer to Your Work</h2>
+      <p>[How this changes your current evaluation or safety pipeline.]</p>
+      <p>[One concrete action item for next week.]</p>
+    </section>
+
+    <section class="section">
+      <h2>6. Questions to Revisit</h2>
+      <p>[Question 1.]</p>
+      <p>[Question 2.]</p>
+      <p>[Question 3.]</p>
+      <p class="template-note">Template note: keep one notes page per article at
+        <code>/reading/notes/&lt;article-id&gt;.html</code> and link it from
+        <code>/reading/data.js</code>.</p>
+    </section>
+    </article>
+  </main>
+
+  <div class="lightbox" id="image-lightbox" aria-hidden="true">
+    <img id="lightbox-image" alt="Expanded visual note">
+  </div>
+
+  <script>
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      } else {
+        document.body.removeAttribute('data-theme');
+      }
+      const icon = document.querySelector('#theme-toggle i');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? 'brightness_7' : 'brightness_4';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    function estimateReadMinutes() {
+      const root = document.getElementById('note-content');
+      const words = (root.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+      // Medium uses ~265 wpm; using that as a baseline keeps estimates practical for technical notes.
+      const minutes = Math.max(1, Math.ceil(words / 265));
+      document.getElementById('estimated-read-time').textContent = `Estimated read: ${minutes} min`;
+    }
+
+    function enableImageLightbox() {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const images = document.querySelectorAll('.note-content img');
+
+      images.forEach((img) => {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.addEventListener('click', () => {
+          lightboxImage.src = img.currentSrc || img.src;
+          lightboxImage.alt = img.alt || 'Expanded visual note';
+          lightbox.style.display = 'flex';
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      lightbox.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    estimateReadMinutes();
+    enableImageLightbox();
+  </script>
+</body>
+
+</html>

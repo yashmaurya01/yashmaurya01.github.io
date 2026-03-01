@@ -23,6 +23,7 @@ window.READING_DATA = {
         'Reward Hacking in Hybrid Reasoning',
         'Training Ops Failure Modes'
       ],
+      notesUrl: '/reading/notes/frontier-training-methodologies.html',
       blurb: 'A systems-first synthesis of frontier model development where data schedule, stability controls, and training operations dominate isolated algorithmic gains.',
       writeup: 'This post argues that the hardest frontier-model gains come from disciplined systems engineering rather than isolated novelty. It highlights that data-mixture quality and stage-wise scheduling often matter more than one-off architecture swaps, while long-context success depends on infrastructural choices such as masking and positional strategy. In post-training, it surfaces subtle optimization pathologies like in-flight off-policy drift and reward hacking in hybrid reasoning modes. The most practical takeaway is operational: many critical failures originate in storage/dataloader behavior, so rigorous ablation design and pipeline observability are first-class research tools.'
     }
