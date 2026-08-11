@@ -1251,6 +1251,247 @@
         .research-interests p {
             margin-bottom: 0;
         }
+
+        /* Academic presentation: prioritize text, hierarchy, and scanability over visual effects. */
+        body,
+        body[data-theme="dark"] {
+            background: var(--bg-primary);
+        }
+
+        .nav-container {
+            background: var(--nav-bg);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            min-height: 0;
+            padding: 1rem 0;
+        }
+
+        .container {
+            padding-top: 6rem;
+            padding-bottom: 2rem;
+        }
+
+        section,
+        section.header-section {
+            padding: 2rem 0;
+        }
+
+        section.header-section {
+            padding-bottom: 1rem;
+        }
+
+        .bio h1 {
+            font-size: 2.75rem;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio .title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-inline {
+            margin: 0 0 0.75rem 1.25rem;
+            width: 210px;
+        }
+
+        .profile-inline .profile-photo {
+            border-radius: 12px;
+            box-shadow: none;
+            height: 170px;
+            width: 170px;
+        }
+
+        .about-section,
+        .bio-intro {
+            font-size: inherit;
+            line-height: 1.58;
+        }
+
+        .scramble-text {
+            background: var(--card-bg);
+            border: 0;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 12px 12px 0;
+            box-shadow: none;
+            font-family: monospace;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
+        #news,
+        #research {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            margin-top: 0;
+            padding: 2rem 0;
+        }
+
+        #news h2,
+        #research h2 {
+            font-size: 2rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-container {
+            height: 350px;
+            padding-right: 1rem;
+        }
+
+        .timeline-item,
+        .paper {
+            background: var(--card-bg);
+            border: 0;
+            border-left: 3px solid var(--border-color);
+            border-radius: 0;
+            box-shadow: var(--card-shadow);
+            transform: none;
+        }
+
+        .timeline-item:hover,
+        .paper:hover {
+            border-color: var(--accent-color);
+            box-shadow: var(--card-shadow);
+            transform: none;
+        }
+
+        .timeline-item {
+            padding: 0;
+        }
+
+        .timeline-item::before {
+            box-shadow: none;
+        }
+
+        /* News reads as an editorial chronology, not a dashboard widget. */
+        .timeline-container {
+            height: 350px;
+            overflow-y: auto;
+            padding-right: 0.75rem;
+            scrollbar-color: var(--accent-color) transparent;
+            scrollbar-width: thin;
+        }
+
+        .timeline {
+            border-left: 0;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .timeline-item {
+            background: transparent;
+            border-bottom: 1px solid var(--border-color);
+            border-left: 0;
+            box-shadow: none;
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: 5.75rem minmax(0, 1fr);
+            margin: 0;
+            padding: 0.9rem 0;
+        }
+
+        .timeline-item:first-child {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .timeline-item:hover {
+            background: transparent;
+            border-color: var(--border-color);
+            box-shadow: none;
+            transform: none;
+        }
+
+        .timeline-item::before {
+            display: none;
+        }
+
+        .timeline-item h3 {
+            color: var(--accent-color);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin: 0;
+        }
+
+        .timeline-item p {
+            font-size: 0.94rem;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .timeline-item p a {
+            font-weight: 500;
+        }
+
+        .research-year h3 {
+            color: var(--accent-color);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: normal;
+            margin: 0 0 0.5rem;
+        }
+
+        .paper {
+            margin: 0 0.5rem 0.5rem 0;
+            padding: 0.6rem 0 0.6rem 0.75rem;
+        }
+
+        .paper a,
+        .title-link {
+            color: var(--accent-color);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: normal;
+        }
+
+        .paper .conference {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .paper .tldr {
+            background: var(--section-bg-3);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            line-height: 1.2;
+            margin: 0.2rem 0.5rem 0.1rem 0;
+            padding: 0.2rem 0.5rem;
+        }
+
+        .resource-link {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 400;
+            padding: 0;
+        }
+
+        .header-section,
+        #news,
+        #research {
+            animation: none;
+        }
+
+        @media (max-width: 768px) {
+            .bio h1 { font-size: 2rem; }
+            .profile-inline { margin: 0 0 1rem; width: 100%; }
+            .profile-inline .profile-photo { height: 140px; width: 140px; }
+            .timeline-item { gap: 0.25rem; grid-template-columns: 1fr; }
+        }
     </style>
     <meta name="google-site-verification" content="IDiKsjVcf-LgII8Lj50mgeAsS0Wb4bw38THd3R2nJZc" />
 </head>
@@ -1331,7 +1572,8 @@
                         <div class="experience">
                             <p>Previously, I worked on AI governance and evaluation at <a
                                     href="https://www.bny.com/corporate/global/en.html">BNY</a>, and earlier on
-                                large-scale ML and privacy-preserving systems at Samsung and DynamoFL.</p>
+                                large-scale ML and privacy-preserving systems at Samsung and <a
+                                    href="https://www.dynamo.ai/" target="_blank" rel="noopener noreferrer">Dynamo AI</a>.</p>
                         </div>
 
                     </div>
@@ -1366,57 +1608,66 @@
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">* indicates equal
                 contribution</p>
             <div class="research-year">
-                <h3>2026 (Submissions)</h3>
+                <h3>2026</h3>
+                <div class="paper" id="harnessopt-bench">
+                    <a href="https://arxiv.org/abs/2608.06301">HarnessOpt-Bench: Evaluating LLMs at Harness
+                        Optimization</a>
+                    <div class="authors">Varun Ursekar, Apaar Shanker, <b>Yash Maurya</b>, Shehab Yasser, Vijay S.
+                        Kalmath, Veronica Chatrath, Yuan Xue</div>
+                    <div class="conference">arXiv preprint arXiv:2608.06301 · 2026</div>
+                    <div class="tldr">TL;DR: Benchmarks whether frontier LLMs can improve an agent's prompts, tools,
+                        memory, and orchestration under a fixed evaluation budget. Results show that optimizer models
+                        matter more than the coding harness they use, with gains varying widely by task and seed.</div>
+                </div>
+                <div class="paper" id="morebench">
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2510.16380">MoReBench: Evaluating Procedural and Pluralistic
+                            Moral Reasoning in Language Models, More than Outcomes</a>
+                        <div class="link-icons">
+                            <a href="https://morebench.github.io/" class="resource-link" target="_blank"
+                                rel="noopener noreferrer">project</a>
+                        </div>
+                    </div>
+                    <div class="authors">Yu Ying Chiu*, Michael S. Lee*, Rachel Calcott, Brandon Handoko, Paul de
+                        Font-Reaulx, Raphaël Millière, Paula Rodriguez, Chen Bo Calvin Zhang, Ziwen Han, Udari
+                        Madhushani Sehwag, <b>Yash Maurya</b>, Christina Q. Knight, Harry R. Lloyd, Florence Bacus,
+                        Conor Downey, Mantas Mazeika, Bing Liu, Yejin Choi, Mitchell L. Gordon, Sydney Levine</div>
+                    <div class="conference">International Conference on Learning Representations (ICLR 2026)</div>
+                    <div class="tldr">TL;DR: Evaluates model reasoning on morally ambiguous scenarios, where multiple
+                        conclusions can be defensible. Expert rubrics test whether models identify trade-offs, justify
+                        recommendations, and reason across normative ethics frameworks.</div>
+                </div>
                 <div class="paper" id="lhaw">
                     <a href="https://arxiv.org/abs/2602.10525">LHAW: Controllable Underspecification for Long-Horizon
                         Tasks</a>
                     <div class="authors">George Pu, Michael S. Lee, Udari Madhushani Sehwag, David J. Lee, Bryan Zhu,
                         <b>Yash Maurya</b>, Mohit Raghavendra, Yuan Xue, Samuel Marc Denton</div>
-                    <div class="conference">Under submission</div>
-                    <div class="tldr">TL;DR: Investigates controllable underspecification strategies for improving
-                        long-horizon task behavior in language-model-based systems.</div>
+                    <div class="conference">Preprint · 2026</div>
+                    <div class="tldr">TL;DR: Builds controllably underspecified versions of long-horizon agent tasks
+                        and validates their ambiguity through actual agent execution. The 285-task release measures
+                        whether agents seek clarification when missing information is genuinely outcome-critical.</div>
                 </div>
                 <div class="paper" id="rok-fortress">
-                    <a href="https://arxiv.org/abs/2605.14152">ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for
-                        National Security and Public Safety</a>
-                    <div class="authors">Michael S. Lee*, <b>Yash Maurya*</b>, Drew Rein, Bert Herring, Jonathan Nguyen, Kyungho Song, Udari Madhushani Sehwag, Jiyeon Cho, Kaustubh Deshpande, Yeongkyun Jang, Jiyeon Joo, Minn Seok Choi, Evi Fuelle, Christina Q Knight, Joseph Brandifino, Max Fenkell
-</div>
-                    <div class="conference">Under submission</div>
-                    <div class="tldr">TL;DR: Evaluates how geopolitical transcreation impacts public-safety and
-                        national-security performance in multilingual model deployments.</div>
-                </div>
-                <div class="paper" id="dualchem">
-                    <div class="title-link">DualChem: Can LLMs Provide Dangerous Uplift in Dual Use Chemistry?</div>
-                    <div class="authors"><b>Yash Maurya</b>, collaborators</div>
-                    <div class="conference">Under submission</div>
-                    <div class="tldr">TL;DR: Studies potential harmful capability uplift in chemistry-related queries
-                        and proposes safer model-evaluation criteria.</div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2605.14152">ROK-FORTRESS: Measuring the Effect of
+                            Geopolitical Transcreation for National Security and Public Safety</a>
+                        <div class="link-icons">
+                            <a href="https://huggingface.co/datasets/ScaleAI/ROK-FORTRESS_public" class="resource-link"
+                                target="_blank" rel="noopener noreferrer">dataset</a>
+                        </div>
+                    </div>
+                    <div class="authors">Michael S. Lee*, <b>Yash Maurya*</b>, Drew Rein, Bert Herring, Jonathan
+                        Nguyen, Kyungho Song, Udari Madhushani Sehwag, Jiyeon Cho, Kaustubh Deshpande, Yeongkyun
+                        Jang, Jiyeon Joo, Minn Seok Choi, Evi Fuelle, Christina Q. Knight, Joseph Brandifino, Max
+                        Fenkell</div>
+                    <div class="conference">TAIGR Workshop at ICML 2026 · Best Paper Award</div>
+                    <div class="tldr">TL;DR: A bilingual safety benchmark that separates language effects from
+                        geopolitical grounding through an English-Korean transcreation matrix. It exposes safety and
+                        over-refusal behaviors that translation-only evaluations miss.</div>
                 </div>
             </div>
             <div class="research-year">
                 <h3>2025</h3>
-                <div class="paper" id="morebench">
-                    <div class="paper-links">
-                        <a href="https://arxiv.org/abs/2510.16380">MoReBench: Evaluating Procedural and Pluralistic
-                            Moral
-                            Reasoning in Language Models, More than Outcomes</a>
-                        <div class="link-icons">
-                            <a href="https://morebench.github.io/" class="resource-link" target="_blank"
-                                rel="noopener noreferrer">[website]</a>
-                        </div>
-                    </div>
-                    <div class="authors">Yu Ying Chiu*, Michael S. Lee*, Rachel Calcott, Brandon Handoko, Paul de
-                        Font-Reaulx, Paula Rodriguez, Chen Bo Calvin Zhang, Ziwen Han†, Udari Madhushani Sehwag,
-                        <b>Yash Maurya</b>, Christina Q. Knight, Harry R. Lloyd, Florence Bacus, Mantas Mazeika, Bing
-                        Liu,
-                        Yejin Choi, Mitchell L. Gordon, Sydney Levine
-                    </div>
-                    <div class="conference">ICLR 2026 (Accepted) · arXiv:2510.16380</div>
-                    <div class="tldr">TL;DR: Introduces MoReBench, a benchmark of 1,000 moral scenarios and 23k+ rubric
-                        criteria to evaluate how language models reason about moral dilemmas, emphasizing pluralistic
-                        and
-                        process-focused moral reasoning over just final outcomes.</div>
-                </div>
                 <div class="paper" id="accessible-privacy-framework">
                     <div class="paper-links">
                         <a href="https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations">Making
@@ -1439,8 +1690,9 @@
                     <div class="authors"><b>Yash Maurya*</b>, Aman Priyanshu*</div>
                     <div class="conference">2025 USENIX Conference on Privacy Engineering Practice and Respect (PEPR'25)
                     </div>
-                    <div class="tldr">TL;DR: Case study evaluating how privacy guarantees behave when using pre-trained
-                        LLMs to generate synthetic data, highlighting practical leakage risks.</div>
+                    <div class="tldr">TL;DR: Shows how document formatting and contextual patterns can create privacy
+                        leakage in differentially private synthetic data pipelines built on opaque pre-trained LLMs,
+                        even at conservative privacy budgets.</div>
                 </div>
             </div>
             <div class="research-year">
@@ -1463,8 +1715,9 @@
                         Virginia Smith</div>
                     <div class="conference">IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), 2025
                     </div>
-                    <div class="tldr">TL;DR: Discussion about the current state and limitations of LLM unlearning
-                        benchmarks with a focus on forget/retain set methods</div>
+                    <div class="tldr">TL;DR: Shows that modest, benign changes to common unlearning benchmarks can
+                        expose recoverable target information or substantially worse retention loss, making reported
+                        progress look more reliable than it is.</div>
                 </div>
 
                 <div class="paper" id="benefit-assessment">
@@ -1502,9 +1755,9 @@
                         Smith
                     </div>
                     <div class="conference">ICLR 2024 Workshop on Secure and Trustworthy Large Language Models</div>
-                    <div class="tldr">TL;DR: Simple guardrails (prompting and filtering) match finetuning's
-                        effectiveness
-                        for unlearning in LLMs, challenging current evaluation metrics.</div>
+                    <div class="tldr">TL;DR: Simple prompting and filtering baselines can match fine-tuning on common
+                        unlearning evaluations, motivating stronger metrics that distinguish inference-time safeguards
+                        from genuine parameter-level forgetting.</div>
                 </div>
 
                 <div class="paper" id="usersfirst-taxonomy">
@@ -1831,6 +2084,7 @@
 
         // News timeline data
         const newsItems = [
+            { date: '2026-07', content: 'Our paper <a href="https://arxiv.org/abs/2605.14152" target="_blank" rel="noopener noreferrer">"ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for National Security and Public Safety"</a> received the <b>Best Paper Award</b> at the <a href="https://www.taigr-workshop.com/" target="_blank" rel="noopener noreferrer">TAIGR Workshop</a> at ICML 2026.' },
             { date: '2026-02', content: 'Our paper <a href="https://arxiv.org/abs/2510.16380" target="_blank">"MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes"</a> was accepted to ICLR 2026! <a href="https://morebench.github.io/" target="_blank">[project page]</a>' },
             { date: '2025-08', content: 'Attended the <a href="https://www.airisksummit.com/" target="_blank">AI Risk Summit 2025</a> at the Ritz-Carlton, Half Moon Bay and conducted a red-teaming workshop titled <a href="https://www.airisksummit.com/event-session/ai-red-teaming-room/" target="_blank">"AI Red Teaming Room"</a>.' },
             { date: '2025-06', content: 'My paper titled <b>"Making Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework"</b> was accepted to the SUPA 2025 workshop at SOUPS!' },
