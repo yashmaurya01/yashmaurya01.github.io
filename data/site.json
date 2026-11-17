@@ -1,0 +1,602 @@
+{
+  "papers": [
+    {
+      "id": "sg-legalclarify",
+      "year": "2026",
+      "title": "SG-LegalClarify: A Large-Scale Benchmark for Legal Reasoning and Ambiguity Recognition in Singapore Law",
+      "url": "https://arxiv.org/abs/2611.19643",
+      "authors": "Ziwei Gu, Michael S. Lee, Drew Rein, Yash Maurya, Vikneswaran Kumaran, Darshini Ramiah, Chenguang Wang, Udari Madhushani Sehwag",
+      "venue": "arXiv preprint arXiv:2611.19643 · 2026",
+      "summary": "Tests legal reasoning and whether models recognize when to ask for missing facts. Across 1,100 lawyer-authored questions in 10 domains of Singapore law, evaluations of 19 LLMs reveal persistent gaps in reasoning and selective clarification, even with web search.",
+      "resources": [
+        {
+          "label": "project",
+          "url": "https://labs.scale.com/papers/sglegalclarify"
+        },
+        {
+          "label": "code",
+          "url": "https://github.com/scaleapi/SG-LegalClarify"
+        },
+        {
+          "label": "dataset",
+          "url": "https://huggingface.co/datasets/ScaleAI/SG-LegalClarify"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/sg-legalclarify-pipeline.webp",
+        "alt": "SG-LegalClarify evaluation pipeline: assess whether facts are sufficient, answer or clarify, then grade with IRAC rubrics",
+        "source": "https://arxiv.org/pdf/2611.19643#page=5",
+        "caption": "Figure 3: Sufficiency-gated evaluation with decisive and facts-gathering paths."
+      },
+      "topics": [
+        "agents-reasoning"
+      ]
+    },
+    {
+      "id": "harnessopt-bench",
+      "year": "2026",
+      "title": "HarnessOpt-Bench: Evaluating LLMs at Harness Optimization",
+      "url": "https://arxiv.org/abs/2608.06301",
+      "authors": "Varun Ursekar, Apaar Shanker, Yash Maurya, Shehab Yasser, Vijay S. Kalmath, Veronica Chatrath, Yuan Xue",
+      "venue": "Findings of EACL 2027 · Accepted",
+      "summary": "Benchmarks whether frontier LLMs can improve an agent's prompts, tools, memory, and orchestration under a fixed evaluation budget. Results show that optimizer models matter more than the coding harness they use, with gains varying widely by task and seed.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/harnessopt-bench.webp",
+        "alt": "Trusted execution architecture for held-out harness optimization",
+        "source": "https://arxiv.org/html/2608.06301v1",
+        "caption": "Figure 1:Trusted execution for held-out harness optimization. The optimizer can write only the target agent’s harness. It can read the evaluation results and the target task data but not modify them. The optimizer receives per-case development traces and aggregate validation metrics, while test cases and scores remain inaccessible behind the trusted evaluation server. Each candidate is evaluated in isolated, unprivileged sandboxes, and every model call, both the optimizer’s own and the evaluations’, passes through a gateway that enforces model allow-lists and per-scope budgets. The test partition is evaluated only after the optimizer nominates a final candidate. Because held-out data, provider credentials, and budget enforcement are absent from the optimizer’s sandbox, these restrictions are properties of the execution environment rather than instructions the optimizer is expected to follow."
+      },
+      "topics": [
+        "agents-reasoning"
+      ]
+    },
+    {
+      "id": "insights-generator",
+      "year": "2026",
+      "title": "Insights Generator: Systematic Corpus-Level Trace Diagnostics for LLM Agents",
+      "url": "https://arxiv.org/abs/2605.21347",
+      "authors": "Akshay Manglik, Apaar Shanker, Kaustubh Deshpande, Jason Qin, Yash Maurya, Veronica Chatrath, Vijay S. Kalmath, Levi Lentz, Yuan Xue",
+      "venue": "arXiv preprint arXiv:2605.21347 · 2026",
+      "summary": "A multi-agent system that turns large corpora of LLM-agent traces into evidence-backed diagnostic insights. Experts using its reports improved scaffold performance by 30.4 percentage points over the unmodified baseline.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/insights-generator.webp",
+        "alt": "Insights Generator architecture with input data, orchestrator, scout agents, investigator agents, and an insights report",
+        "source": "https://arxiv.org/html/2605.21347v1",
+        "caption": "Figure 1:Insights Generator (IG) system overview. Left: the input layer provides a diagnostic question, QQ, trace corpus, 𝒞\\mathcal{C}, and processed data store, 𝒮\\mathcal{S}. Center: the Orchestrator dispatches Scout agents (ℋ\\mathcal{H}: hypothesize over sampled traces) and Investigator agents (ℋ∗\\mathcal{H}^{*}: validate via corpus-scale cohort comparison). The Investigator analyzes ℋ∗\\mathcal{H}^{*} to generate findings, ℱr\\mathcal{F}_{r}, which are sent to the orchestrator. The orchestrator then synthesizes and de-duplicates ℱr\\mathcal{F}_{r} to generate the final report. Right: the output is an evidence-backed report with findings, fixes, citations, and prevalence estimates. Bottom: the shared tool layer. Algorithm 1 formalizes the analysis loop."
+      },
+      "topics": [
+        "agents-reasoning"
+      ]
+    },
+    {
+      "id": "morebench",
+      "year": "2026",
+      "title": "MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes",
+      "url": "https://arxiv.org/abs/2510.16380",
+      "authors": "Yu Ying Chiu*, Michael S. Lee*, Rachel Calcott, Brandon Handoko, Paul de Font-Reaulx, Raphaël Millière, Paula Rodriguez, Chen Bo Calvin Zhang, Ziwen Han, Udari Madhushani Sehwag, Yash Maurya, Christina Q. Knight, Harry R. Lloyd, Florence Bacus, Conor Downey, Mantas Mazeika, Bing Liu, Yejin Choi, Mitchell L. Gordon, Sydney Levine",
+      "venue": "International Conference on Learning Representations (ICLR 2026)",
+      "summary": "Evaluates model reasoning on morally ambiguous scenarios, where multiple conclusions can be defensible. Expert rubrics test whether models identify trade-offs, justify recommendations, and reason across normative ethics frameworks.",
+      "resources": [
+        {
+          "label": "project",
+          "url": "https://morebench.github.io/"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/morebench.webp",
+        "alt": "MoReBench moral dilemma, candidate reasoning, and contextualized rubric criteria",
+        "source": "https://arxiv.org/html/2510.16380v1",
+        "caption": "Figure 1:MoReBench contains moral dilemma scenarios, each accompanied by a set of moral-philosophers-written criteria that can be individually fulfilled (or not) by a model’s reasoning process. Weighted sum of satisfied criteria give scenario score. Detailed examples in Section B.1."
+      },
+      "topics": [
+        "agents-reasoning",
+        "safety-governance"
+      ]
+    },
+    {
+      "id": "lhaw",
+      "year": "2026",
+      "title": "LHAW: Controllable Underspecification for Long-Horizon Tasks",
+      "url": "https://arxiv.org/abs/2602.10525",
+      "authors": "George Pu, Michael S. Lee, Udari Madhushani Sehwag, David J. Lee, Bryan Zhu, Yash Maurya, Mohit Raghavendra, Yuan Xue, Samuel Marc Denton",
+      "venue": "Lifelong Agents: Learning, Aligning, Evolving Workshop at ICLR 2026",
+      "summary": "Builds controllably underspecified versions of long-horizon agent tasks and validates their ambiguity through actual agent execution. The 285-task release measures whether agents seek clarification when missing information is genuinely outcome-critical.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/lhaw.webp",
+        "alt": "LHAW pipeline: segment extraction, candidate generation and filtering, and agent execution",
+        "source": "https://arxiv.org/html/2602.10525v1",
+        "caption": "Figure 1:The LHAW Synthetic Underspecification Pipeline.Three phases: (1) Segment Extraction & Scoring: identify removable segments, classify by dimension, estimate criticality/guessability; (2) Variant Generation: apply different removal strategies to create underspecified prompts with expected questions; (3) Empirical Validation: run agent trials to classify variants as outcome-critical, divergent, or benign."
+      },
+      "topics": [
+        "agents-reasoning"
+      ]
+    },
+    {
+      "id": "rok-fortress",
+      "year": "2026",
+      "title": "ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for National Security and Public Safety",
+      "url": "https://arxiv.org/abs/2605.14152",
+      "authors": "Yash Maurya*, Michael S. Lee*, Drew Rein, Bert Herring, Jonathan Nguyen, Kyungho Song, Udari Madhushani Sehwag, Jiyeon Cho, Kaustubh Deshpande, Yeongkyun Jang, Jiyeon Joo, Minn Seok Choi, Evi Fuelle, Christina Q. Knight, Joseph Brandifino, Max Fenkell",
+      "venue": "NeurIPS 2026 · Accepted · TAIGR Workshop at ICML 2026 · Best Paper Award",
+      "summary": "A bilingual safety benchmark that separates language effects from geopolitical grounding through an English-Korean transcreation matrix. It exposes safety and over-refusal behaviors that translation-only evaluations miss.",
+      "resources": [
+        {
+          "label": "dataset",
+          "url": "https://huggingface.co/datasets/ScaleAI/ROK-FORTRESS_public"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/rok-fortress.webp",
+        "alt": "ROK-FORTRESS translation and transcreation pipeline for Korean-language safety evaluations",
+        "source": "https://arxiv.org/html/2605.14152v1",
+        "caption": "Figure 1:ROK-FORTRESS integrated existing FORTRESS and newly created prompts and rubrics into a translation/transcreation pipeline to generate a Korean-language dataset of Korean culture-specific and culture-agnostic prompts and response evaluation rubrics."
+      },
+      "topics": [
+        "safety-governance"
+      ]
+    },
+    {
+      "id": "accessible-privacy-framework",
+      "year": "2025",
+      "title": "Making Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework",
+      "url": "https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations",
+      "authors": "Yash Maurya, Ibrahim Mohamed Anis Chhaya, Hana Habib",
+      "venue": "IEEE Symposium on Privacy Expectations (ISoPE) 2025 & SUPA 2025 Workshop on Societal & User-Centered Privacy in AI",
+      "summary": "Practitioner-oriented framework that organizes concrete ML privacy mitigations, tools, and design patterns across the ML lifecycle to help teams operationalize privacy-preserving AI in real-world deployments.",
+      "resources": [
+        {
+          "label": "program",
+          "url": "https://ieee-isope.org/program/#:~:text=Making%20Privacy%2DPreserving%20AI%20Accessible%3A%20A%20Practitioner%2DOriented%20Framework"
+        },
+        {
+          "label": "paper",
+          "url": "https://instituteofprivacydesign.org/wp-content/uploads/2026/04/IEEE-ISOPE-PPAI-Framework-ready.pdf"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/privacy-framework-overview.svg",
+        "alt": "Illustrated overview of five ML pipeline phases connected to privacy threats, tools, and trade-offs",
+        "source": "https://instituteofprivacydesign.org/wp-content/uploads/2026/04/IEEE-ISOPE-PPAI-Framework-ready.pdf",
+        "caption": "Illustrated overview based on the framework’s five operational phases and threat-to-mitigation approach.",
+        "illustration": true
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "synthetic-llm-pepr25",
+      "year": "2025",
+      "title": "When Privacy Guarantees Meet Pre-trained LLMs: A Case Study in Synthetic Data",
+      "url": "https://www.usenix.org/conference/pepr25/presentation/maurya",
+      "authors": "Yash Maurya*, Aman Priyanshu*",
+      "venue": "2025 USENIX Conference on Privacy Engineering Practice and Respect (PEPR'25)",
+      "summary": "Shows how document formatting and contextual patterns can create privacy leakage in differentially private synthetic data pipelines built on opaque pre-trained LLMs, even at conservative privacy budgets.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/synthetic-llm-audit.webp",
+        "alt": "Privacy audit checklist from the talk covering PII identification, clustering, distribution analysis, auxiliary information, membership inference, and canary insertion",
+        "source": "https://www.usenix.org/system/files/pepr25_slides-maurya.pdf#page=20",
+        "caption": "Slide 20: The synthetic data privacy audit checklist."
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "meta-capstone",
+      "year": "2024",
+      "title": "Beyond the Accept Button: How Information and Control Shape Data Sharing and AI Engagement",
+      "url": "pdfs/MetaFinalDraft.pdf",
+      "authors": "Yash Maurya*, Ibrahim Chhaya*, Zuofei Hong*, Limin Ge*",
+      "venue": "Sponsored by Meta - MSIT-PE Capstone Report 2024 (Advisor: Professor Lorrie Cranor)",
+      "summary": "Studied how consent flow design impacts AI engagement and data sharing, examining length and control options in social media data sharing.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/meta-capstone.webp",
+        "alt": "AI training consent interfaces comparing notice only, a general opt-in or opt-out, and granular data-sharing controls",
+        "source": "pdfs/MetaFinalDraft.pdf",
+        "caption": "Consent interface variants from the capstone report"
+      },
+      "topics": [
+        "usable-privacy"
+      ]
+    },
+    {
+      "id": "llm-unlearning",
+      "year": "2024",
+      "title": "Position: LLM Unlearning Benchmarks are Weak Measures of Progress",
+      "url": "https://arxiv.org/abs/2410.02879",
+      "authors": "Pratiksha Thaker, Shengyuan Hu, Neil Kale, Yash Maurya, Zhiwei Steven Wu, Virginia Smith",
+      "venue": "IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), 2025",
+      "summary": "Shows that modest, benign changes to common unlearning benchmarks can expose recoverable target information or substantially worse retention loss, making reported progress look more reliable than it is.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/llm-unlearning-overview.webp",
+        "alt": "Anatomy of an LLM unlearning benchmark, showing model data, unlearning, forget and retain queries, and evaluation",
+        "source": "https://arxiv.org/html/2410.02879v1#S2.F2",
+        "caption": "Figure 2: Anatomy of an LLM unlearning benchmark."
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "benefit-assessment",
+      "year": "2024",
+      "title": "Designing a Benefit Assessment Protocol for AI Systems",
+      "url": "pdfs/BenefitAssessmentProtocol.pdf",
+      "authors": "Yash Maurya*, Rachel Kim*, Goutam Mukku*",
+      "venue": "Course Project for Responsible AI Course(10-735) at CMU (Advisor: Professor Hoda Heidari)",
+      "summary": "A structured protocol for systematically assessing AI benefits to enable more comprehensive AI evaluation.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/benefit-assessment.webp",
+        "alt": "Steps in the benefit assessment protocol",
+        "source": "pdfs/BenefitAssessmentProtocol.pdf",
+        "caption": "Steps in the benefit assessment protocol"
+      },
+      "topics": [
+        "safety-governance"
+      ]
+    },
+    {
+      "id": "location-dp",
+      "year": "2024",
+      "title": "Unified Locational Differential Privacy Framework",
+      "url": "https://arxiv.org/abs/2405.03903",
+      "authors": "Yash Maurya*, Aman Priyanshu*, Suriya Ganesh*, Vy Tran*",
+      "venue": "arXiv preprint arXiv:2405.03903 (Advisor: Professor Hana Habib)",
+      "summary": "A privacy framework for aggregating sensitive location-based data while protecting individual privacy through differential privacy mechanisms.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/location-dp-map.webp",
+        "alt": "The paper’s simulator output showing differentially private aggregation of location categories around Carnegie Mellon University",
+        "source": "https://arxiv.org/html/2405.03903v1#S4.F5",
+        "caption": "Figure 5: Map output from the locational differential privacy simulator."
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "claude-governance",
+      "year": "2024",
+      "title": "AI Governance and Accountability: An Analysis of Anthropic's Claude",
+      "url": "https://arxiv.org/abs/2407.01557",
+      "authors": "Yash Maurya*, Aman Priyanshu*, Zuofei Hong*",
+      "venue": "arXiv preprint arXiv:2407.01557 (Advisor: Professor Norman Sadeh)",
+      "summary": "Case study on Anthropic's Claude using AI governance and accountability frameworks, examining compliance with NIST and EU AI Act standards.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/claude-governance-transparency.webp",
+        "alt": "Stanford Foundation Model Transparency Index comparison reproduced and discussed in the Claude governance paper",
+        "source": "https://arxiv.org/html/2407.01557v1#S5.F6",
+        "caption": "Figure 6: Stanford Foundation Model Transparency Index dimensions, reproduced in the paper’s threat analysis."
+      },
+      "topics": [
+        "safety-governance"
+      ]
+    },
+    {
+      "id": "guardrail-llm",
+      "year": "2024",
+      "title": "Guardrail baselines for unlearning in LLMs",
+      "url": "https://arxiv.org/abs/2403.03329",
+      "authors": "Pratiksha Thaker, Yash Maurya, Shengyuan Hu, Zhiwei Steven Wu, Virginia Smith",
+      "venue": "ICLR 2024 Workshop on Secure and Trustworthy Large Language Models",
+      "summary": "Simple prompting and filtering baselines can match fine-tuning on common unlearning evaluations, motivating stronger metrics that distinguish inference-time safeguards from genuine parameter-level forgetting.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/guardrail-llm.svg",
+        "alt": "Comparison of unlearning and guardrail baseline evaluation results",
+        "source": "https://arxiv.org/html/2403.03329v1",
+        "caption": "Figure 1: Model scores as evaluated using the familiarity score in section 6.2 of Eldan and Russinovich (2023). Lower scores indicate less familiarity (i.e., better unlearning). Models labeled “FT-nn” are models unlearned using fine-tuning with nn steps (without a modified prompt prefix), as reported in the paper Eldan and Russinovich (2023). All other models are off-the-shelf models using our prompting strategy for unlearning."
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "usersfirst-taxonomy",
+      "year": "2024",
+      "title": "Design and Evaluation of the UsersFirst Privacy Notice and Choice Threat Analysis Taxonomy",
+      "url": "https://www.usenix.org/system/files/soups2024_poster22_abstract-li_final.pdf",
+      "authors": "Xinran Alexandra Li*, Yu-Ju Yang*, Yash Maurya*, Tian Wang*, Hana Habib, Norman Sadeh, Lorrie Faith Cranor",
+      "venue": "Twentieth Symposium on Usable Privacy and Security (SOUPS 2024 Posters) & SOUPS 2024 Societal & User-Centered Privacy in AI Workshop (SUPA 2024)",
+      "summary": "UsersFirst taxonomy outperforms LINDDUN PRO in detecting privacy notice and choice threats in user study.",
+      "resources": [
+        {
+          "label": "poster",
+          "url": "https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final22.pdf?cap=hcav22CrKQnFRBHGTMMJKUsbbtfpPB"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/usersfirst-taxonomy.webp",
+        "alt": "Baseline privacy threats identified using each taxonomy",
+        "source": "https://www.usenix.org/system/files/soups2024_poster22_abstract-li_final.pdf",
+        "caption": "Baseline privacy threats identified using each taxonomy"
+      },
+      "topics": [
+        "usable-privacy"
+      ]
+    },
+    {
+      "id": "usersfirst-framework",
+      "year": "2024",
+      "title": "UsersFirst: A User-Centric Privacy Threat Modeling Framework for Notice and Choice",
+      "url": "https://www.usenix.org/system/files/soups2024_poster49_abstract-wang_final.pdf",
+      "authors": "Tian Wang*, Xinran Alexandra Li*, Miguel Rivera-Lanas*, Yash Maurya*, Hana Habib, Lorrie Faith Cranor, Norman Sadeh",
+      "venue": "Twentieth Symposium on Usable Privacy and Security (SOUPS 2024 Posters) & SOUPS 2024 Workshop on Privacy Threat Modeling (WPTM 2024)",
+      "summary": "UsersFirst: A user-centric framework for identifying and mitigating privacy notice and choice threats, extending beyond LINDDUN",
+      "resources": [
+        {
+          "label": "poster",
+          "url": "https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final49.pdf?cap=hcav49bMUTBoXBmTPeqNjgqsWcmHkB"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/usersfirst-framework.webp",
+        "alt": "The UsersFirst design and analysis methodology",
+        "source": "https://soups2024posters.usenix.hotcrp.com/doc/soups2024posters-final49.pdf?cap=hcav49bMUTBoXBmTPeqNjgqsWcmHkB",
+        "caption": "The UsersFirst design and analysis methodology"
+      },
+      "topics": [
+        "usable-privacy"
+      ]
+    },
+    {
+      "id": "topics-llm",
+      "year": "2024",
+      "title": "Through the Lens of LLMs: Unveiling Differential Privacy Challenges",
+      "url": "https://www.usenix.org/conference/pepr24/presentation/priyanshu",
+      "authors": "Yash Maurya*, Aman Priyanshu*, Vy Tran*",
+      "venue": "2024 USENIX Conference on Privacy Engineering Practice and Respect(PEPR'24)",
+      "summary": "LLMs demonstrate stronger privacy attacks on Google's Topics API, bypassing differential privacy safeguards.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/topics-llm.webp",
+        "alt": "Topics API membership inference threat model from the PEPR 2024 presentation",
+        "source": "https://www.usenix.org/system/files/pepr24_slides-priyanshu.pdf",
+        "caption": "Topics API membership inference threat model from the PEPR 2024 presentation"
+      },
+      "topics": [
+        "privacy-unlearning"
+      ]
+    },
+    {
+      "id": "gradients-fl",
+      "year": "2024",
+      "title": "Is it Worth Storing Historical Gradients?",
+      "url": "pdfs/GradientsFL.pdf",
+      "authors": "Yash Maurya*, Joong Ho Choi*, Yingxin Liu*",
+      "venue": "Course Project for Federated and Collaborative Learning Course(10-719) at CMU (Advisor: Professor Virginia Smith)",
+      "summary": "Studies label-poisoning detection in heterogeneous federated learning. In the tested settings, current model weights generally match or outperform historical-weight methods, avoiding the storage cost of retaining long update histories.",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/gradients-fl-trajectories.webp",
+        "alt": "Complete trajectory diagram contrasting normal clients, a malicious client, and a client with heterogeneous data",
+        "source": "pdfs/GradientsFL.pdf#page=2",
+        "caption": "Figure 1: Hypothesized trajectories for normal, malicious, and heterogeneous clients."
+      },
+      "topics": [
+        "federated-learning"
+      ]
+    },
+    {
+      "id": "federated-cancer",
+      "year": "2022",
+      "title": "Federated Learning for Colorectal Cancer Prediction",
+      "url": "https://ieeexplore.ieee.org/abstract/document/9972224",
+      "authors": "Yash Maurya*, Prahaladh Chandrahasan*, G Poornalatha",
+      "venue": "2022 IEEE 3rd Global Conference for Advancement in Technology (GCAT), 1-5",
+      "summary": "Federated learning enables privacy-preserving colorectal cancer prediction across hospitals with centralized-level accuracy",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/federated-cancer-workflow.png",
+        "alt": "Federated healthcare workflow from the GCAT 2022 presentation: hospitals retain local data, send local model updates to a shared server, and receive an updated global model",
+        "source": "https://ieeexplore.ieee.org/abstract/document/9972224",
+        "caption": "Original workflow graphic from slide 12, FL Implementation, of the GCAT 2022 presentation.",
+        "type": "Presentation graphic"
+      },
+      "topics": [
+        "federated-learning"
+      ]
+    },
+    {
+      "id": "scorecam-cvpr",
+      "year": "2021",
+      "title": "Improved variants of Score-CAM via Smoothing and Integrating",
+      "url": "pdfs/ImprovedScoreCAM_Poster.pdf",
+      "authors": "Rakshit Naidu, Haofan Wang, Soumya Snigdha Kundu, Ankita Ghosh, Yash Maurya, Shamanth R Nayak K, Joy Michael",
+      "venue": "Responsible Computer Vision (RCV) Workshop at CVPR 2021",
+      "summary": "Introduces smoothing and integration variants of Score-CAM to produce more localized attribution maps for CNN predictions. The poster compares SS-CAM and IS-CAM with existing methods using visual examples and quantitative explanation metrics.",
+      "resources": [
+        {
+          "label": "poster only",
+          "url": "pdfs/ImprovedScoreCAM_Poster.pdf"
+        }
+      ],
+      "visual": {
+        "image": "images/papers/scorecam-heatmaps.webp",
+        "alt": "Poster comparison of an input dog photograph with Score-CAM, SS-CAM, and IS-CAM attribution heatmaps",
+        "source": "pdfs/ImprovedScoreCAM_Poster.pdf#page=1",
+        "caption": "Poster excerpt: Visual comparison of Score-CAM, SS-CAM, and IS-CAM."
+      },
+      "topics": [
+        "interpretability"
+      ]
+    },
+    {
+      "id": "is-cam",
+      "year": "2020",
+      "title": "IS-CAM: Integrated Score-CAM for axiomatic-based explanations",
+      "url": "https://arxiv.org/abs/2010.03023",
+      "authors": "Rakshit Naidu, Ankita Ghosh, Yash Maurya, Shamanth R Nayak K, Soumya Snigdha Kundu",
+      "venue": "arXiv preprint arXiv:2010.03023",
+      "summary": "Enhanced CNN interpretability through IS-CAM, integrating Score-CAM to produce sharper attribution maps",
+      "resources": [],
+      "visual": {
+        "image": "images/papers/is-cam-attributions.webp",
+        "alt": "Figure 2 attribution comparisons on Basenji, Capuchin, and Whippet images across CAM methods, including IS-CAM",
+        "source": "https://arxiv.org/html/2010.03023v1#S4.F2",
+        "caption": "Figure 2: Visual attribution comparisons. The three image rows are assembled from the original figure assets."
+      },
+      "topics": [
+        "interpretability"
+      ]
+    }
+  ],
+  "news": [
+    {
+      "date": "2026",
+      "html": "<a href=\"#harnessopt-bench\">HarnessOpt-Bench</a> accepted to <b>Findings of EACL 2027</b>."
+    },
+    {
+      "date": "2026",
+      "html": "<a href=\"#rok-fortress\">ROK-FORTRESS</a> accepted to <b>NeurIPS 2026</b>. I’ll be presenting it in Sydney in December."
+    },
+    {
+      "date": "2026-07",
+      "html": "<a href=\"https://arxiv.org/abs/2605.14152\" target=\"_blank\" rel=\"noopener noreferrer\">\"ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for National Security and Public Safety\"</a> received the <b>Best Paper Award</b> at the <a href=\"https://www.taigr-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">TAIGR Workshop</a> at ICML 2026."
+    },
+    {
+      "date": "2026",
+      "html": "<a href=\"https://arxiv.org/abs/2602.10525\" target=\"_blank\" rel=\"noopener noreferrer\">\"LHAW: Controllable Underspecification for Long-Horizon Tasks\"</a> accepted to the <a href=\"https://iclr.cc/virtual/2026/workshop/10000805\" target=\"_blank\" rel=\"noopener noreferrer\">Lifelong Agents: Learning, Aligning, Evolving Workshop</a> at ICLR 2026."
+    },
+    {
+      "date": "2026-02",
+      "html": "<a href=\"https://arxiv.org/abs/2510.16380\" target=\"_blank\">\"MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes\"</a> accepted to ICLR 2026. <a href=\"https://morebench.github.io/\" target=\"_blank\">project page</a>"
+    },
+    {
+      "date": "2025-08",
+      "html": "Attended the <a href=\"https://www.airisksummit.com/\" target=\"_blank\">AI Risk Summit 2025</a> at the Ritz-Carlton, Half Moon Bay and conducted a red-teaming workshop titled <a href=\"https://www.airisksummit.com/event-session/ai-red-teaming-room/\" target=\"_blank\">\"AI Red Teaming Room\"</a>."
+    },
+    {
+      "date": "2025-06",
+      "html": "My paper titled <b>\"Making Privacy-Preserving AI Accessible: A Practitioner-Oriented Framework\"</b> was accepted to the SUPA 2025 workshop at SOUPS."
+    },
+    {
+      "date": "2025-05",
+      "html": "Started working at <a href=\"https://scale.com\" target=\"_blank\">Scale AI</a> as a Research Engineer."
+    },
+    {
+      "date": "2025-03",
+      "html": "My submission titled <a href=\"https://www.usenix.org/conference/pepr25/presentation/maurya\">\"When Privacy Guarantees Meet Pre-trained LLMs: A Case Study in Synthetic Data\"</a> got accepted to PEPR'25."
+    },
+    {
+      "date": "2025-02",
+      "html": "Started a new role as a Privacy Researcher at Carnegie Mellon University"
+    },
+    {
+      "date": "2024-12",
+      "html": "Graduated from Carnegie Mellon University with a Master's in Privacy Engineering"
+    },
+    {
+      "date": "2024-12",
+      "html": "Wrote an <a href=\"https://amanpriyanshu.github.io/SynthLeak/\">article</a> on auditing real-world differentially private synthetic data"
+    },
+    {
+      "date": "2024-12",
+      "html": "My <a href=\"#llm-unlearning\">position paper</a> on unlearning benchmarks in LLMs got accepted at SatML."
+    },
+    {
+      "date": "2024-09",
+      "html": "Started collaborating with Meta to study <a href=\"#meta-capstone\">\"How Information and Control Shape Data Sharing and AI Engagement\"</a>"
+    },
+    {
+      "date": "2024-06",
+      "html": "Joined the AI Hub at <a href=\"https://www.bnymellon.com/\">BNY(Bank of New York Mellon)</a> as an AI Governance Intern."
+    },
+    {
+      "date": "2024-06",
+      "html": "Presented my work <a href=\"#topics-llm\">\"Through the Lens of LLMs:Unveiling Differential Privacy Challenges\"</a> at PEPR'24 in Santa Clara fully funded by CMU"
+    },
+    {
+      "date": "2024-03",
+      "html": "Received Academic Achievement Award from the International Association of Privacy Professionals - Carnegie Mellon University's 2023-2024 IAPP Westin Scholar."
+    },
+    {
+      "date": "2024-03",
+      "html": "Received the Project Olympus Spark Grant by Swartz Center for Entrepreneurship for building a Language Learning agent to help non-native speakers improve their speaking skills"
+    },
+    {
+      "date": "2024-03",
+      "html": "My work 'Guardrail Baselines for Unlearning in LLMs' got accepted at Secure and Trustworthy Large Language Models(SeT LLM) workshop at ICLR 2024"
+    },
+    {
+      "date": "2024-01",
+      "html": "Completed the Certified Information Privacy Technologist (CIPT) credential from the IAPP - International Association of Privacy Professionals."
+    },
+    {
+      "date": "2023-09",
+      "html": "Won Space Theme in HackCMU'23 with our Space-JEDI Project"
+    }
+  ],
+  "profile": {
+    "name": "Yash Maurya",
+    "role": "Research Engineer",
+    "organization": "Scale AI",
+    "organizationUrl": "https://scale.com",
+    "focus": "AI safety & evaluation",
+    "intro": "I work on frontier AI safety and evaluation. I think about what can go wrong when autonomous agents get access to our lives (yes, you probably gave yours too much access), especially when they start interacting with other agents. My focus is on AI control, monitoring, and multi-agent safety.",
+    "about": "I completed my master’s in Privacy Engineering at Carnegie Mellon University. Previously, I worked at BNY, Samsung, and Dynamo AI.",
+    "background": [
+      "At Scale AI, I work on evaluation and red teaming for frontier language models, with a focus on alignment, safety, privacy, and dependable behavior in real-world deployments.",
+      "I care about making advanced models trustworthy in production, especially under adversarial and edge-case behavior. My work sits at the intersection of model capability, policy constraints, and operational risk.",
+      "I completed my master’s at Carnegie Mellon University in Privacy Engineering, where I worked on privacy, LLM safety, and evaluation research across academia and industry collaborations.",
+      "Previously, I worked on AI governance and evaluation at BNY, federated learning at Dynamo AI, and recommendation systems at Samsung."
+    ],
+    "email": "maurya.yash152@gmail.com",
+    "links": [
+      {
+        "label": "Scholar",
+        "url": "https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/yashmaurya01"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/yashmaurya/"
+      },
+      {
+        "label": "CV",
+        "url": "cv.pdf"
+      }
+    ],
+    "speakerBio": "Yash Maurya is a Research Engineer at Scale AI, where he works on frontier AI safety. His research looks at how to keep increasingly capable AI agents in check, with a focus on AI control, monitoring, alignment auditing, and multi-agent safety. He came to safety through privacy, and his earlier work on LLM unlearning, red teaming, and differential privacy shaped his interest in how models behave under adversarial pressure. He earned his Master’s in Privacy Engineering from Carnegie Mellon University. Before Scale, he worked on AI governance and evaluation at BNY, federated learning at Dynamo AI, and recommendation systems at Samsung. His work has been published at leading machine learning and security conferences, including NeurIPS, ICLR, ICML, SaTML, and USENIX."
+  },
+  "siteUrl": "https://yashmaurya.com/",
+  "updated": "2026-11-17",
+  "researchTopics": [
+    {
+      "id": "agents-reasoning",
+      "label": "Agents & reasoning"
+    },
+    {
+      "id": "safety-governance",
+      "label": "Safety & governance"
+    },
+    {
+      "id": "privacy-unlearning",
+      "label": "ML privacy"
+    },
+    {
+      "id": "usable-privacy",
+      "label": "Usable privacy"
+    },
+    {
+      "id": "federated-learning",
+      "label": "Federated learning"
+    },
+    {
+      "id": "interpretability",
+      "label": "Interpretability"
+    }
+  ]
+}

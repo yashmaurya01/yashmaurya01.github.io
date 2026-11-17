@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#fff"/>
+  <g font-family="Helvetica,Arial,sans-serif" fill="#26384b">
+    <text x="64" y="80" font-size="22" fill="#62758a">PRIVACY THROUGHOUT THE ML PIPELINE</text>
+    <text x="64" y="140" font-size="39" font-weight="600">From threats to practical mitigations</text>
+    <g fill="#eef3f8" stroke="#b8c9dc" stroke-width="2">
+      <rect x="64" y="205" width="196" height="140" rx="14"/>
+      <rect x="283" y="205" width="196" height="140" rx="14"/>
+      <rect x="502" y="205" width="196" height="140" rx="14"/>
+      <rect x="721" y="205" width="196" height="140" rx="14"/>
+      <rect x="940" y="205" width="196" height="140" rx="14"/>
+    </g>
+    <g font-size="24" text-anchor="middle">
+      <text x="162" y="267">Data<tspan x="162" dy="34">collection</tspan></text>
+      <text x="381" y="267">Data<tspan x="381" dy="34">processing</tspan></text>
+      <text x="600" y="267">Model<tspan x="600" dy="34">training</tspan></text>
+      <text x="819" y="267">Model<tspan x="819" dy="34">deployment</tspan></text>
+      <text x="1038" y="267">Privacy<tspan x="1038" dy="34">governance</tspan></text>
+    </g>
+    <path d="M162 367v35h876v-35M600 402v45" fill="none" stroke="#8aa3bf" stroke-width="3"/>
+    <rect x="64" y="466" width="1072" height="146" rx="14" fill="#edf5f1" stroke="#bdd2c8" stroke-width="2"/>
+    <text x="104" y="520" font-size="27" font-weight="600">Identify threats</text>
+    <text x="466" y="520" font-size="27" font-weight="600">Choose tools</text>
+    <text x="806" y="520" font-size="27" font-weight="600">Assess trade-offs</text>
+    <g font-size="21" fill="#556c65">
+      <text x="104" y="565">NIST adversarial ML taxonomy</text>
+      <text x="466" y="565">Implementation guidance</text>
+      <text x="806" y="565">Privacy, utility, deployment</text>
+    </g>
+    <text x="64" y="670" font-size="18" fill="#75818e">Illustrated overview based on the framework paper</text>
+  </g>
+</svg>
