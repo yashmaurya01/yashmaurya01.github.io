@@ -35,6 +35,14 @@ def marked_authors(authors):
     return escape(authors).replace('Yash Maurya', '<strong>Yash Maurya</strong>')
 
 
+def emphasized_html(text, phrase=None):
+    if not phrase:
+        return escape(text)
+    if text.count(phrase) != 1:
+        raise ValueError('Emphasis must match one phrase in the source text: ' + phrase)
+    return escape(text).replace(escape(phrase), '<strong>' + escape(phrase) + '</strong>', 1)
+
+
 class MarkdownHTML(HTMLParser):
     """Small converter for the site's editorial HTML, retaining links and lists."""
     def __init__(self, html):
@@ -133,7 +141,7 @@ def paper_html(paper):
           <p class="venue">{venue}</p>
           <h4 id="{escape(paper['id'])}-title">{link(escape(paper['title']), paper['url'], **{'class': 'paper-title'})}</h4>
           {author_html}
-          <p class="paper-summary">{escape(paper['summary'])}</p>
+          <p class="paper-summary">{emphasized_html(paper['summary'], paper.get('summaryEmphasis'))}</p>
           <div class="paper-links">{' '.join(resources)}</div>
         </div>
       </article>'''
@@ -241,7 +249,7 @@ def main():
         js_version=sha256((ROOT / 'assets/site.js').read_bytes()).hexdigest()[:12],
         structured_data=json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c'),
         organization_url=escape(profile['organizationUrl'], quote=True), organization=escape(profile['organization']),
-        focus=escape(profile['focus']), intro=re.sub(r'(\([^()]+\))', r'<em class="intro-aside">\1</em>', escape(profile['intro'])), about=escape(profile['about']), email=escape(profile['email']),
+        focus=escape(profile['focus']), intro=re.sub(r'(\([^()]+\))', r'<em class="intro-aside">\1</em>', emphasized_html(profile['intro'], profile.get('introEmphasis'))), about=escape(profile['about']), email=escape(profile['email']),
         profile_links=' '.join(link(escape(item['label']), item['url']) for item in profile['links'] if item['label'] != 'CV'),
         background=''.join('<p>' + escape(p) + '</p>' for p in profile['background']),
         recent_news=news_html(DATA['news'][:3]), older_news=news_html(DATA['news'][3:]), older_news_count=len(DATA['news'][3:]),

@@ -67,6 +67,7 @@ strong, b { font-weight: 600; }
 h1 { font-size: clamp(40px, 4vw, 48px); font-weight: 500; line-height: 1.1; letter-spacing: -.035em; }
 .intro { font-size: 17px; line-height: 1.55; margin-top: 16px; max-width: 760px; text-wrap: pretty; }
 .intro-aside { color: var(--secondary); font-style: italic; }
+.intro strong, .paper-summary strong { color: var(--ink); font-weight: 500; }
 .about-text { color: var(--secondary); font-size: 14px; margin-top: 12px; max-width: 760px; }
 .hero-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
 .action { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px; border: 1px solid transparent; border-radius: 24px; font-size: 13px; font-weight: 500; line-height: 1.2; text-decoration: none; white-space: nowrap; transition: background-color 160ms ease, color 160ms ease, transform 160ms ease; }
@@ -134,6 +135,7 @@ summary:hover { color: var(--accent); }
 .venue { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 4px; }
 .award { color: var(--ink); font-weight: 600; }
 .authors { color: var(--muted); font-size: 12px; line-height: 1.5; margin-top: 4px; }
+.authors strong { color: var(--ink); font-weight: 500; }
 .paper-summary { color: var(--secondary); font-size: 14px; line-height: 1.55; margin-top: 8px; }
 .paper-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
 .paper-links a { font-size: 12px; text-decoration: none; padding-block: 4px; }

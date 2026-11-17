@@ -30,7 +30,8 @@
       },
       "topics": [
         "agents-reasoning"
-      ]
+      ],
+      "summaryEmphasis": "when to ask for missing facts"
     },
     {
       "id": "harnessopt-bench",
@@ -49,7 +50,8 @@
       },
       "topics": [
         "agents-reasoning"
-      ]
+      ],
+      "summaryEmphasis": "optimizer models matter more"
     },
     {
       "id": "insights-generator",
@@ -68,7 +70,8 @@
       },
       "topics": [
         "agents-reasoning"
-      ]
+      ],
+      "summaryEmphasis": "30.4 percentage points"
     },
     {
       "id": "morebench",
@@ -93,7 +96,8 @@
       "topics": [
         "agents-reasoning",
         "safety-governance"
-      ]
+      ],
+      "summaryEmphasis": "multiple conclusions can be defensible"
     },
     {
       "id": "lhaw",
@@ -112,7 +116,8 @@
       },
       "topics": [
         "agents-reasoning"
-      ]
+      ],
+      "summaryEmphasis": "seek clarification"
     },
     {
       "id": "rok-fortress",
@@ -136,7 +141,8 @@
       },
       "topics": [
         "safety-governance"
-      ]
+      ],
+      "summaryEmphasis": "separates language effects from geopolitical grounding"
     },
     {
       "id": "accessible-privacy-framework",
@@ -222,7 +228,8 @@
       },
       "topics": [
         "privacy-unlearning"
-      ]
+      ],
+      "summaryEmphasis": "recoverable target information"
     },
     {
       "id": "benefit-assessment",
@@ -298,7 +305,8 @@
       },
       "topics": [
         "privacy-unlearning"
-      ]
+      ],
+      "summaryEmphasis": "can match fine-tuning"
     },
     {
       "id": "usersfirst-taxonomy",
@@ -569,7 +577,8 @@
         "url": "cv.pdf"
       }
     ],
-    "speakerBio": "Yash Maurya is a Research Engineer at Scale AI, where he works on frontier AI safety. His research looks at how to keep increasingly capable AI agents in check, with a focus on AI control, monitoring, alignment auditing, and multi-agent safety. He came to safety through privacy, and his earlier work on LLM unlearning, red teaming, and differential privacy shaped his interest in how models behave under adversarial pressure. He earned his Master’s in Privacy Engineering from Carnegie Mellon University. Before Scale, he worked on AI governance and evaluation at BNY, federated learning at Dynamo AI, and recommendation systems at Samsung. His work has been published at leading machine learning and security conferences, including NeurIPS, ICLR, ICML, SaTML, and USENIX."
+    "speakerBio": "Yash Maurya is a Research Engineer at Scale AI, where he works on frontier AI safety. His research looks at how to keep increasingly capable AI agents in check, with a focus on AI control, monitoring, alignment auditing, and multi-agent safety. He came to safety through privacy, and his earlier work on LLM unlearning, red teaming, and differential privacy shaped his interest in how models behave under adversarial pressure. He earned his Master’s in Privacy Engineering from Carnegie Mellon University. Before Scale, he worked on AI governance and evaluation at BNY, federated learning at Dynamo AI, and recommendation systems at Samsung. His work has been published at leading machine learning and security conferences, including NeurIPS, ICLR, ICML, SaTML, and USENIX.",
+    "introEmphasis": "AI control, monitoring, and multi-agent safety"
   },
   "siteUrl": "https://yashmaurya.com/",
   "updated": "2026-11-17",
