@@ -15,6 +15,7 @@ import re
 import subprocess
 from string import Template
 from urllib.parse import urljoin
+from page_layout import build_pages, navigation
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / 'data/site.json').read_text())
@@ -138,18 +139,27 @@ def paper_html(paper):
       </article>'''
 
 
-def reading_markdown():
+def reading_data():
     # The existing reading list is JS with comments and trailing commas, not JSON.
     # Use its existing runtime format instead of maintaining a second content copy.
     script = "const fs=require('node:fs'),vm=require('node:vm');const sandbox={window:{}};vm.runInNewContext(fs.readFileSync('reading/data.js','utf8'),sandbox);process.stdout.write(JSON.stringify(sandbox.window.READING_DATA));"
     result = subprocess.run(['node', '-e', script], cwd=ROOT, capture_output=True, text=True, check=True)
-    reading = json.loads(result.stdout)
-    parts = ['# Reading notes', '', f'Website: {absolute("reading/")}', '', 'This edition contains the public reading list, writeups, and recap questions. Notes edited only in a visitor’s browser are not part of the public site.', '']
+    return json.loads(result.stdout)
+
+
+def reading_markdown():
+    reading = reading_data()
+    parts = ['# Reading notes', '', f'Website: {absolute("reading/")}', '', 'This edition contains the public reading list, writeups, flashcards, and recap questions with answers. Detailed notes that are still drafts are labeled as such.', '']
     for article in reading['articles']:
         parts.extend([f'## {article["title"]}', '', f'Source: [{article["venue"]}]({article["url"]})', '', f'Published: {article["published"]}', '', 'Tags: ' + ', '.join(article['tags']), '', article['blurb'], '', '### Writeup', '', article['writeup'], '', '### Topics', ''])
         parts.extend('- ' + topic for topic in article['topics'])
-        parts.extend(['', f'[Notes page]({absolute(article["notesUrl"])})', '', 'The public notes page currently contains a writing template; personal notes are saved in the browser.', ''])
+        parts.extend(['', f'[Notes page]({absolute(article["notesUrl"])})', '', 'The notes page includes the reading summary. Detailed notes and figures are still a draft.', ''])
         quiz = reading.get('quizzes', {}).get(article['id'])
+        cards = reading.get('flashcards', {}).get(article['id'], [])
+        if cards:
+            parts.extend(['### Flashcards', ''])
+            for i, card in enumerate(cards, 1):
+                parts.extend([f'{i}. {card["front"]}', '', f'   {card["back"]}', ''])
         if quiz:
             parts.extend(['### ' + quiz['title'], ''])
             for i, question in enumerate(quiz['questions'], 1):
@@ -157,6 +167,45 @@ def reading_markdown():
                 parts.extend(f'   {chr(65+j)}. {option}' for j, option in enumerate(question['options']))
                 parts.extend(['', f'   Answer: {chr(65+question["answer"])}. {question["feedback"]}', ''])
     return '\n'.join(parts).rstrip() + '\n'
+
+
+def tool_markdown():
+    return {
+        'diff.md': f'''# Text diff
+
+Page: {absolute('diff.html')}
+
+Compare two versions of a text. Everything stays in the browser.
+
+## Use
+
+1. Enter the original text and the revised text.
+2. Optionally ignore whitespace or letter case.
+3. Select Compare to show changed, added, and removed lines.
+4. Switch between side-by-side and unified views.
+5. Copy the diff to the clipboard.
+
+Processing happens locally in the browser with JavaScript. Text is not uploaded to a server. This page has no server API.
+''',
+        'qrcode.md': f'''# QR code generator
+
+Page: {absolute('qrcode.html')}
+
+Turn a link or text into a QR code. Everything stays in the browser.
+
+## Use
+
+1. Enter a URL or text.
+2. Choose an image size: 128, 192, 256, 384, or 512 pixels square. The default is 256.
+3. Choose error correction: low (7%), medium (15%), quartile (25%), or high (30%). The default is medium.
+4. Select Generate QR code.
+5. Download the result as a PNG.
+
+Processing happens locally in the browser with JavaScript and QRCode.js. Input is not uploaded to a server. The QR library is served from this website. This page has no server API.
+
+Library: [QRCode.js](https://github.com/davidshimjs/qrcodejs), MIT license.
+'''
+    }
 
 
 def main():
@@ -186,6 +235,8 @@ def main():
         'knowsAbout': ['AI safety', 'Model evaluation', 'Red teaming', 'Privacy engineering', 'Machine unlearning', 'Differential privacy']
     }
     html = Template((ROOT / 'templates/index.html').read_text()).substitute(
+        navigation=navigation(home=True),
+        navigation_version=sha256((ROOT / 'assets/navigation.js').read_bytes()).hexdigest()[:12],
         css_version=sha256((ROOT / 'assets/site.css').read_bytes()).hexdigest()[:12],
         js_version=sha256((ROOT / 'assets/site.js').read_bytes()).hexdigest()[:12],
         structured_data=json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c'),
@@ -219,22 +270,26 @@ def main():
             lines.extend(['', f'Preview: [{v["alt"]}]({absolute(v["image"])})', f'Figure source: {absolute(v["source"])}', ''])
             if v.get('illustration'):
                 lines.extend(['Preview is an original conceptual illustration for this website, not a figure from the paper.', ''])
-    lines.extend(['## Speaker bio', '', profile['speakerBio'], '', f'[Plain text speaker bio]({absolute("speaker-bio.txt")})', '', '## Other pages', '', f'- [Reading notes and recap questions]({absolute("reading.md")}). public reading list, writeups, topics, and quizzes.', f'- [Reading interface]({absolute("reading/")}). searchable reading list and browser-local personal notes.', f'- [Text diff]({absolute("diff.html")}). browser tool for comparing two texts.', f'- [QR code generator]({absolute("qrcode.html")}). browser tool for generating QR codes.', f'- [ML privacy mitigations repository](https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations)', f'- [CV (PDF)]({absolute("cv.pdf")})', ''])
+    lines.extend(['## Speaker bio', '', profile['speakerBio'], '', f'[Plain text speaker bio]({absolute("speaker-bio.txt")})', '', '## Other pages', '', f'- [Reading notes and recap questions]({absolute("reading.md")}). Public reading list, writeups, topics, flashcards, and quizzes.', f'- [Reading interface]({absolute("reading/")}). Topic filters and links to notes, flashcards, and quizzes.', f'- [Text diff]({absolute("diff.md")}). Browser tool for comparing two texts.', f'- [QR code generator]({absolute("qrcode.md")}). Browser tool for generating QR codes.', f'- [ML privacy mitigations repository](https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations)', f'- [CV (PDF)]({absolute("cv.pdf")})', ''])
     markdown = '\n'.join(lines).rstrip() + '\n'
     reading = reading_markdown()
     (ROOT / 'index.md').write_text(markdown)
     (ROOT / 'reading.md').write_text(reading)
+    tools = tool_markdown()
+    for path, content in tools.items():
+        (ROOT / path).write_text(content)
     (ROOT / 'speaker-bio.txt').write_text(profile['speakerBio'] + '\n')
-    (ROOT / 'llms-full.txt').write_text(markdown + '\n---\n\n' + reading)
+    (ROOT / 'llms-full.txt').write_text('\n---\n\n'.join([markdown, reading, *tools.values()]))
     (ROOT / 'llms.txt').write_text(f'''# Yash Maurya
 
 > Research Engineer at Scale AI working on AI safety, model evaluation, red teaming, and privacy-preserving machine learning. M.S. in Privacy Engineering, Carnegie Mellon University.
 
 ## Canonical content
 
-- [Complete website in plain-text Markdown]({absolute('llms-full.txt')}): Full profile, all {len(DATA['papers'])} research entries with authors, venues, summaries, figure sources, all news, speaker bio, and public reading notes and quiz content. No JavaScript required.
+- [Complete website in plain-text Markdown]({absolute('llms-full.txt')}): Full profile, all {len(DATA['papers'])} research entries with authors, venues, summaries, figure sources, all news, speaker bio, public reading notes, flashcards, quiz content, and tool descriptions. No JavaScript required.
 - [Homepage as Markdown]({absolute('index.md')}): Profile, research, news, contact links, and speaker bio.
-- [Reading as Markdown]({absolute('reading.md')}): Public reading list, writeups, topics, and recap questions with answers.
+- [Reading as Markdown]({absolute('reading/index.md')}): Public reading list, writeups, topics, flashcards, and recap questions with answers.
+- [Detailed notes]({absolute('reading/notes/frontier-training-methodologies.md')}): Existing reading summary and explicit draft status for the detailed notes.
 - [Speaker bio]({absolute('speaker-bio.txt')}): Owner-provided third-person biography for event introductions.
 - [Structured content]({absolute('data/site.json')}): Homepage source data and image provenance.
 - [Website]({BASE}): Human-readable HTML with stable paper anchors.
@@ -242,21 +297,22 @@ def main():
 ## Other pages
 
 - [CV]({absolute('cv.pdf')}): Curriculum vitae in PDF.
-- [Text diff]({absolute('diff.html')}): Browser-local text comparison tool.
-- [QR code generator]({absolute('qrcode.html')}): Browser-local QR code tool.
+- [Text diff]({absolute('diff.md')}): Browser-local text comparison tool, inputs, modes, and output.
+- [QR code generator]({absolute('qrcode.md')}): Browser-local QR code tool, settings, and PNG download.
 
-Publication years are recorded in each entry's venue; archive year groupings follow the existing site. Images are source figures, slides, or posters except the explicitly labeled illustrated overviews. Personal reading notes stored only in a browser are not public website content.
+Publication years are recorded in each entry's venue; archive year groupings follow the existing site. Images are source figures, slides, or posters except the explicitly labeled illustrated overviews. Detailed notes that are not written yet are marked as drafts.
 ''')
     # Existing static HTML site: prevent Markdown conversion by GitHub Pages.
     (ROOT / '.nojekyll').touch()
-    paths = ['', 'reading/', 'reading/quiz.html', 'reading/notes/frontier-training-methodologies.html', 'diff.html', 'qrcode.html', 'index.md', 'reading.md', 'llms.txt', 'llms-full.txt', 'speaker-bio.txt', 'cv.pdf', 'Awesome-ML-Privacy-Mitigations/']
-    generated = {'', 'index.md', 'reading.md', 'llms.txt', 'llms-full.txt', 'speaker-bio.txt'}
+    paths = ['', 'reading/', 'reading/quiz.html', 'reading/notes/frontier-training-methodologies.html', 'diff.html', 'qrcode.html', 'index.md', 'reading.md', 'reading/index.md', 'reading/quiz.md', 'reading/notes/frontier-training-methodologies.md', 'diff.md', 'qrcode.md', 'llms.txt', 'llms-full.txt', 'speaker-bio.txt', 'cv.pdf', 'Awesome-ML-Privacy-Mitigations/']
+    generated = set(paths) - {'cv.pdf', 'Awesome-ML-Privacy-Mitigations/'}
     urls = []
     for path in paths:
         modified = f'<lastmod>{escape(DATA["updated"])}</lastmod>' if path in generated else ''
         urls.append(f'  <url><loc>{escape(absolute(path))}</loc>{modified}</url>')
     (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(urls) + '\n</urlset>\n')
-    print(f'Built index.html, index.md, llms.txt, llms-full.txt, reading.md, and speaker-bio.txt ({len(seen)} research entries).')
+    build_pages(reading_data(), DATA['updated'])
+    print(f'Built homepage, reading and tool pages, and Markdown editions ({len(seen)} research entries).')
 
 
 if __name__ == '__main__':

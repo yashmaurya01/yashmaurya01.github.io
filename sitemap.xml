@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://yashmaurya.com/</loc><lastmod>2026-11-17</lastmod></url>
-  <url><loc>https://yashmaurya.com/reading/</loc></url>
-  <url><loc>https://yashmaurya.com/reading/quiz.html</loc></url>
-  <url><loc>https://yashmaurya.com/reading/notes/frontier-training-methodologies.html</loc></url>
-  <url><loc>https://yashmaurya.com/diff.html</loc></url>
-  <url><loc>https://yashmaurya.com/qrcode.html</loc></url>
+  <url><loc>https://yashmaurya.com/reading/</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/reading/quiz.html</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/reading/notes/frontier-training-methodologies.html</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/diff.html</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/qrcode.html</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://yashmaurya.com/index.md</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://yashmaurya.com/reading.md</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/reading/index.md</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/reading/quiz.md</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/reading/notes/frontier-training-methodologies.md</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/diff.md</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://yashmaurya.com/qrcode.md</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://yashmaurya.com/llms.txt</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://yashmaurya.com/llms-full.txt</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://yashmaurya.com/speaker-bio.txt</loc><lastmod>2026-11-17</lastmod></url>

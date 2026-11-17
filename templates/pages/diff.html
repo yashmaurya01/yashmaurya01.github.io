@@ -1,0 +1,16 @@
+<main id="main" class="wrap page-main">
+  <header class="page-heading"><h1>Text diff</h1><p>Compare two versions of a text. Everything stays in your browser.</p></header>
+  <div class="settings-panel">
+    <label><input type="checkbox" id="ignore-whitespace"> Ignore whitespace</label>
+    <label><input type="checkbox" id="ignore-case"> Ignore case</label>
+    <div class="diff-modes" role="group" aria-label="Diff layout"><button type="button" class="diff-mode-toggle active" id="side-by-side-btn" aria-pressed="true">Side by side</button><button type="button" class="diff-mode-toggle" id="unified-btn" aria-pressed="false">Unified</button></div>
+  </div>
+  <div class="diff-inputs">
+    <div class="diff-input"><label for="left-text">Original</label><textarea id="left-text" placeholder="Original text" spellcheck="false"></textarea></div>
+    <div class="diff-input"><label for="right-text">Revised</label><textarea id="right-text" placeholder="Revised text" spellcheck="false"></textarea></div>
+  </div>
+  <div class="btn-row"><button class="action action-primary" type="button" id="compare-btn">Compare</button><button class="action action-secondary" type="button" id="copy-diff" disabled>Copy diff</button></div>
+  <p class="tool-status" id="diff-status" role="status" aria-live="polite"></p>
+  <div class="diff-output" id="diff-output" aria-label="Text differences"></div>
+  <noscript><p>Text comparison needs JavaScript.</p></noscript>
+</main>

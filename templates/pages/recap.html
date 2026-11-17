@@ -1,0 +1,33 @@
+<main id="main" class="wrap page-main">
+  <header class="page-heading">
+    <p class="breadcrumb"><a href="index.html">Reading logs</a><span aria-hidden="true">/</span>Recap</p>
+    <h1 id="page-title">Recap Studio</h1>
+    <p id="page-subtitle">Revisit the ideas in the reading log.</p>
+    <div class="page-modes" id="mode-row" role="group" aria-label="Recap mode">
+      <button type="button" class="mode-btn" data-mode="flashcards" aria-pressed="false">Flashcards</button>
+      <button type="button" class="mode-btn" data-mode="quiz" aria-pressed="false">Quiz</button>
+    </div>
+  </header>
+  <section class="hidden" id="hub-section" aria-label="Choose a reading">
+    <div class="hub-list" id="hub-list"></div>
+  </section>
+  <section id="flashcards-section" aria-label="Flashcards">
+    <button type="button" class="flashcard-stage" id="flashcard-stage" aria-label="Flip flashcard">
+      <span class="flashcard-content" aria-live="polite"><span class="flashcard-label" id="card-face-label">Question</span><span class="flashcard-text" id="card-text"></span></span>
+    </button>
+    <div class="flashcard-controls">
+      <div class="controls-left"><span id="card-index">Card 1/1</span><p>Select the card to reveal the answer</p></div>
+      <div class="controls-right">
+        <button type="button" class="action action-secondary" id="prev-card">Previous</button>
+        <button type="button" class="action action-secondary" id="shuffle-cards">Shuffle</button>
+        <button type="button" class="action action-secondary" id="next-card">Next</button>
+      </div>
+    </div>
+  </section>
+  <section id="quiz-section" aria-label="Multiple choice quiz">
+    <div class="quiz" id="quiz-root"></div>
+    <div class="btn-row" id="quiz-actions"><button class="action action-primary" type="button" id="grade-btn">Check answers</button><button class="action action-secondary" type="button" id="reset-btn">Reset</button></div>
+    <div class="summary" id="summary" role="status" aria-live="polite"></div>
+  </section>
+  <noscript><p>Flashcards and quizzes need JavaScript. The questions and answers are also available in the <a href="../reading.md">Markdown reading notes</a>.</p></noscript>
+</main>

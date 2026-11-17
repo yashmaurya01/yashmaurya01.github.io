@@ -3,3 +3,4 @@ package-lock.json
 package.json
 CLAUDE.md
 .playwright-mcp/
+__pycache__/

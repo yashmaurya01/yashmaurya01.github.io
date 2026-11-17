@@ -18,6 +18,7 @@
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="alternate" type="text/markdown" href="index.md" title="Full website in Markdown">
   <link rel="alternate" type="text/plain" href="llms-full.txt" title="Full website for language models">
+  <link rel="describedby" href="llms.txt" type="text/plain">
   <link rel="stylesheet" href="assets/site.css?v=$css_version">
   <script>
     try {
@@ -27,30 +28,13 @@
       }
     } catch (_) {}
   </script>
+  <script src="assets/navigation.js?v=$navigation_version" defer></script>
   <script src="assets/site.js?v=$js_version" defer></script>
   <script type="application/ld+json">$structured_data</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="site-nav wrap" aria-label="Main navigation">
-      <a class="wordmark" href="#about">Yash Maurya<span class="wordmark-period">.</span></a>
-      <div class="nav-actions">
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" hidden>Menu</button>
-        <div class="nav-links" id="nav-links">
-          <a href="#news">News</a>
-          <a href="#research">Research</a>
-          <a href="reading/">Reading</a>
-          <a href="index.md" class="markdown-link">Markdown <span aria-hidden="true">↗</span></a>
-        </div>
-        <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme" hidden>
-          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
-          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
-        </button>
-      </div>
-    </nav>
-  </header>
-  <noscript><nav class="wrap no-script-nav" aria-label="Section navigation"><a href="#news">News</a><a href="#research">Research</a><a href="#speaker-bio">Speaker bio</a><a href="index.md">Markdown</a></nav></noscript>
+  $navigation
 
   <main id="main" class="wrap">
     <section id="about" class="about-section" aria-labelledby="name">
@@ -133,7 +117,7 @@
 
   <footer class="site-footer wrap">
     <p>© 2026 Yash Maurya</p>
-    <div><a href="mailto:$email">Email</a><a href="index.md">Read as Markdown</a><a href="llms.txt">For agents</a><a href="sitemap.xml">Sitemap</a></div>
+    <div><a href="mailto:$email">Email</a><a href="index.md">Markdown</a><a href="sitemap.xml">Sitemap</a></div>
   </footer>
 </body>
 </html>

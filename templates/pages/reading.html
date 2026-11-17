@@ -1,0 +1,19 @@
+<main id="main" class="wrap page-main">
+  <header class="page-heading">
+    <h1>Reading logs</h1>
+    <p>What I’m reading, with notes and questions to revisit.</p>
+    <div class="text-links"><a href="quiz.html">Recap Studio</a></div>
+  </header>
+  <div class="reading-layout">
+    <aside class="filter-sidebar" aria-label="Filter readings" hidden>
+      <h2>Topics</h2>
+      $reading_filters
+      <button type="button" class="filter-reset" id="clear-filters" disabled>Clear filters</button>
+    </aside>
+    <section aria-labelledby="archive-heading">
+      <div class="archive-heading"><h2 id="archive-heading">Reading archive</h2><span class="result-count" id="result-count" role="status" aria-live="polite">$reading_count</span></div>
+      <div class="reading-list" id="reading-list">$reading_entries</div>
+      <p class="empty" id="reading-empty" hidden>No readings match these topics.</p>
+    </section>
+  </div>
+</main>

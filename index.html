@@ -18,7 +18,8 @@
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="alternate" type="text/markdown" href="index.md" title="Full website in Markdown">
   <link rel="alternate" type="text/plain" href="llms-full.txt" title="Full website for language models">
-  <link rel="stylesheet" href="assets/site.css?v=00f5e15582e1">
+  <link rel="describedby" href="llms.txt" type="text/plain">
+  <link rel="stylesheet" href="assets/site.css?v=9f60454b404c">
   <script>
     try {
       const saved = localStorage.getItem('theme');
@@ -27,12 +28,13 @@
       }
     } catch (_) {}
   </script>
-  <script src="assets/site.js?v=b15f5b4df6ba" defer></script>
+  <script src="assets/navigation.js?v=7ebd655ac70f" defer></script>
+  <script src="assets/site.js?v=6db22902027e" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Yash Maurya", "url": "https://yashmaurya.com/", "image": "https://yashmaurya.com/images/yash.jpeg", "jobTitle": "Research Engineer", "worksFor": {"@type": "Organization", "name": "Scale AI", "url": "https://scale.com"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Carnegie Mellon University"}, "sameAs": ["https://scholar.google.com/citations?user=md0vz3wAAAAJ&hl=en", "https://github.com/yashmaurya01", "https://www.linkedin.com/in/yashmaurya/"], "knowsAbout": ["AI safety", "Model evaluation", "Red teaming", "Privacy engineering", "Machine unlearning", "Differential privacy"]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
+    <header class="site-header">
     <nav class="site-nav wrap" aria-label="Main navigation">
       <a class="wordmark" href="#about">Yash Maurya<span class="wordmark-period">.</span></a>
       <div class="nav-actions">
@@ -41,7 +43,6 @@
           <a href="#news">News</a>
           <a href="#research">Research</a>
           <a href="reading/">Reading</a>
-          <a href="index.md" class="markdown-link">Markdown <span aria-hidden="true">↗</span></a>
         </div>
         <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme" hidden>
           <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
@@ -51,6 +52,7 @@
     </nav>
   </header>
   <noscript><nav class="wrap no-script-nav" aria-label="Section navigation"><a href="#news">News</a><a href="#research">Research</a><a href="#speaker-bio">Speaker bio</a><a href="index.md">Markdown</a></nav></noscript>
+
 
   <main id="main" class="wrap">
     <section id="about" class="about-section" aria-labelledby="name">
@@ -436,7 +438,7 @@
 
   <footer class="site-footer wrap">
     <p>© 2026 Yash Maurya</p>
-    <div><a href="mailto:maurya.yash152@gmail.com">Email</a><a href="index.md">Read as Markdown</a><a href="llms.txt">For agents</a><a href="sitemap.xml">Sitemap</a></div>
+    <div><a href="mailto:maurya.yash152@gmail.com">Email</a><a href="index.md">Markdown</a><a href="sitemap.xml">Sitemap</a></div>
   </footer>
 </body>
 </html>

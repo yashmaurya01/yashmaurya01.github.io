@@ -4,9 +4,10 @@
 
 ## Canonical content
 
-- [Complete website in plain-text Markdown](https://yashmaurya.com/llms-full.txt): Full profile, all 21 research entries with authors, venues, summaries, figure sources, all news, speaker bio, and public reading notes and quiz content. No JavaScript required.
+- [Complete website in plain-text Markdown](https://yashmaurya.com/llms-full.txt): Full profile, all 21 research entries with authors, venues, summaries, figure sources, all news, speaker bio, public reading notes, flashcards, quiz content, and tool descriptions. No JavaScript required.
 - [Homepage as Markdown](https://yashmaurya.com/index.md): Profile, research, news, contact links, and speaker bio.
-- [Reading as Markdown](https://yashmaurya.com/reading.md): Public reading list, writeups, topics, and recap questions with answers.
+- [Reading as Markdown](https://yashmaurya.com/reading/index.md): Public reading list, writeups, topics, flashcards, and recap questions with answers.
+- [Detailed notes](https://yashmaurya.com/reading/notes/frontier-training-methodologies.md): Existing reading summary and explicit draft status for the detailed notes.
 - [Speaker bio](https://yashmaurya.com/speaker-bio.txt): Owner-provided third-person biography for event introductions.
 - [Structured content](https://yashmaurya.com/data/site.json): Homepage source data and image provenance.
 - [Website](https://yashmaurya.com/): Human-readable HTML with stable paper anchors.
@@ -14,7 +15,7 @@
 ## Other pages
 
 - [CV](https://yashmaurya.com/cv.pdf): Curriculum vitae in PDF.
-- [Text diff](https://yashmaurya.com/diff.html): Browser-local text comparison tool.
-- [QR code generator](https://yashmaurya.com/qrcode.html): Browser-local QR code tool.
+- [Text diff](https://yashmaurya.com/diff.md): Browser-local text comparison tool, inputs, modes, and output.
+- [QR code generator](https://yashmaurya.com/qrcode.md): Browser-local QR code tool, settings, and PNG download.
 
-Publication years are recorded in each entry's venue; archive year groupings follow the existing site. Images are source figures, slides, or posters except the explicitly labeled illustrated overviews. Personal reading notes stored only in a browser are not public website content.
+Publication years are recorded in each entry's venue; archive year groupings follow the existing site. Images are source figures, slides, or posters except the explicitly labeled illustrated overviews. Detailed notes that are not written yet are marked as drafts.

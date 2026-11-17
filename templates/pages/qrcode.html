@@ -1,0 +1,20 @@
+<main id="main" class="wrap page-main">
+  <header class="page-heading"><h1>QR code generator</h1><p>Turn a link or text into a QR code. Everything stays in your browser.</p></header>
+  <div class="qr-layout">
+    <form id="qr-form" class="qr-form" autocomplete="off">
+      <label for="qr-text">Text or URL</label><input type="text" id="qr-text" placeholder="https://example.com" required>
+      <div class="options">
+        <div><label for="qr-size">Image size</label><select id="qr-size"><option value="128">128 × 128</option><option value="192">192 × 192</option><option value="256" selected>256 × 256</option><option value="384">384 × 384</option><option value="512">512 × 512</option></select></div>
+        <div><label for="qr-ec">Error correction</label><select id="qr-ec"><option value="L">Low (7%)</option><option value="M" selected>Medium (15%)</option><option value="Q">Quartile (25%)</option><option value="H">High (30%)</option></select></div>
+      </div>
+      <button class="action action-primary" type="submit">Generate QR code</button>
+      <p class="tool-status" id="qr-status" role="status" aria-live="polite"></p>
+    </form>
+    <section class="qr-preview" aria-label="QR code preview">
+      <p class="qr-placeholder" id="qr-placeholder">Your QR code will appear here</p>
+      <div id="qrcode" role="img" aria-label="Generated QR code" hidden></div>
+      <a id="download-btn" class="action action-secondary" download="qrcode.png" hidden>Download PNG</a>
+    </section>
+  </div>
+  <noscript><p>QR code generation needs JavaScript.</p></noscript>
+</main>

@@ -2,7 +2,7 @@
 
 Website: https://yashmaurya.com/reading/
 
-This edition contains the public reading list, writeups, and recap questions. Notes edited only in a visitor’s browser are not part of the public site.
+This edition contains the public reading list, writeups, flashcards, and recap questions with answers. Detailed notes that are still drafts are labeled as such.
 
 ## frontier model training methodologies
 
@@ -31,7 +31,57 @@ This post argues that the hardest frontier-model gains come from disciplined sys
 
 [Notes page](https://yashmaurya.com/reading/notes/frontier-training-methodologies.html)
 
-The public notes page currently contains a writing template; personal notes are saved in the browser.
+The notes page includes the reading summary. Detailed notes and figures are still a draft.
+
+### Flashcards
+
+1. Core Thesis
+
+   Frontier training is primarily a systems problem: data curation/scheduling, architecture defaults, and stability operations dominate isolated algorithmic novelty.
+
+2. Derisking Principle
+
+   Do not change multiple variables at once; ablate quickly and with high discriminative reliability to preserve causal interpretability.
+
+3. Attention Tradeoff Ladder
+
+   MQA minimizes KV cost but can lose head specialization; GQA (small groups) balances quality and efficiency; MLA compresses KV further but raises implementation complexity.
+
+4. Long-Context Default
+
+   Document masking plus positional strategy (RNoPE/YaRN-family scaling) is treated as robust infrastructure for context extension rather than a late patch.
+
+5. QK-Norm Caution
+
+   QK-norm can stabilize logits but may hurt long-context retrieval by flattening magnitude signals needed to emphasize relevant tokens.
+
+6. Batch Warmup Intuition
+
+   Critical batch size grows over training; early high-gradient regimes favor smaller effective batches, with larger batches becoming viable later.
+
+7. Token Utility
+
+   Performance per token, not token count alone, drives efficiency; high-quality data should be leveraged strategically but not overfit into narrow generalization.
+
+8. Multi-Stage Mixtures
+
+   Late-stage high-quality/reasoning data can disproportionately shape final behavior due to end-of-training distribution effects.
+
+9. Mid-Training Trigger
+
+   Use early SFT diagnostics to decide domain-specific mid-training; if objective is shallow style alignment, post-training compute may be higher ROI.
+
+10. RLVR Failure Mode
+
+   Hybrid reasoning policies can reward-hack via longer traces; apply length-aware penalties and mode-specific controls to prevent objective drift.
+
+11. In-Flight Off-Policy Drift
+
+   Throughput-oriented rollout/update pipelines can make later batches partially off-policy even with ostensibly on-policy algorithms.
+
+12. Ops Reality
+
+   Throughput collapse, noisy loss, and instability often originate in storage, dataloader access patterns, and orchestration—not model equations.
 
 ### Advanced Recap MCQ: Frontier Model Training Methodologies
 

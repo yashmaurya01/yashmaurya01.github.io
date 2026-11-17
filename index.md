@@ -421,9 +421,9 @@ Yash Maurya is a Research Engineer at Scale AI, where he works on frontier AI sa
 
 ## Other pages
 
-- [Reading notes and recap questions](https://yashmaurya.com/reading.md). public reading list, writeups, topics, and quizzes.
-- [Reading interface](https://yashmaurya.com/reading/). searchable reading list and browser-local personal notes.
-- [Text diff](https://yashmaurya.com/diff.html). browser tool for comparing two texts.
-- [QR code generator](https://yashmaurya.com/qrcode.html). browser tool for generating QR codes.
+- [Reading notes and recap questions](https://yashmaurya.com/reading.md). Public reading list, writeups, topics, flashcards, and quizzes.
+- [Reading interface](https://yashmaurya.com/reading/). Topic filters and links to notes, flashcards, and quizzes.
+- [Text diff](https://yashmaurya.com/diff.md). Browser tool for comparing two texts.
+- [QR code generator](https://yashmaurya.com/qrcode.md). Browser tool for generating QR codes.
 - [ML privacy mitigations repository](https://github.com/Privacy-Engineering-CMU/Awesome-ML-Privacy-Mitigations)
 - [CV (PDF)](https://yashmaurya.com/cv.pdf)
